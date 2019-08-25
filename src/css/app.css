@@ -1,1 +1,22 @@
 /* Your app styles here */
+
+:root{
+    --blue1: #0071a6;
+    --blue2: #224d83;
+    --blue3: #0d2541;
+    --white: #fff;
+    --red: #f00;
+    --font-bold: 'Gotham Bold';
+    --font-book: 'Gotham Book';
+    --font-medium: 'Gotham Medium';
+    --font-light: 'Gotham Light';
+
+    --normal-text: 10px;
+    --title-text: 14px;
+}
+
+body{
+    font-family: var(--font-medium) !important;
+    color: var(--white);
+}
+
