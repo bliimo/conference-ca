@@ -1,5 +1,44 @@
 .container{
-  padding: 10px
+  /* padding: 10px */
+}
+
+.activity img.bg-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.activity .profile img{
+  position: relative;
+  margin: 0 auto;
+  display: block;
+}
+
+.activity .description{
+  padding: 10px;
+  font-family: var(--font-light); 
+  font-size: var(--normal-text);
+}
+
+.back-button{
+  margin: 20px 0px;
+}
+
+.back-button i{
+  font-size: 50px;
+}
+
+.activity .profile img.logo{
+  width: 80%;
+}
+
+.activity .profile img.picture{
+  padding: 20px 0px 0px 0px;
+}
+
+.activity .profile p.name{
+  text-align: center;
+  font-size: var(--title-text)
 }
 
 #dashboard{
@@ -60,7 +99,7 @@
 }
 
 .featured-activity .content .right .profile-picture img{
-  width: 80%;
+  width: 100%;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -83,8 +122,4 @@
   margin: 10px 0px;
   border-radius: 0px 3px 3px 0px;
   padding: 2px 4px;
-}
-
-.makeMeRed{
-  color: #0f0;
 }
