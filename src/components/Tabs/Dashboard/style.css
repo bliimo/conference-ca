@@ -144,10 +144,6 @@
   padding-left: 15px;
   padding-right: 15px;
 }
-.accordion-item-content{
-  background-color :black !important;
-  height: 1px !important;
-}
 .input-clear-button{
   right: -30px !important; 
 }
