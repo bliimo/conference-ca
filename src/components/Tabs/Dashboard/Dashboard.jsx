@@ -59,6 +59,26 @@ const HandleDisplayTalks = (props) => {
   );
 }
 
+const HandleDisplaySlide = (data) => {
+  let {activity} = data;
+  return (
+    <div>
+      <img src={thumbnail} alt={activity.name} className='featured-activity-bg-image' />
+      <div className='content'>
+        <div className='left'>
+          <div className='logo'><img src={activity.logo} alt='' /></div>
+          <div className='title'>{activity.title}</div>
+          <div className='description'>{activity.description}</div>
+        </div>
+        <div className='right'>
+          <div className='profile-picture'><img src={activity.profilePicture} alt='' /></div>
+          <div className='name'>{activity.profileName}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const HandleDisplayFeaturedActivity = (props) => {
   return(
     <Swiper
@@ -75,18 +95,7 @@ const HandleDisplayFeaturedActivity = (props) => {
           return(
             <SwiperSlide key={index}>
               <Link onClick={ () => { props.click(true) } } >
-                <img src={thumbnail} alt={activity.name} className='featured-activity-bg-image' />
-                <div className='content'>
-                  <div className='left'>
-                    <div className='logo'><img src={activity.logo} alt='' /></div>
-                    <div className='title'>{activity.title}</div>
-                    <div className='description'>{activity.description}</div>
-                  </div>
-                  <div className='right'>
-                    <div className='profile-picture'><img src={activity.profilePicture} alt='' /></div>
-                    <div className='name'>{activity.profileName}</div>
-                  </div>
-                </div>
+                <HandleDisplaySlide activity={activity} />
               </Link>
             </SwiperSlide>
           );
@@ -174,7 +183,7 @@ export default class HomePage extends React.Component {
         }]
       },
     ], 
-    display: 'dashboard'
+    display: 'activity' //dashboard
   }
 
   componentWillMount = () => {
@@ -186,7 +195,7 @@ export default class HomePage extends React.Component {
   render(){
     return(
       <div className='dashboard'>
-        { (this.state.display == 'dashboard') ? 
+        { (this.state.display === 'dashboard') ? 
           <div>
             <div className='featured-activity'>
               <HandleDisplayFeaturedActivity click={ (e) => { this.setState({display:e}) } } activities={this.state.featuredActivity} />
@@ -195,7 +204,7 @@ export default class HomePage extends React.Component {
               <HandleDisplayEvents activities={this.state.activities} /> 
             </div>
           </div> : 
-          <Activity />
+          <Activity event={ (e) => { this.setState({display: e ? 'dashboard' : '' }) } } />
         }
       </div>
     )
