@@ -60,7 +60,21 @@ export default class Activity extends React.Component {
 
       const fullStar = <Icon material='star'/>
       const emptyStar = <Icon material='star_border'/>
-
+      const rates = [
+        <div>{emptyStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}</div>,
+        <div>{fullStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}</div>,
+        <div>{fullStar} {fullStar} {emptyStar} {emptyStar} {emptyStar}</div>,
+        <div>{fullStar} {fullStar} {fullStar} {emptyStar} {emptyStar}</div>,
+        <div>{fullStar} {fullStar} {fullStar} {fullStar} {emptyStar}</div>,
+        <div>{fullStar} {fullStar} {fullStar} {fullStar} {fullStar}</div>
+      ]
+      const btnActive = [
+        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button></div>,
+        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button></div>,
+        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button></div>,
+        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button></div>,
+        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button></div>
+      ]
     return(
       <div className='container'>
         <img src={thumbnail} alt=' bg image' className='bgImage'/>
@@ -140,29 +154,19 @@ export default class Activity extends React.Component {
               <List>
                 <ListItem title="Rate">
                   { active === 1 ?
-                    <div>
-                    <Button type="submit" active round outline onClick={() => this.btnRateHandler(1)}>1</Button>
-                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button>
+                      btnActive[0] : <Button type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button>
                   }
                   { active === 2 ?
-                    <div>
-                      <Button type="submit" active round outline onClick={() => this.btnRateHandler(2)}>2</Button>
-                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button>
+                      btnActive[1]: <Button type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button>
                   }
                   { active === 3 ?
-                    <div>
-                      <Button active type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
-                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
+                      btnActive[2]: <Button type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
                   }
                   { active === 4 ?
-                    <div>
-                      <Button active type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
-                    </div>:<Button type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
+                      btnActive[3]:<Button type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
                   }
                   { active ===5 ?
-                    <div>
-                      <Button active type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
-                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
+                      btnActive[4]: <Button type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
                   }
                   
                 </ListItem>
@@ -172,36 +176,12 @@ export default class Activity extends React.Component {
           </List>
     
           <div className='stars'>
-            { rate === 0 ?
-              <div>
-                {emptyStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}
-              </div>: "" 
-            }
-            { rate === 1 ?
-              <div>
-                {fullStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}
-              </div>: "" 
-            }
-            { rate === 2 ?
-              <div>
-                {fullStar} {fullStar} {emptyStar} {emptyStar} {emptyStar}
-              </div>: "" 
-            }
-            { rate === 3 ?
-              <div>
-                {fullStar} {fullStar} {fullStar} {emptyStar} {emptyStar}
-              </div>: "" 
-            }
-            { rate === 4 ?
-              <div>
-                {fullStar} {fullStar} {fullStar} {fullStar} {emptyStar}
-              </div>: "" 
-            }
-            { rate === 5 ?
-              <div>
-                {fullStar} {fullStar} {fullStar} {fullStar} {fullStar}
-              </div>: "" 
-            }
+            { rate === 0 ? rates[0]: "" }
+            { rate === 1 ? rates[1]: "" }
+            { rate === 2 ? rates[2]: "" }
+            { rate === 3 ? rates[3]: "" }
+            { rate === 4 ? rates[4]: "" }
+            { rate === 5 ? rates[5]: "" }
           </div>
           <br />
         </div>
