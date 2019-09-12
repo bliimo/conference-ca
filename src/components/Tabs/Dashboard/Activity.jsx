@@ -65,16 +65,16 @@ export default class Activity extends React.Component {
       <div className='container'>
         <img src={thumbnail} alt=' bg image' className='bgImage'/>
         <div className='imagePos'>
-        <Link iconMd='material:keyboard_arrow_left' color="white" className='back-button' onClick={ () => { this.props.event(true) } }></Link>
+        <Link iconMd='material:keyboard_arrow_left' color="white" className='back-button' onClick={() => {this.props.event(true)} }></Link>
           <img src={ MPossibleLogo } alt='logo' className='mpossibleLogo'/>
           <img src={ profilePicture } alt='profile picture' className='profile'/>
           <h4 className='name'>Jane Dela Cruz</h4>
         </div>
         <div className='title'>
-          <h4 className='theTalk'>The <strong>Talk</strong></h4>
+          <h4 className='theTalk'>The<strong>Talk</strong></h4>
         </div>
         <div className='description'>
-          <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          <h4 className='firstSentence'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
           </h4>
@@ -84,15 +84,13 @@ export default class Activity extends React.Component {
           </h4>
         </div>
         <div className='thePlace'>
-          <h4>The <strong>Place</strong></h4>
+          <h4>The<strong>Place</strong></h4>
         </div>
         <div className='swiperPadding'>
           <Swiper params={{speed:500, spaceBetween: 15}} className='swiperContainer'>
-            {
-              images.map(imageItem =>(
+            { images.map(imageItem =>(
                 <SwiperSlide><img className='imgSize' src={imageItem.image}/></SwiperSlide>
-              ))
-            }
+              ))}
           </Swiper>
         </div>
 
@@ -106,8 +104,7 @@ export default class Activity extends React.Component {
                     type="textarea"
                     placeholder="Comment"
                     clearButton
-                    resizable
-                  />
+                    resizable/>
                 </Block>
               </AccordionContent>
             </ListItem>
@@ -120,8 +117,7 @@ export default class Activity extends React.Component {
                     type="textarea"
                     placeholder="Suggestion"
                     clearButton
-                    resizable
-                  />
+                    resizable/>
                 </Block>
               </AccordionContent>
             </ListItem>
@@ -134,8 +130,7 @@ export default class Activity extends React.Component {
                     type="textarea"
                     placeholder="Question"
                     clearButton
-                    resizable
-                  />
+                    resizable/>
                 </Block>
               </AccordionContent>
             </ListItem>
@@ -174,34 +169,39 @@ export default class Activity extends React.Component {
               </List>
               </AccordionContent>
             </ListItem>
-
           </List>
     
           <div className='stars'>
             { rate === 0 ?
               <div>
                 {emptyStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}
-              </div>: "" }
+              </div>: "" 
+            }
             { rate === 1 ?
               <div>
                 {fullStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}
-              </div>: "" }
+              </div>: "" 
+            }
             { rate === 2 ?
               <div>
                 {fullStar} {fullStar} {emptyStar} {emptyStar} {emptyStar}
-              </div>: "" }
+              </div>: "" 
+            }
             { rate === 3 ?
               <div>
                 {fullStar} {fullStar} {fullStar} {emptyStar} {emptyStar}
-              </div>: "" }
+              </div>: "" 
+            }
             { rate === 4 ?
               <div>
                 {fullStar} {fullStar} {fullStar} {fullStar} {emptyStar}
-              </div>: "" }
+              </div>: "" 
+            }
             { rate === 5 ?
               <div>
                 {fullStar} {fullStar} {fullStar} {fullStar} {fullStar}
-              </div>: "" }
+              </div>: "" 
+            }
           </div>
           <br />
         </div>
