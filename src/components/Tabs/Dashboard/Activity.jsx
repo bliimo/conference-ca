@@ -1,5 +1,5 @@
 import React from 'react';
-import { Swiper, SwiperSlide, Link, List, ListInput, Icon, ListItem, AccordionContent, Block } from 'framework7-react';
+import { Swiper, SwiperSlide, Link, List, ListInput, Icon, ListItem, AccordionContent, Block, Button } from 'framework7-react';
 
 import style from './style.css';
 
@@ -15,25 +15,57 @@ import SaveMoney from '../../../img/HomePage/SaveMoney.png';
 import LandScape from '../../../img/HomePage/landscape-4456368_960_720.jpg';
 import LScape from '../../../img/HomePage/landscape-4460710_960_720.jpg';
 import Twilight from '../../../img/HomePage/twilight-4453762_960_720.jpg';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default class Activity extends React.Component {
 
   state = {
-    display: 'dashboard',
+    display: 'dashboard', 
+    description: `<h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Talk</span></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Place</span></h1><p>
+    <div class="swiper-container swiper-init demo-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src='${DigitalRevolution}' alt=''></div>
+        <div class="swiper-slide"><img src='${InvestoMania}' alt=''></div>
+        <div class="swiper-slide"><img src='${MPossible}' alt=''></div>
+        <div class="swiper-slide"><img src='${MillenialTalks}' alt=''></div>
+        <div class="swiper-slide"><img src='${SaveMoney}' alt=''></div>
+      </div>
+    </div>
+    </p>`,
+    images : [
+      { image:LandScape },
+      { image:LScape },
+      { image:Twilight }
+    ],
+    rate: 0,
+    active: 0
   }
-
+  
   componentWillMount = () => {
   }
 
   componentDidMount = () => {
   }
 
+  btnRateHandler = (e) => {
+    this.setState({
+      rate: e,
+      active: e
+    })
+  }
+  
   render(){
+      const { images, active } = this.state
+      let { rate } = this.state
+
+      const fullStar = <Icon material='star'/>
+      const emptyStar = <Icon material='star_border'/>
+
     return(
       <div className='container'>
         <img src={thumbnail} alt=' bg image' className='bgImage'/>
         <div className='imagePos'>
+        <Link iconMd='material:keyboard_arrow_left' color="white" className='back-button' onClick={ () => { this.props.event(true) } }></Link>
           <img src={ MPossibleLogo } alt='logo' className='mpossibleLogo'/>
           <img src={ profilePicture } alt='profile picture' className='profile'/>
           <h4 className='name'>Jane Dela Cruz</h4>
@@ -56,9 +88,11 @@ export default class Activity extends React.Component {
         </div>
         <div className='swiperPadding'>
           <Swiper params={{speed:500, spaceBetween: 15}} className='swiperContainer'>
-            <SwiperSlide><img className='imgSize' src={ LandScape }/></SwiperSlide>
-            <SwiperSlide><img className='imgSize' src={ LScape } /></SwiperSlide>
-            <SwiperSlide><img className='imgSize' src={ Twilight } /></SwiperSlide>
+            {
+              images.map(imageItem =>(
+                <SwiperSlide><img className='imgSize' src={imageItem.image}/></SwiperSlide>
+              ))
+            }
           </Swiper>
         </div>
 
@@ -105,22 +139,73 @@ export default class Activity extends React.Component {
                 </Block>
               </AccordionContent>
             </ListItem>
+
+            <ListItem accordionItem title="Rating" className='backgroundColor'>
+              <AccordionContent>
+              <List>
+                <ListItem title="Rate">
+                  { active === 1 ?
+                    <div>
+                    <Button type="submit" active round outline onClick={() => this.btnRateHandler(1)}>1</Button>
+                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button>
+                  }
+                  { active === 2 ?
+                    <div>
+                      <Button type="submit" active round outline onClick={() => this.btnRateHandler(2)}>2</Button>
+                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button>
+                  }
+                  { active === 3 ?
+                    <div>
+                      <Button active type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
+                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
+                  }
+                  { active === 4 ?
+                    <div>
+                      <Button active type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
+                    </div>:<Button type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
+                  }
+                  { active ===5 ?
+                    <div>
+                      <Button active type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
+                    </div>: <Button type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
+                  }
+                  
+                </ListItem>
+              </List>
+              </AccordionContent>
+            </ListItem>
+
           </List>
- 
+    
           <div className='stars'>
-            <Icon material='star' />
-            <Icon material='star' />
-            <Icon material='star_half' />
-            <Icon material='star_border' />
-            <Icon material='star_border' />
+            { rate === 0 ?
+              <div>
+                {emptyStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}
+              </div>: "" }
+            { rate === 1 ?
+              <div>
+                {fullStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}
+              </div>: "" }
+            { rate === 2 ?
+              <div>
+                {fullStar} {fullStar} {emptyStar} {emptyStar} {emptyStar}
+              </div>: "" }
+            { rate === 3 ?
+              <div>
+                {fullStar} {fullStar} {fullStar} {emptyStar} {emptyStar}
+              </div>: "" }
+            { rate === 4 ?
+              <div>
+                {fullStar} {fullStar} {fullStar} {fullStar} {emptyStar}
+              </div>: "" }
+            { rate === 5 ?
+              <div>
+                {fullStar} {fullStar} {fullStar} {fullStar} {fullStar}
+              </div>: "" }
           </div>
-
-          <div>
-            <br/>
-          </div>
-
+          
         </div>
       </div>
-    )
+      )
+    }
   }
-}
