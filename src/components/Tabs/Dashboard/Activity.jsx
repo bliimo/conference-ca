@@ -203,7 +203,7 @@ export default class Activity extends React.Component {
                 {fullStar} {fullStar} {fullStar} {fullStar} {fullStar}
               </div>: "" }
           </div>
-          
+          <br />
         </div>
       </div>
       )
