@@ -12,13 +12,15 @@ import InvestoMania from '../../../img/HomePage/InvestoMania.png';
 import MPossible from '../../../img/HomePage/MPossible.png';
 import MillenialTalks from '../../../img/HomePage/MillenialTalks.png';
 import SaveMoney from '../../../img/HomePage/SaveMoney.png';
+import LandScape from '../../../img/HomePage/landscape-4456368_960_720.jpg';
+import LScape from '../../../img/HomePage/landscape-4460710_960_720.jpg';
+import Twilight from '../../../img/HomePage/twilight-4453762_960_720.jpg';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 
 export default class Activity extends React.Component {
 
   state = {
-    display: 'dashboard'
+    display: 'dashboard',
   }
 
   componentWillMount = () => {
@@ -34,50 +36,30 @@ export default class Activity extends React.Component {
         <div className='imagePos'>
           <img src={ MPossibleLogo } alt='logo' className='mpossibleLogo'/>
           <img src={ profilePicture } alt='profile picture' className='profile'/>
-          <p className='name'>Jane Dela Cruz</p>
+          <h4 className='name'>Jane Dela Cruz</h4>
         </div>
         <div className='title'>
-          <span className='theTalk'>The <strong>Talk</strong></span>
+          <h4 className='theTalk'>The <strong>Talk</strong></h4>
         </div>
         <div className='description'>
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          </span><br/>
-          <span className='secondSentence'>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+          </h4>
+          <h4 className='secondSentence'>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
             Excepteur sint occaecat cupidatat non proident, 
             sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </span>
+          </h4>
         </div>
         <div className='thePlace'>
-          <span>The <strong>Place</strong></span>
+          <h4>The <strong>Place</strong></h4>
         </div>
-        <div>
-            <Carousel showArrows={true}
-             onChange={this.onChange} 
-             onClickItem={this.onClickItem} 
-             classname='carousel'>
-                <div>
-                    <img src={ DigitalRevolution }/>
-                    <span className="legend">First Image</span>
-                </div>
-                <div>
-                    <img src={ InvestoMania } />
-                    <span className="legend">Second Image</span>
-                </div>
-                <div>
-                    <img src={ MPossible } />
-                    <span className="legend">Third Image</span>
-                </div>
-                <div>
-                    <img src={ MillenialTalks } />
-                    <span className="legend">Fourth Image</span>
-                </div>
-                <div>
-                    <img src={ SaveMoney } />
-                    <span className="legend">Fifth Image</span>
-                </div>
-            </Carousel>
+        <div className='swiperPadding'>
+          <Swiper params={{speed:500, spaceBetween: 15}} className='swiperContainer'>
+            <SwiperSlide><img className='imgSize' src={ LandScape }/></SwiperSlide>
+            <SwiperSlide><img className='imgSize' src={ LScape } /></SwiperSlide>
+            <SwiperSlide><img className='imgSize' src={ Twilight } /></SwiperSlide>
+          </Swiper>
         </div>
 
         <div className='get-data-from-user'>
