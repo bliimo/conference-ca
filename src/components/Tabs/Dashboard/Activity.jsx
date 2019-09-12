@@ -151,26 +151,25 @@ export default class Activity extends React.Component {
 
             <ListItem accordionItem title="Rating" className='backgroundColor'>
               <AccordionContent>
-              <List>
-                <ListItem title="Rate">
-                  { active === 1 ?
-                      btnActive[0] : <Button type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button>
-                  }
-                  { active === 2 ?
-                      btnActive[1]: <Button type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button>
-                  }
-                  { active === 3 ?
-                      btnActive[2]: <Button type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
-                  }
-                  { active === 4 ?
-                      btnActive[3]:<Button type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
-                  }
-                  { active ===5 ?
-                      btnActive[4]: <Button type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
-                  }
-                  
-                </ListItem>
-              </List>
+                <List>
+                  <ListItem title="Rate">
+                    { active === 1 ?
+                        btnActive[0] : <Button type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button>
+                    }
+                    { active === 2 ?
+                        btnActive[1]: <Button type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button>
+                    }
+                    { active === 3 ?
+                        btnActive[2]: <Button type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
+                    }
+                    { active === 4 ?
+                        btnActive[3]:<Button type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
+                    }
+                    { active === 5 ?
+                        btnActive[4]: <Button type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
+                    }
+                  </ListItem>
+                </List>
               </AccordionContent>
             </ListItem>
           </List>
