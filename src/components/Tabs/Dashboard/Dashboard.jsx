@@ -1,8 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide, Link } from 'framework7-react';
-
-import style from './style.css';
-
+import './style.css';
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
 import profilePicture from '../../../img/HomePage/profilePicture.png';
