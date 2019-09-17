@@ -1,5 +1,5 @@
 import React from 'react';
-import { Swiper, SwiperSlide, Link, List, ListInput, Icon, ListItem, AccordionContent, Block, Button } from 'framework7-react';
+import {Link, List, ListInput, Icon, ListItem, AccordionContent, Block, Button } from 'framework7-react';
 import './style.css';
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
@@ -16,11 +16,6 @@ import SaveMoney from '../../../img/HomePage/SaveMoney.png';
 
 export default class Activity extends React.Component {
   state = {
-    images : [
-      { image:LandScape },
-      { image:LScape },
-      { image:Twilight }
-    ],
     rate: 0,
     active: 0,
     name: 'Jane Dela Cruz',
@@ -38,7 +33,7 @@ export default class Activity extends React.Component {
     </p>`
   }
 
-  Buttons = () =>{
+Buttons = () => {
     const { active } = this.state;
     return(
       <div className="btnActive">
@@ -49,7 +44,7 @@ export default class Activity extends React.Component {
         <div className="btnActivePos"><Button active={active===5} type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button></div>
       </div>
     )
-  }
+}
   
 StarRating = () => {
   const { rate } = this.state
@@ -90,9 +85,6 @@ StarRating = () => {
   
   render(){
       let { name } = this.state
-      const { active } = this.state
-      
-      
     return(
       <div className='container'>
         <img src={thumbnail} alt=' bg image' className='bgImage'/>
