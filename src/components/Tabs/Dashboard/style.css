@@ -184,3 +184,13 @@
 .back-button i {
   font-weight: bold;
 }
+.accordion-item-content{
+  display: flex !important;
+}
+.btnActive{
+  display: flex;
+  margin-left: 15px;
+}
+.btnActivePos{
+  padding-left: 20px;
+}

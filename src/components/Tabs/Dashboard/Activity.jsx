@@ -8,8 +8,13 @@ import LandScape from '../../../img/HomePage/landscape-4456368_960_720.jpg';
 import LScape from '../../../img/HomePage/landscape-4460710_960_720.jpg';
 import Twilight from '../../../img/HomePage/twilight-4453762_960_720.jpg';
 
-export default class Activity extends React.Component {
+import DigitalRevolution from '../../../img/HomePage/DigitalRevolution.png';
+import InvestoMania from '../../../img/HomePage/InvestoMania.png';
+import MPossible from '../../../img/HomePage/MPossible.png';
+import MillenialTalks from '../../../img/HomePage/MillenialTalks.png';
+import SaveMoney from '../../../img/HomePage/SaveMoney.png';
 
+export default class Activity extends React.Component {
   state = {
     images : [
       { image:LandScape },
@@ -17,9 +22,59 @@ export default class Activity extends React.Component {
       { image:Twilight }
     ],
     rate: 0,
-    active: 0
+    active: 0,
+    name: 'Jane Dela Cruz',
+    description: `<h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Talk</span></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Place</span></h1><p>
+    <div class="swiper-container swiper-init demo-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src='${LandScape}' alt='' style='height: 200px; width: 420px;'></div>
+        <div class="swiper-slide"><img src='${LScape}' alt='' style='height: 200px; width: 420px;'></div>
+        <div class="swiper-slide"><img src='${Twilight}' alt='' style='height: 200px; width: 420px'></div>
+        <div class="swiper-slide"><img src='${MillenialTalks}' alt='' style='height: 200px; width: 420px'></div>
+        <div class="swiper-slide"><img src='${SaveMoney}' alt='' style='height: 200px; width: 420px'></div>
+      </div>
+    </div>
+    </p>`
+  }
+
+  Buttons = () =>{
+    const { active } = this.state;
+    return(
+      <div className="btnActive">
+        <div className="btnActivePos"><Button active={active===1} type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button></div>
+        <div className="btnActivePos"><Button active={active===2} type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button></div>
+        <div className="btnActivePos"><Button active={active===3} type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button></div>
+        <div className="btnActivePos"><Button active={active===4} type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button></div>
+        <div className="btnActivePos"><Button active={active===5} type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button></div>
+      </div>
+    )
   }
   
+StarRating = () => {
+  const { rate } = this.state
+  const ratings = []
+    for(let ratingCounter = rate; ratingCounter > 0; ratingCounter--) {
+      ratings.push(1)
+    }
+    for(let ratingCounter = 5 - rate; ratingCounter > 0; ratingCounter--) {
+      ratings.push(0)
+    }
+    return(
+      <div className='stars'>
+        { ratings.map( item => {
+          if (item == 1){
+            return <Icon material='star'/>
+          }
+          else{
+            return <Icon material='star_border'/>
+          }
+        }
+        )}
+      </div>
+    )
+  }
+
   componentWillMount = () => {
   }
 
@@ -34,26 +89,10 @@ export default class Activity extends React.Component {
   }
   
   render(){
-      let { rate } = this.state
-      const { images, active } = this.state
-      const fullStar = <Icon material='star'/>
-      const emptyStar = <Icon material='star_border'/>
-
-      const rates = [
-        <div>{emptyStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}</div>,
-        <div>{fullStar} {emptyStar} {emptyStar} {emptyStar} {emptyStar}</div>,
-        <div>{fullStar} {fullStar} {emptyStar} {emptyStar} {emptyStar}</div>,
-        <div>{fullStar} {fullStar} {fullStar} {emptyStar} {emptyStar}</div>,
-        <div>{fullStar} {fullStar} {fullStar} {fullStar} {emptyStar}</div>,
-        <div>{fullStar} {fullStar} {fullStar} {fullStar} {fullStar}</div>
-      ]
-      const btnActive = [
-        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button></div>,
-        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button></div>,
-        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button></div>,
-        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button></div>,
-        <div><Button active type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button></div>
-      ]
+      let { name } = this.state
+      const { active } = this.state
+      
+      
     return(
       <div className='container'>
         <img src={thumbnail} alt=' bg image' className='bgImage'/>
@@ -62,35 +101,10 @@ export default class Activity extends React.Component {
           <Link iconMd='material:keyboard_arrow_left' color="white" className='back-button' onClick={() => {this.props.event(true)} }></Link>
           <img src={ MPossibleLogo } alt='logo' className='mpossibleLogo'/>
           <img src={ profilePicture } alt='profile picture' className='profile'/>
-          <h4 className='name'>Jane Dela Cruz</h4>
+          <h4 className='name'>{name}</h4>
         </div>
 
-        <div className='title'>
-          <h4 className='theTalk'>The<strong>Talk</strong></h4>
-        </div>
-
-        <div className='description'>
-          <h4 className='firstSentence'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          </h4>
-          <h4 className='secondSentence'>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, 
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </h4>
-        </div>
-
-        <div className='thePlace'>
-          <h4>The<strong>Place</strong></h4>
-        </div>
-
-        <div className='swiperPadding'>
-          <Swiper params={{speed:500, spaceBetween: 15}} className='swiperContainer'>
-            { images.map(imageItem =>(
-                <SwiperSlide><img className='imgSize' src={imageItem.image}/></SwiperSlide>
-              ))}
-          </Swiper>
-        </div>
+        <div className='description' dangerouslySetInnerHTML={{__html: this.state.description}} ></div>
 
         <div className='get-data-from-user'>
           <List accordionList className='accordionContainer'>
@@ -136,36 +150,17 @@ export default class Activity extends React.Component {
             <ListItem accordionItem title="Rating" className='backgroundColor'>
               <AccordionContent>
                 <List>
-                  <ListItem title="Rate">
-                    { active === 1 ?
-                        btnActive[0] : <Button type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button>
-                    }
-                    { active === 2 ?
-                        btnActive[1]: <Button type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button>
-                    }
-                    { active === 3 ?
-                        btnActive[2]: <Button type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button>
-                    }
-                    { active === 4 ?
-                        btnActive[3]:<Button type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button>
-                    }
-                    { active === 5 ?
-                        btnActive[4]: <Button type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button>
-                    }
-                  </ListItem>
+                  {
+                    this.Buttons()
+                  }
                 </List>
               </AccordionContent>
             </ListItem>
           </List>
     
-          <div className='stars'>
-            { rate === 0 ? rates[0]: "" }
-            { rate === 1 ? rates[1]: "" }
-            { rate === 2 ? rates[2]: "" }
-            { rate === 3 ? rates[3]: "" }
-            { rate === 4 ? rates[4]: "" }
-            { rate === 5 ? rates[5]: "" }
-          </div>
+          {
+              this.StarRating()
+          }
           <br />
         </div>
       </div>
