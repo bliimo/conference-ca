@@ -35,13 +35,24 @@ export default class Activity extends React.Component {
 
 Buttons = () => {
     const { active } = this.state;
+
+    let buttonArray = [1,2,3,4,5]
+      
     return(
       <div className="btnActive">
-        <div className="btnActivePos"><Button active={active===1} type="submit" round outline onClick={() => this.btnRateHandler(1)}>1</Button></div>
-        <div className="btnActivePos"><Button active={active===2} type="submit" round outline onClick={() => this.btnRateHandler(2)}>2</Button></div>
-        <div className="btnActivePos"><Button active={active===3} type="submit" round outline onClick={() => this.btnRateHandler(3)}>3</Button></div>
-        <div className="btnActivePos"><Button active={active===4} type="submit" round outline onClick={() => this.btnRateHandler(4)}>4</Button></div>
-        <div className="btnActivePos"><Button active={active===5} type="submit" round outline onClick={() => this.btnRateHandler(5)}>5</Button></div>
+        {
+          buttonArray.map(btn => {
+            return(
+              <div className="btnActivePos">
+              <Button active={active===btn} 
+                type="submit" round outline 
+                onClick={() => this.btnRateHandler(btn)}>
+                {btn}
+              </Button>
+            </div>
+            )
+          })
+        } 
       </div>
     )
 }
@@ -69,7 +80,6 @@ StarRating = () => {
       </div>
     )
   }
-
   componentWillMount = () => {
   }
 
@@ -85,6 +95,11 @@ StarRating = () => {
   
   render(){
       let { name } = this.state
+
+      const Rating = () => {
+        return this.StarRating()
+      }
+
     return(
       <div className='container'>
         <img src={thumbnail} alt=' bg image' className='bgImage'/>
@@ -150,9 +165,7 @@ StarRating = () => {
             </ListItem>
           </List>
     
-          {
-              this.StarRating()
-          }
+          <Rating />
           <br />
         </div>
       </div>
