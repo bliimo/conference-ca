@@ -1,6 +1,8 @@
 import React from 'react';
 import { Page } from 'framework7-react';
 
+import style from './style.css';
+
 export default () => (
   <Page pageContent={false}>
     <div className="page no-navbar no-toolbar no-swipeback">
