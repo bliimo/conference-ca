@@ -13,21 +13,6 @@ import AccountIcon from '../../../img/icons/account.png';
 
 export default () => (
   <Page pageContent={false}>
-    <Toolbar tabbar bottom>
-      <Link tabLink="#dashboard" ><div><img src={DashboardIcon} alt='Dashboard icon' /></div></Link>
-      <Link tabLink="#booths" ><div><img src={BoothsIcon} alt='Booth icon' /></div></Link>
-      <Link tabLink="#account" tabLinkActive><div><img src={AccountIcon} alt='Account icon' /></div></Link>
-    </Toolbar>
-    <Tabs swipeable>
-      <Tab id="dashboard" className="page-content"  >
-          <Dashboard />
-      </Tab>
-      <Tab id="booths" className="page-content">
-          <Booth />
-      </Tab>
-      <Tab id="account" className="page-content" tabActive>
-          <Account />
-      </Tab>
-    </Tabs>
+    Registration Page
   </Page>
 );

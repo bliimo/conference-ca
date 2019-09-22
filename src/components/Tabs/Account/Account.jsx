@@ -61,9 +61,9 @@ const HandleDisplayLogin = () => {
         Log in or Sign up now.
       </div>
       <div className='social-buttons'>
-        <Link tabLink routeTabId="tab-1" href="/tabs/"><Button color='blue' raised fill>Sign up with facebook</Button></Link>
-        <Link tabLink routeTabId="tab-1" href="/tabs/"><Button color='blue' raised fill>Sign up with email</Button></Link>
-        <Link tabLink routeTabId="tab-1" href="/tabs/"><Button color='blue' raised fill>Login</Button></Link>
+        <Button color='blue' raised fill href="/">Sign up with facebook</Button>
+        <Button color='blue' raised fill href="/register">Sign up with email</Button>
+        <Button color='blue' raised fill href="/login">Login</Button>
       </div>
     </Row>
 
