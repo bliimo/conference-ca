@@ -1,15 +1,5 @@
 import React from 'react';
-import { Page, Link, Toolbar, Tab, Tabs } from 'framework7-react';
-
-import Dashboard from '../../Tabs/Dashboard/Dashboard';
-import Booth from '../../Tabs/Booths/Booth';
-import Account from '../../Tabs/Account/Account';
-
-import style from './style.css';
-
-import DashboardIcon from '../../../img/icons/activities.png';
-import BoothsIcon from '../../../img/icons/booths.png';
-import AccountIcon from '../../../img/icons/account.png';
+import { Page } from 'framework7-react';
 
 export default () => (
   <Page pageContent={false}>
@@ -21,9 +11,9 @@ export default () => (
             <ul>
               <li className="item-content item-input">
                 <div className="item-inner">
-                  <div className="item-title item-label">Username</div>
+                  <div className="item-title item-label">Email</div>
                   <div className="item-input">
-                    <input type="text" name="username" placeholder="Username"/>
+                    <input type="text" name="email" placeholder="Email"/>
                   </div>
                 </div>
               </li>
