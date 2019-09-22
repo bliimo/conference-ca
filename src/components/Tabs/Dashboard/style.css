@@ -1,0 +1,125 @@
+.container{
+  /* padding: 10px */
+}
+
+.activity img.bg-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.activity .profile img{
+  position: relative;
+  margin: 0 auto;
+  display: block;
+}
+
+.activity .description{
+  padding: 10px;
+  font-family: var(--font-light); 
+  font-size: var(--normal-text);
+}
+
+.back-button{
+  margin: 20px 0px;
+}
+
+.back-button i{
+  font-size: 50px;
+}
+
+.activity .profile img.logo{
+  width: 80%;
+}
+
+.activity .profile img.picture{
+  padding: 20px 0px 0px 0px;
+}
+
+.activity .profile p.name{
+  text-align: center;
+  font-size: var(--title-text)
+}
+
+#dashboard{
+  background: var(--blue3);
+  height: 100%;
+}
+
+.featured-activity{
+  height: 300px;
+}
+
+.featured-activity img.featured-activity-bg-image{
+  position: absolute;
+  top: 0%;
+  width: 100%;
+}
+.featured-activity .content{
+  display: inline-block;
+  position: relative;
+  margin: 50px 0px;
+  color: #fff;
+  /* transform: translateY(20%); */
+}
+
+.featured-activity .content .left{
+  width:60%;
+  box-sizing: border-box;
+  padding: 10px;
+  float: left;
+}
+
+.featured-activity .content .left .logo img{
+  width:100%
+}
+
+.featured-activity .content .left .description{
+  font-family: var(--font-light);
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.featured-activity .content .right{
+  width:40%;
+  box-sizing: border-box;
+  padding: 10px;
+  float: right;
+}
+
+.featured-activity .content .right .name{
+  font-family: var(--font-light);
+  font-size: 10px;
+  text-align: center;
+}
+
+.featured-activity .content .right .profile-picture{
+  top: 0%;
+}
+
+.featured-activity .content .right .profile-picture img{
+  width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.activities{
+  padding: 10px;
+}
+
+.activities .talk img{
+  width: 100%;
+}
+
+.activities .talk .title{
+  position: absolute;
+  top: 0%;
+  font-size: 10px;
+  overflow: hidden;
+  background: var(--blue1);
+  margin: 10px 0px;
+  border-radius: 0px 3px 3px 0px;
+  padding: 2px 4px;
+}

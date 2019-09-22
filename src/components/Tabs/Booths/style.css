@@ -1,0 +1,36 @@
+.booth-information{
+  display: inline-block;
+}
+
+.booth-information .left, .booth-information .right{
+  display: inline-block;
+}
+
+.booth-information .left{
+  width:20%;
+}
+
+.booth-information .left img{
+  width:60px;
+}
+
+.booth-information .right{
+  width:80%;
+  padding: 0px 0px 0px 20px;
+  box-sizing: border-box;
+  float: right;
+}
+
+.booth-description{
+  font-size: var(--normal-text);
+  font-family: var(--font-light);
+}
+
+.paragraph{
+  font-size: var(--normal-text);
+  font-family: var(--font-light);
+}
+
+.booths .accordion-item{
+  margin: 0px 0px 20px 0px;
+}

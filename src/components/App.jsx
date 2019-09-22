@@ -33,23 +33,14 @@ export default function (props) {
 
   return (
     <App params={f7params}>
-      {/* Statusbar */}
       <Statusbar />
-
-      {/* Left Panel */}
       <Panel left cover themeDark>
         <View url="/panel-left/" />
       </Panel>
-
-      {/* Right Panel */}
       <Panel right reveal themeDark>
         <View url="/panel-right/"/>
       </Panel>
-
-      {/* Main View */}
       <View id="main-view" url="/" main className="safe-areas"/>
-
-      {/* Popup */}
       <Popup id="popup">
         <View>
           <Page>

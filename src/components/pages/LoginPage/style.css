@@ -1,0 +1,40 @@
+.page{
+    background: var(--blue3) !important;
+}
+
+.toolbar.tabbar.toolbar-bottom{
+    background: var(--blue1) !important;
+}
+
+.link.tab-link.tab-link-active{
+    background: var(--blue1) !important;
+}
+
+.link.tab-link.tab-link-active div{
+    padding: 8px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+
+.link.tab-link.tab-link-active img{
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar{
+    background: var(--blue3) !important;
+}
+
+.navbar::before{
+    content: ' ' !important;
+    background: none !important;
+}
+
+.navbar-inner.sliding{
+    color:#fff !important;
+}
