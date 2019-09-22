@@ -1,5 +1,5 @@
-import React from 'react';
-import { Page, Link, Toolbar, Tab, Tabs } from 'framework7-react';
+import React from './node_modules/react';
+import { Page, Link, Toolbar, Tab, Tabs } from './node_modules/framework7-react';
 
 import Dashboard from '../Tabs/Dashboard/Dashboard';
 import Booth from '../Tabs/Booths/Booth';

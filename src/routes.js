@@ -9,6 +9,14 @@ export default [
     component: HomePage,
   },
   {
+    path: '/login',
+    component: LoginPage,
+  },
+  {
+    path: '/register',
+    component: RegistrationPage,
+  },
+  {
     path: '(.*)',
     component: NotFoundPage,
   },
