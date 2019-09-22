@@ -38,3 +38,25 @@
 .navbar-inner.sliding{
     color:#fff !important;
 }
+
+
+.item-title{
+    color:#fff !important;
+}
+
+.signup-page{
+    background-color: #0d2541 !important;
+}
+
+.item-input input {
+    background: white !important;
+    border-radius: 5px !important;
+    height: 48px !important;
+}
+
+.signup-link{
+    background: #2096f3;
+    border-radius: 5px;
+    margin: 15px;
+    color: white !important;
+} 
