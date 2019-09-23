@@ -101,3 +101,13 @@ export async function getFilteredData(query, key, value, continues, callback) {
       });
   }
 }
+
+export const setStorage = data => {
+  Object.keys(data).map(e => {
+    localStorage.setItem([e], data[e]);
+  });
+};
+
+export const getStorage = key => {
+  return localStorage.getItem(key);
+};

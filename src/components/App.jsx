@@ -20,7 +20,7 @@ import {
 
 import routes from '../routes';
 
-import { firebaseIni, reducer } from '../reducers/reducer';
+import { firebaseIni, reducer, getStorage } from '../reducers/reducer';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import multiClientMiddleware from 'redux-axios-middleware';
@@ -41,6 +41,14 @@ const f7params = {
   routes
 };
 export default class Apps extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: ''
+    };
+  }
+  componentWillMount() {}
+
   componentDidMount() {
     firebaseIni();
   }
