@@ -6,18 +6,22 @@ import RegistrationPage from './components/Pages/RegistrationPage/Page';
 export default [
   {
     path: '/',
-    component: HomePage,
+    component: HomePage
+  },
+  {
+    path: '/home',
+    component: HomePage
   },
   {
     path: '/login',
-    component: LoginPage,
+    component: LoginPage
   },
   {
     path: '/register',
-    component: RegistrationPage,
+    component: RegistrationPage
   },
   {
     path: '(.*)',
-    component: NotFoundPage,
-  },
+    component: NotFoundPage
+  }
 ];
