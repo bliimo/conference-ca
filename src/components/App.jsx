@@ -1,22 +1,5 @@
 import React, { Component } from 'react';
-import {
-  App,
-  Panel,
-  View,
-  Statusbar,
-  Popup,
-  Page,
-  Navbar,
-  NavRight,
-  Link,
-  Block,
-  LoginScreen,
-  LoginScreenTitle,
-  List,
-  ListInput,
-  ListButton,
-  BlockFooter
-} from 'framework7-react';
+import { App, Panel, View, Statusbar, Popup, Page, Navbar, NavRight, Link, Block, LoginScreen, LoginScreenTitle, List, ListInput, ListButton, BlockFooter } from 'framework7-react';
 
 import routes from '../routes';
 
@@ -74,10 +57,7 @@ export default class Apps extends Component {
                     <Link popupClose>Close</Link>
                   </NavRight>
                 </Navbar>
-                <Block>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, architecto. Cupiditate laudantium rem nesciunt numquam, ipsam.
-                  Voluptates omnis, a inventore atque ratione aliquam. Omnis iusto nemo quos ullam obcaecati, quod.
-                </Block>
+                <Block>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, architecto. Cupiditate laudantium rem nesciunt numquam, ipsam. Voluptates omnis, a inventore atque ratione aliquam. Omnis iusto nemo quos ullam obcaecati, quod.</Block>
               </Page>
             </View>
           </Popup>

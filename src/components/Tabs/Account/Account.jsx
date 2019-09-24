@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Row, Col, Block, Link } from 'framework7-react';
+import { App, Button, Row, Col, Block, Link } from 'framework7-react';
 
 import style from './style.css';
 
@@ -9,134 +9,145 @@ import JackAndJillLogo from '../../../img/Booths/JackAndJillLogo.png';
 import PepsiLogo from '../../../img/Booths/PepsiLogo.png';
 import UratexLogo from '../../../img/Booths/UratexLogo.png';
 import FritolayLogo from '../../../img/Booths/FritolayLogo.png';
+import FacebookLogin from 'react-facebook-login';
+import { firebaseIni } from '../../../reducers/reducer';
+import firebase from 'firebase';
+firebaseIni();
 
-const HandleDisplayBooth = (props) => {
+const auth = firebase.auth;
+const provider = new firebase.auth.FacebookAuthProvider();
+
+const HandleDisplayBooth = props => {
   return (
     <Row>
-      {
-        props.list.map( (booth,key) => {
-          return (
-            <Col width='25' key={key}>
-              <div className='booth inactive' key={key}>
-                <img src={booth.logo} alt={booth.booth} />
-              </div>
-            </Col>
-          )
-        } )
-      }
+      {props.list.map((booth, key) => {
+        return (
+          <Col width="25" key={key}>
+            <div className="booth inactive" key={key}>
+              <img src={booth.logo} alt={booth.booth} />
+            </div>
+          </Col>
+        );
+      })}
     </Row>
-  )
-}
+  );
+};
 
-const HandleDisplayProfile = (props) => {
-  let {profile} = props;
+const HandleDisplayProfile = props => {
+  let { profile } = props;
   return (
-    <div className='profile'>
+    <div className="profile">
       <img src={profile.image} alt={profile.name} />
-      <div className='account-name'>{profile.name}</div>
+      <div className="account-name">{profile.name}</div>
     </div>
   );
-}
+};
 
-const HandleDisplayAccount = (props) => {
-  let {booths, profile} = props.data;
+const HandleDisplayAccount = props => {
+  let { booths, profile } = props.data;
 
   console.log(booths, profile);
   return (
     <div>
       <HandleDisplayProfile profile={profile} />
-      <div className='divider'></div>
+      <div className="divider"></div>
       <HandleDisplayBooth list={booths} />
-      <div className='divider'></div>
+      <div className="divider"></div>
       <Button>Logout</Button>
     </div>
-  )
-}
-
-const HandleDisplayLogin = () => {
-  return (
-    <Row>
-      <div className='notice'>
-        Oh! Looks like you haven't logged in yet!
-        Log in or Sign up now.
-      </div>
-      <div className='social-buttons'>
-        <Button color='blue' raised fill href="/">Sign up with facebook</Button>
-        <Button color='blue' raised fill href="/register">Sign up with email</Button>
-        <Button color='blue' raised fill href="/login">Login</Button>
-      </div>
-    </Row>
-
-  )
-}
+  );
+};
 
 export default class HomePage extends React.Component {
-
   state = {
-    booths:[
+    booths: [
       {
         booth: 'V8 Engine Tuning Tutorials',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         logo: HarleyLogo,
-        website: 'https://www.harley-davidson.com/', 
-        contact:''
+        website: 'https://www.harley-davidson.com/',
+        contact: ''
       },
       {
         booth: 'Free Newspaper and Goodies',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         logo: InquirerLogo,
-        website: 'https://www.inquirer.net/', 
-        contact:'09661476295'
+        website: 'https://www.inquirer.net/',
+        contact: '09661476295'
       },
       {
         booth: 'New Snack Sample Tasting',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         logo: JackAndJillLogo,
-        website: 'http://www2.urc.com.ph/products/philippines/ph-jack-n-jill', 
-        contact:''
+        website: 'http://www2.urc.com.ph/products/philippines/ph-jack-n-jill',
+        contact: ''
       },
       {
         booth: 'Discount Vouchers',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         logo: UratexLogo,
-        website: 'https://www.uratex.com.ph/', 
-        contact:'09661476295'
+        website: 'https://www.uratex.com.ph/',
+        contact: '09661476295'
       },
       {
         booth: 'Free Snack via Sign up',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         logo: FritolayLogo,
-        website: 'https://www.fritolay.com/', 
-        contact:'09661476295'
+        website: 'https://www.fritolay.com/',
+        contact: '09661476295'
       },
       {
         booth: 'Soda Pong Challenge',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         logo: PepsiLogo,
-        website: 'https://www.pepsi.com/en-us/', 
-        contact:''
-      },
+        website: 'https://www.pepsi.com/en-us/',
+        contact: ''
+      }
     ],
-    profile:{
+    profile: {
       name: 'Juan Dela Cruz',
       image: require('../../../img/HomePage/profilePicture.png')
-    }
-  }
+    },
+    user: null
+  };
+  login = async () => {
+    const user = await auth().signInWithPopup(provider);
+    this.setState({ user });
+  };
+  logout = async () => {
+    await auth().signOut();
+  };
+  componentWillMount = () => {};
 
-  componentWillMount = () => {
-  }
+  componentDidMount = () => {};
 
-  componentDidMount = () => {
-  }
-
-  render(){
-    return(
+  render() {
+    return (
       <Block>
-        <div className='account'>
+        <div className="account">
           {/* <HandleDisplayAccount data={this.state} /> */}
-          <HandleDisplayLogin />
+          <Row>
+            <div className="notice">Oh! Looks like you haven't logged in yet! Log in or Sign up now.</div>
+            <div className="social-buttons">
+              <Button color="blue" raised fill onClick={this.login}>
+                Sign up with facebook
+              </Button>
+              <Button color="blue" raised fill href="/register">
+                Sign up with email
+              </Button>
+              <Button color="blue" raised fill href="/login">
+                Login
+              </Button>
+            </div>
+          </Row>
         </div>
       </Block>
-    )
+    );
   }
 }
