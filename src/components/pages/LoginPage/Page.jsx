@@ -26,7 +26,6 @@ class Login extends Component {
 
   componentWillMount() {
     const email = getStorage('email');
-    alert('You have already logged in, redirecting to homepage');
     if (email) this.$f7router.navigate('/home');
   }
 
@@ -49,11 +48,7 @@ class Login extends Component {
       <Page pageContent={false} loginScreen>
         <div className="page no-navbar no-toolbar no-swipeback">
           <div className="page-content login-screen-content login-page">
-            <Preloader
-              color="white"
-              className="loading"
-              style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}
-            ></Preloader>
+            <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
             <LoginScreenTitle>Log in</LoginScreenTitle>
             <List form style={{ display: this.state.logging ? 'none' : 'block' }}>
               <ListInput
