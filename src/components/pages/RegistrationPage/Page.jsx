@@ -12,7 +12,7 @@ import BoothsIcon from '../../../img/icons/booths.png';
 import AccountIcon from '../../../img/icons/account.png';
 
 import { connect } from 'react-redux';
-import { addAuth, setData, setStorage } from '../../../reducers/reducer';
+import { addAuth, setData, setStorage, getStorage } from '../../../reducers/reducer';
 
 class Register extends Component {
   constructor(props) {
@@ -28,6 +28,13 @@ class Register extends Component {
     };
   }
 
+  componentWillMount() {
+    const email = getStorage('email');
+    if (email) {
+      this.$f7router.navigate('/Home');
+    }
+  }
+
   onHandleRegister = async () => {
     let { email, password, firstname, middlename, lastname, repassword } = this.state;
     this.setState({ logging: true });
@@ -38,6 +45,7 @@ class Register extends Component {
       if (data.response == 'success') {
         let userData = { accountID: data.id, firstname, middlename, lastname, email, status: false, profilePicture: '' };
         await setData(`user/${data.id}`, userData);
+        setStorage({ email });
         alert('Registration successful!');
         this.$f7router.navigate('/');
       } else if (data.error.code == 'auth/network-request-failed') {
@@ -57,11 +65,7 @@ class Register extends Component {
       <Page pageContent={false}>
         <div className="page no-navbar no-toolbar no-swipeback">
           <div className="page-content login-screen-content signup-page">
-            <Preloader
-              color="white"
-              className="loading"
-              style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}
-            ></Preloader>
+            <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
             <LoginScreenTitle>Register</LoginScreenTitle>
             <List form style={{ display: this.state.logging ? 'none' : 'block' }}>
               <ListInput
