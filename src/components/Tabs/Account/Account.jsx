@@ -46,7 +46,6 @@ const HandleDisplayProfile = props => {
 const HandleDisplayAccount = props => {
   let { booths, profile } = props.data;
 
-  console.log(booths, profile);
   return (
     <div>
       <HandleDisplayProfile profile={profile} />
@@ -63,56 +62,7 @@ class HomePage extends React.Component {
     super(props);
   }
   state = {
-    booths: [
-      {
-        booth: 'V8 Engine Tuning Tutorials',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        logo: HarleyLogo,
-        website: 'https://www.harley-davidson.com/',
-        contact: ''
-      },
-      {
-        booth: 'Free Newspaper and Goodies',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        logo: InquirerLogo,
-        website: 'https://www.inquirer.net/',
-        contact: '09661476295'
-      },
-      {
-        booth: 'New Snack Sample Tasting',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        logo: JackAndJillLogo,
-        website: 'http://www2.urc.com.ph/products/philippines/ph-jack-n-jill',
-        contact: ''
-      },
-      {
-        booth: 'Discount Vouchers',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        logo: UratexLogo,
-        website: 'https://www.uratex.com.ph/',
-        contact: '09661476295'
-      },
-      {
-        booth: 'Free Snack via Sign up',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        logo: FritolayLogo,
-        website: 'https://www.fritolay.com/',
-        contact: '09661476295'
-      },
-      {
-        booth: 'Soda Pong Challenge',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        logo: PepsiLogo,
-        website: 'https://www.pepsi.com/en-us/',
-        contact: ''
-      }
-    ],
+    booths: [],
     profile: {
       name: 'Juan Dela Cruz',
       image: require('../../../img/HomePage/profilePicture.png')

@@ -1,36 +1,40 @@
-.booth-information{
+.booth-information {
   display: inline-block;
 }
 
-.booth-information .left, .booth-information .right{
+.booth-information .left,
+.booth-information .right {
   display: inline-block;
 }
 
-.booth-information .left{
-  width:20%;
+.booth-information .left {
+  width: 20%;
 }
 
-.booth-information .left img{
-  width:60px;
+.booth-information .left img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
 }
 
-.booth-information .right{
-  width:80%;
+.booth-information .right {
+  width: 80%;
   padding: 0px 0px 0px 20px;
   box-sizing: border-box;
   float: right;
+  margin-top: 0.6em;
 }
 
-.booth-description{
+.booth-description {
   font-size: var(--normal-text);
   font-family: var(--font-light);
 }
 
-.paragraph{
+.paragraph {
   font-size: var(--normal-text);
   font-family: var(--font-light);
 }
 
-.booths .accordion-item{
+.booths .accordion-item {
   margin: 0px 0px 20px 0px;
 }
