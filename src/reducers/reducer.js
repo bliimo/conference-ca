@@ -111,3 +111,9 @@ export const setStorage = data => {
 export const getStorage = key => {
   return localStorage.getItem(key);
 };
+
+export const getData = async query => {
+  const ref = firebase.database().ref(query);
+  const resp = await ref.once('value');
+  return resp.val();
+};
