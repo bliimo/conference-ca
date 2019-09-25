@@ -25,8 +25,8 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    const email = getStorage('email');
-    if (email) this.$f7router.navigate('/home');
+    const uid = getStorage('uid');
+    if (uid) this.$f7router.navigate('/home');
   }
 
   HandleLogin = async () => {
@@ -35,7 +35,7 @@ class Login extends Component {
     const data = await auth(email, password);
     this.setState({ logging: false });
     if (data.response == 'success') {
-      setStorage({ email, password });
+      setStorage({ uid: data.id });
       alert('Successfully logged in');
       this.$f7router.navigate('/home');
     } else {

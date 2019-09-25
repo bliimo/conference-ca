@@ -75,7 +75,7 @@ class HomePage extends React.Component {
     this.setState({ user });
     let userData = { accountID: user.user.uid, firstname: user.additionalUserInfo.profile.first_name, middlename: '', lastname: user.additionalUserInfo.profile.last_name, email: user.additionalUserInfo.profile.email, status: false, profilePicture: user.additionalUserInfo.profile.picture.data.url };
     await setData(`user/${user.user.uid}`, userData);
-    setStorage({ email: user.additionalUserInfo.profile.email });
+    setStorage({ uid: user.user.uid });
   };
 
   logout = async () => {
