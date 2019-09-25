@@ -9,9 +9,9 @@ import JackAndJillLogo from '../../../img/Booths/JackAndJillLogo.png';
 import PepsiLogo from '../../../img/Booths/PepsiLogo.png';
 import UratexLogo from '../../../img/Booths/UratexLogo.png';
 import FritolayLogo from '../../../img/Booths/FritolayLogo.png';
-import FacebookLogin from 'react-facebook-login';
-import { firebaseIni } from '../../../reducers/reducer';
+import { firebaseIni, setStorage, setData } from '../../../reducers/reducer';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
 firebaseIni();
 
 const auth = firebase.auth;
@@ -58,7 +58,10 @@ const HandleDisplayAccount = props => {
   );
 };
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     booths: [
       {
@@ -116,13 +119,19 @@ export default class HomePage extends React.Component {
     },
     user: null
   };
+
   login = async () => {
     const user = await auth().signInWithPopup(provider);
     this.setState({ user });
+    let userData = { accountID: user.user.uid, firstname: user.additionalUserInfo.profile.first_name, middlename: '', lastname: user.additionalUserInfo.profile.last_name, email: user.additionalUserInfo.profile.email, status: false, profilePicture: user.additionalUserInfo.profile.picture.data.url };
+    await setData(`user/${user.user.uid}`, userData);
+    setStorage({ email: user.additionalUserInfo.profile.email });
   };
+
   logout = async () => {
     await auth().signOut();
   };
+
   componentWillMount = () => {};
 
   componentDidMount = () => {};
@@ -151,3 +160,18 @@ export default class HomePage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    authState: state.authState
+  };
+};
+
+const mapDispatchToProps = {
+  setData
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);
