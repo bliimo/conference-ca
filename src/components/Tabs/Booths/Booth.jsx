@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, NavLeft, NavTitle, Block, AccordionItem, AccordionContent, AccordionToggle } from 'framework7-react';
+import { Navbar, NavLeft, NavTitle, Block, AccordionItem, AccordionContent, AccordionToggle, Link } from 'framework7-react';
 
 import style from './style.css';
 
@@ -30,8 +30,18 @@ const HandleDisplayBooth = props => {
       </AccordionToggle>
       <AccordionContent>
         <div className="booth-information">
-          <div className="right">{props.data.website !== '' ? `Website: ${props.data.website}` : ''}</div>
-          <div className="right">{props.data.phone !== '' ? `Contact: ${props.data.phone}` : ''}</div>
+          <div className="right">
+            <span>Website: </span>
+            <Link href={props.data.website} external target="_blank">
+              {props.data.website}
+            </Link>
+          </div>
+          <div className="right">
+            <span>Contact: </span>
+            <Link href={`tel:${props.data.phone}`} external target="_blank">
+              {props.data.phone}
+            </Link>
+          </div>
         </div>
       </AccordionContent>
     </AccordionItem>
