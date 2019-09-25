@@ -29,8 +29,8 @@ class Register extends Component {
   }
 
   componentWillMount() {
-    const email = getStorage('email');
-    if (email) {
+    const uid = getStorage('uid');
+    if (uid) {
       this.$f7router.navigate('/Home');
     }
   }
@@ -45,7 +45,7 @@ class Register extends Component {
       if (data.response == 'success') {
         let userData = { accountID: data.id, firstname, middlename, lastname, email, status: false, profilePicture: '' };
         await setData(`user/${data.id}`, userData);
-        setStorage({ email });
+        setStorage({ uid: data.id });
         alert('Registration successful!');
         this.$f7router.navigate('/');
       } else if (data.error.code == 'auth/network-request-failed') {
