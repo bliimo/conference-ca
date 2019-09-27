@@ -204,7 +204,7 @@ export default class HomePage extends React.Component {
               <HandleDisplayEvents activities={this.state.activities} /> 
             </div>
           </div> : 
-          <Activity event={ (e) => { this.setState({display: e ? 'dashboard' : '' }) } } />
+          <Activity uid={this.props.uid} event={ (e) => { this.setState({display: e ? 'dashboard' : '' }) } } />
         }
       </div>
     )

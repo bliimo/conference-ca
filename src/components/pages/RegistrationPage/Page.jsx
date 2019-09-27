@@ -47,7 +47,7 @@ class Register extends Component {
         await setData(`user/${data.id}`, userData);
         setStorage({ uid: data.id });
         alert('Registration successful!');
-        this.$f7router.navigate('/');
+        this.$f7router.navigate('/home');
       } else if (data.error.code == 'auth/network-request-failed') {
         alert('No internet');
       } else if (data.error.code == 'auth/email-already-in-use') {
