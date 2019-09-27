@@ -14,6 +14,9 @@ import SaveMoney from '../../../img/HomePage/SaveMoney.png';
 import { getData, getStorage } from '../../../reducers/reducer';
 import { connect } from 'react-redux';
 class Activity extends React.Component {
+  constructor(props){
+    super(props)
+  }
   state = {
     user: {
       firstname: '',
@@ -36,7 +39,8 @@ class Activity extends React.Component {
   };
 
   OnhandleGetUserData = async () => {
-    const uid = getStorage('uid');
+    console.log(this.props)
+    const uid = this.props.uid;
     const user = await getData(`user/${uid}`);
     if (user) this.setState({ user });
   };
@@ -65,7 +69,7 @@ class Activity extends React.Component {
         <img src={thumbnail} alt="event bg" className="bg-image" />
         <div className="profile">
           <img src={MPossibleLogo} alt="logo" className="logo" />
-          <img src={profilePicture} alt="participant img" className="picture circle-img" />
+          <img src={profilePicture ? profilePicture : 'https://i.pravatar.cc/300'} className="picture circle-img" id="profilePicture-activity" />
           <p className="name">{`${firstname} ${lastname}`}</p>
         </div>
         <div className="description" dangerouslySetInnerHTML={{ __html: this.state.description }}></div>
