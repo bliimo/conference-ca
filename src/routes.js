@@ -1,17 +1,17 @@
-import HomePage from './components/Pages/HomePage/Page';
 import MainPage from './components/Pages/MainPage/Page'
+import HomePage from './components/Pages/HomePage/Page';
 import NotFoundPage from './components/Pages/NotFoundPage/Page';
 import LoginPage from './components/Pages/LoginPage/Page';
 import RegistrationPage from './components/Pages/RegistrationPage/Page';
 
 export default [
+  // {
+  //   path: '/',
+  //   component: MainPage,
+    
+  // },
   {
     path: '/',
-    component: MainPage,
-    
-  },
-  {
-    path: '/home',
     component: HomePage
   },
   {
