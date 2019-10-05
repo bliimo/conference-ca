@@ -11,6 +11,7 @@ import DashboardIcon from '../../../img/icons/activities.png';
 import BoothsIcon from '../../../img/icons/booths.png';
 import AccountIcon from '../../../img/icons/account.png';
 import {getStorage} from '../../../reducers/reducer'
+
 export default class HomePage extends Component {
   constructor(props) {
     super(props);

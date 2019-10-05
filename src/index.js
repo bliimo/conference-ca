@@ -7,5 +7,14 @@ import 'framework7/css/framework7.bundle.css';
 import './css/icons.css';
 import './css/app.css';
 
-Framework7.use(Framework7React);
-ReactDOM.render(React.createElement(Apps), document.getElementById('app'));
+const startApp = () => {
+  Framework7.use(Framework7React);
+  ReactDOM.render(React.createElement(Apps), document.getElementById('app'));
+}
+
+if(window.cordova){
+  document.addEventListener('deviceready', startApp, false);
+}
+else{
+  startApp();
+}

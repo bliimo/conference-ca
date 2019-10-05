@@ -80,6 +80,7 @@ class HomePage extends React.Component {
       this.$f7router.navigate('/home');
     }
   };
+  
   autoLoggedIn = () => {
     const uid = getStorage('uid');
     if (uid) this.$f7router.navigate('/home');

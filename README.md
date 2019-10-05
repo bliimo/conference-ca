@@ -26,3 +26,21 @@ This template was created with [Create React App](https://github.com/facebookinc
 ### Issues
 
 Please log any issues to the main [Framework7 repo](https://github.com/framework7io/framework7/issues).
+
+  # to build apk
+  keytool -genkeypair -v -keystore bliimo-box.keystore -alias bliimo-box -keyalg RSA -keysize 2048 -validity 10000
+  Password: bliimo-box
+
+  CN=Placido Penitente, OU=Software Agency, O=Bliimo Technologies, L=Pasig, ST=Manila, C=PH
+
+  # set up android home and java home
+  $ export PATH=$PATH:$ANDROID_HOME/tools/bin
+  $ export PATH=$PATH:$ANDROID_HOME/platform-tools
+  $ export PATH=$PATH:$ANDROID_HOME/emulator
+  $ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+  $ export ANDROID_HOME=/Users/rufogabrillo/Library/Android/sdk
+
+  #deploy firebase functions
+  $ firebase deploy --only functions
+
+  firebase auth:export backups/users.json --format=file_format
