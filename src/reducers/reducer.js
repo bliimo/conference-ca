@@ -117,3 +117,6 @@ export const getData = async query => {
   const resp = await ref.once('value');
   return resp.val();
 };
+
+export const getEvents = async query => {
+};

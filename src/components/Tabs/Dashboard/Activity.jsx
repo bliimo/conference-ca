@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, List, ListInput, Icon } from 'framework7-react';
+import { getData, getStorage } from '../../../reducers/reducer';
+import { connect } from 'react-redux';
 
 import style from './style.css';
 
@@ -11,8 +13,6 @@ import InvestoMania from '../../../img/HomePage/InvestoMania.png';
 import MPossible from '../../../img/HomePage/MPossible.png';
 import MillenialTalks from '../../../img/HomePage/MillenialTalks.png';
 import SaveMoney from '../../../img/HomePage/SaveMoney.png';
-import { getData, getStorage } from '../../../reducers/reducer';
-import { connect } from 'react-redux';
 class Activity extends React.Component {
   constructor(props){
     super(props)

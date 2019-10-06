@@ -21,10 +21,12 @@ export default class HomePage extends Component {
   }
 
   OnHandleCheck = () => {
-   const uid = getStorage('uid');
-   if(!uid)this.$f7router.navigate('/')
-   this.setState({uid})
+    const uid = getStorage('uid');
+    if(!uid)
+      this.$f7router.navigate('/')
+    this.setState({uid})
   };
+
   render() {
     return (
       <Page pageContent={false} onPageAfterIn={this.OnHandleCheck.bind(this)} onPageBeforeIn={this.OnHandleCheck.bind(this)}>

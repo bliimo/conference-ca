@@ -1,7 +1,10 @@
 import React from 'react';
 import { Swiper, SwiperSlide, Link } from 'framework7-react';
+import { connect } from 'react-redux';
 
 import style from './style.css';
+
+import {getEvents} from '../../../store/actions';
 
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
@@ -104,8 +107,7 @@ const HandleDisplayFeaturedActivity = (props) => {
     </Swiper>
   )
 }
-
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
   state = {
     featuredActivity:[
       {
@@ -187,6 +189,7 @@ export default class HomePage extends React.Component {
   }
 
   componentWillMount = () => {
+
   }
 
   componentDidMount = () => {
@@ -210,3 +213,18 @@ export default class HomePage extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    authState: state.authState
+  };
+};
+
+const mapDispatchToProps = {
+  getEvents
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);
