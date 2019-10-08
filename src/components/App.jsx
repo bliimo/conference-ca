@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { App, Panel, View, Statusbar, Popup, Page, Navbar, NavRight, Link, Block, LoginScreen, LoginScreenTitle, List, ListInput, ListButton, BlockFooter } from 'framework7-react';
 
-import routes from '../routes';
-
+import routes from '../routes'; 
 import { firebaseIni, reducer, getStorage } from '../reducers/reducer';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -11,7 +10,7 @@ import axios from 'axios';
 
 const client = axios.create({
   method: 'post',
-  baseURL: '127.0.0.1:3000',
+  baseURL: 'https://us-central1-msap-dev.cloudfunctions.net/api',
   responseType: 'json'
 });
 
@@ -29,8 +28,9 @@ export default class Apps extends Component {
     this.state = {
       email: ''
     };
+  } 
+  componentWillMount() { 
   }
-  componentWillMount() {}
 
   componentDidMount() {
     firebaseIni();
@@ -85,3 +85,5 @@ export default class Apps extends Component {
     );
   }
 }
+
+

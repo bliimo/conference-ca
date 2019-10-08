@@ -2,15 +2,9 @@ import React from 'react';
 import { Navbar, NavLeft, NavTitle, Block, AccordionItem, AccordionContent, AccordionToggle, Link } from 'framework7-react';
 
 import style from './style.css';
-
-import HarleyLogo from '../../../img/Booths/HarleyLogo.png';
-import InquirerLogo from '../../../img/Booths/InquirerLogo.png';
-import JackAndJillLogo from '../../../img/Booths/JackAndJillLogo.png';
-import PepsiLogo from '../../../img/Booths/PepsiLogo.png';
-import UratexLogo from '../../../img/Booths/UratexLogo.png';
-import FritolayLogo from '../../../img/Booths/FritolayLogo.png';
+import {connect} from 'react-redux';
 import Dotdotdot from 'react-dotdotdot';
-import { getData } from '../../../reducers/reducer';
+import { getData, api } from '../../../reducers/reducer';
 
 const HandleDisplayBooth = props => {
   return (
@@ -48,7 +42,7 @@ const HandleDisplayBooth = props => {
   );
 };
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
   state = {
     booths: []
   };
@@ -58,8 +52,13 @@ export default class HomePage extends React.Component {
     this.setState({ booths });
   };
 
+  getDataFromApi = async () => {
+    const data = await this.props.getBooths('/booths')
+    console.log(data);
+  };
+
   componentWillMount = () => {
-    this.OnhandleGetBooths();
+    this.getDataFromApi();
   };
 
   componentDidMount = () => {};
@@ -83,3 +82,21 @@ export default class HomePage extends React.Component {
     );
   }
 }
+
+
+const mapStateToProps = state => {
+  return {
+    boothState: state.boothState
+  };
+};
+
+const mapDispatchToProps =(dispatch)=>{
+  return {
+    getBooths:(url)=>{ return dispatch(api(url)) }
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);
