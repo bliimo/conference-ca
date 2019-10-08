@@ -4,18 +4,20 @@ import { App, Panel, View, Statusbar, Popup, Page, Navbar, NavRight, Link, Block
 import routes from '../routes';
 
 import { firebaseIni, reducer, getStorage } from '../reducers/reducer';
+import axios from 'axios';
+import multiClientMiddleware from 'redux-axios-middleware';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import multiClientMiddleware from 'redux-axios-middleware';
-import axios from 'axios';
+import {env} from '../keys';
 
 const client = axios.create({
-  method: 'post',
-  baseURL: '127.0.0.1:3000',
+  method: 'POST',
+  baseURL: env,
   responseType: 'json'
 });
 
 const store = createStore(reducer, applyMiddleware(multiClientMiddleware(client)));
+
 const f7params = {
   id: 'io.framework7.testapp', // App bundle ID
   name: 'Framework7', // App name

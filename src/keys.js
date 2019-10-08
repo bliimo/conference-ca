@@ -7,3 +7,5 @@ export const firebaseKeys = {
   messagingSenderId: '883540822200',
   appId: '1:883540822200:web:ea51f96244732bf2254c4d'
 };
+
+export const env = 'https://msap-dev.firebaseio.com/';

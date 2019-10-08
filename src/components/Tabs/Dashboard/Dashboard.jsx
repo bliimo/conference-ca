@@ -1,7 +1,10 @@
 import React from 'react';
 import { Swiper, SwiperSlide, Link } from 'framework7-react';
+import { connect } from 'react-redux';
 
 import style from './style.css';
+
+import { getEvents } from '../../../reducers/reducer';
 
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
@@ -105,7 +108,11 @@ const HandleDisplayFeaturedActivity = (props) => {
   )
 }
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
   state = {
     featuredActivity:[
       {
@@ -183,17 +190,20 @@ export default class HomePage extends React.Component {
         }]
       },
     ], 
-    display: 'activity' //dashboard
+    display: 'dashboard' //activity
   }
 
   componentWillMount = () => {
+    // getEvents()
+    console.log(this.props.getEvents);
   }
 
   componentDidMount = () => {
   }
 
   render(){
-    return(
+
+    return (
       <div className='dashboard'>
         { (this.state.display === 'dashboard') ? 
           <div>
@@ -210,3 +220,22 @@ export default class HomePage extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  console.log(state.eventsListState);
+  return {
+    authState: state.authState,
+    eventsListState: state.eventsListState
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getEvents: () => dispatch(getEvents())
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);

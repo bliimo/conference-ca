@@ -3,6 +3,9 @@ import { Link, List, ListInput, Icon } from 'framework7-react';
 
 import style from './style.css';
 
+import { getData, getStorage } from '../../../reducers/reducer';
+import { connect } from 'react-redux';
+
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
 
@@ -11,8 +14,8 @@ import InvestoMania from '../../../img/HomePage/InvestoMania.png';
 import MPossible from '../../../img/HomePage/MPossible.png';
 import MillenialTalks from '../../../img/HomePage/MillenialTalks.png';
 import SaveMoney from '../../../img/HomePage/SaveMoney.png';
-import { getData, getStorage } from '../../../reducers/reducer';
-import { connect } from 'react-redux';
+import profilePicture from '../../../img/HomePage/profilePicture.png';
+
 class Activity extends React.Component {
   constructor(props){
     super(props)
@@ -21,7 +24,7 @@ class Activity extends React.Component {
     user: {
       firstname: '',
       lastname: '',
-      profilePicture: ''
+      profilePicture: profilePicture
     },
     display: 'dashboard',
     description: `<h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Heck</span></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -39,11 +42,11 @@ class Activity extends React.Component {
   };
 
   OnhandleGetUserData = async () => {
-    console.log(this.props)
     const uid = this.props.uid;
     const user = await getData(`user/${uid}`);
     if (user) this.setState({ user });
   };
+
   componentWillMount = () => {
     this.OnhandleGetUserData();
   };
