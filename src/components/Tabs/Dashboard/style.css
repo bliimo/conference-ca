@@ -48,8 +48,10 @@
 
 .featured-activity img.featured-activity-bg-image {
   position: absolute;
-  top: 0%;
+  top: -10%;
   width: 100%;
+  -webkit-mask-image: linear-gradient(to top, transparent 25%, black 100%);
+  mask-image: linear-gradient(to top, transparent 25%, black 100%);
 }
 .featured-activity .content {
   display: inline-block;
@@ -109,7 +111,7 @@
   width: 100%;
 }
 
-.activities .talk .title {
+.activities a .talk .title {
   position: absolute;
   top: 0%;
   font-size: 10px;
@@ -118,6 +120,7 @@
   margin: 10px 0px;
   border-radius: 0px 3px 3px 0px;
   padding: 2px 4px;
+  color: #fff;
 }
 
 .circle-img {

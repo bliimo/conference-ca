@@ -8,7 +8,6 @@ import { getEvents } from '../../../reducers/reducer';
 
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
-import profilePicture from '../../../img/HomePage/profilePicture.png';
 
 import Activity from './Activity';
 
@@ -22,7 +21,7 @@ const HandleDisplayEvents = (props) => {
           return (
             <div key={item}>
               {activity[0]}
-              <HandleDisplayTalks talks={Object.entries(activity[1])} />
+              <HandleDisplayTalks talks={Object.entries(activity[1])} click={ e => {console.log(e);} } />
             </div>
           )
         })
@@ -36,6 +35,7 @@ const HandleDisplayEvents = (props) => {
 }
 
 const HandleDisplayTalks = (props) => {
+  let {talks, click} = props;
   return (
     <Swiper
       navigation={false}
@@ -49,13 +49,17 @@ const HandleDisplayTalks = (props) => {
       pagination={false}
     >
       {
-        props.talks.map( (talk, index) => {
-          return(<SwiperSlide key={index}>
-            <div className='talk'>
-              <img src={talk[1].thumbnail} alt={talk[1].title} />
-              <div className='title'>{talk[1].name}</div>
-            </div>
-          </SwiperSlide>);
+        talks.map( (talk, index) => {
+          return(
+            <SwiperSlide key={index}>
+              <Link onClick={ () => { click(talk[1].eventId); } } >
+                <div className='talk'>
+                  <img src={talk[1].thumbnail} alt={talk[1].title} />
+                  <div className='title'>{talk[1].name}</div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          );
         })
       }
     </Swiper>
@@ -64,18 +68,19 @@ const HandleDisplayTalks = (props) => {
 
 const HandleDisplaySlide = (data) => {
   let {activity} = data;
+  console.log(activity)
   return (
     <div>
-      <img src={thumbnail} alt={activity.name} className='featured-activity-bg-image' />
+      <img src={activity.thumbnail} alt={activity.name} className='featured-activity-bg-image' />
       <div className='content'>
         <div className='left'>
-          <div className='logo'><img src={activity.logo} alt='' /></div>
-          <div className='title'>{activity.title}</div>
+          <div className='logo'><img src={MPossibleLogo} alt='' /></div>
+          <div className='title'>{activity.date} | {activity.name}</div>
           <div className='description'>{activity.description}</div>
         </div>
         <div className='right'>
-          <div className='profile-picture'><img src={activity.profilePicture} alt='' /></div>
-          <div className='name'>{activity.profileName}</div>
+          <div className='profile-picture'><img src={activity.speakerDP} alt='' /></div>
+          <div className='name'>{activity.speaker}</div>
         </div>
       </div>
     </div>
@@ -83,68 +88,60 @@ const HandleDisplaySlide = (data) => {
 }
 
 const HandleDisplayFeaturedActivity = (props) => {
-  return(
-    <Swiper
-      swiperOptions={{
-        autoplay: true,
-        loop: true,
-        slidesPerView: 1,
-      }}
-      navigation={false}
-      pagination={false}
-    >
-      {
-        props.activities.map( (activity, index) => {
-          return(
-            <SwiperSlide key={index}>
-              <Link onClick={ () => { props.click(true) } } >
-                <HandleDisplaySlide activity={activity} />
-              </Link>
-            </SwiperSlide>
-          );
-        })
-      }
-    </Swiper>
-  )
+  let {activities, click} = props;
+
+  if(activities.length > 0){
+    return(
+      <Swiper
+        swiperOptions={{
+          autoplay: true,
+          loop: true,
+          slidesPerView: 1,
+        }}
+        navigation={false}
+        pagination={false}
+      >
+        {
+          activities.map( (activity, index) => {
+            return(
+              <SwiperSlide key={index}>
+                <Link onClick={ () => { click(activity[1].eventId) } } >
+                  <HandleDisplaySlide activity={activity[1]} />
+                </Link>
+              </SwiperSlide>
+            );
+          })
+        }
+      </Swiper>
+    )
+
+  }
+  else{
+    return (<div>Loading...</div>);
+  }
 }
 
 const HandleFilterFeatured = (activities) => {
-  activities.map((i, l) => {
-    let activity = Object.entries(i[1]);
-    console.log(activity.filter((a) => { return a[1].featured }));
+  let talks = [], featured = activities.map((i, l) => {
+    return Object.entries(i[1]).filter((a) => { return a[1].featured });
   });
+  featured = featured.filter( a => a.length>0 );
+  featured.map( a => { talks = [...talks, ...a]} )
+  return talks
 }
 
 class HomePage extends React.Component {
   state = {
-    featuredActivity:[
-      {
-        name: "MPossible",
-        thumbnail: thumbnail,
-        logo: MPossibleLogo,
-        profilePicture: profilePicture,
-        title: 'November 5-6, 2019',
-        profileName: 'Jane Dela Cruz',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      }, 
-      {
-        name: "MPossible",
-        thumbnail: thumbnail,
-        logo: MPossibleLogo,
-        profilePicture: profilePicture,
-        title: 'November 5-6, 2019',
-        profileName: 'Jane Dela Cruz',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      }, 
-    ],
-    activities:{}, 
+    featuredActivity: {},
+    activities: {}, 
     display: 'dashboard'
   }
 
   HandleGetEvents = async () => {
     const events = await this.props.getEvents('/events?orderByValue=\"featured\"&equalTo="true');
-    this.setState({activities:events.payload.data});
-    HandleFilterFeatured(Object.entries(events.payload.data));
+    let featuredActivity = HandleFilterFeatured(Object.entries(events.payload.data));
+
+    this.setState({activities: events.payload.data, featuredActivity: featuredActivity});
   };
 
   componentWillMount = () => {
@@ -155,12 +152,13 @@ class HomePage extends React.Component {
   }
 
   render(){
+    // this.setState({display: e})
     return(
       <div className='dashboard'>
         { ( this.state.display === 'dashboard' ) ? 
           <div>
             <div className='featured-activity'>
-              <HandleDisplayFeaturedActivity click={ (e) => { this.setState({display:e}) } } activities={this.state.featuredActivity} />
+              <HandleDisplayFeaturedActivity click={ (e) => { console.log(e); } } activities={this.state.featuredActivity} /> 
             </div>
             <div className='activities'>
               <HandleDisplayEvents activities={this.state.activities} /> 
