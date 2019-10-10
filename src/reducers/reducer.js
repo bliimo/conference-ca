@@ -4,9 +4,14 @@ import { firebaseKeys } from '../keys';
 export const AUTH_USER = 'AUTH_USER';
 export const AUTH_USER_SUCCESS = 'AUTH_USER_SUCCESS';
 export const AUTH_USER_FAIL = 'AUTH_USER_FAIL';
+
 export const BOOTH = 'BOOTH';
 export const BOOTH_SUCCESS = 'BOOTH_SUCCESS';
 export const BOOTH_FAIL = 'BOOTH_FAIL';
+
+export const GET_EVENTS = 'GET_EVENTS';
+export const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS';
+export const GET_EVENTS_FAIL = 'GET_EVENTS_FAIL';
 
 export const firebaseIni = () => {
   !firebase.apps.length &&
@@ -22,8 +27,7 @@ export const firebaseIni = () => {
 export const reducer = (
   state = {
     authState: [],
-    addVehicle: '',
-    boothState: [],
+    eventsState: [],
     picture: {}
   },
   action
@@ -40,21 +44,37 @@ export const reducer = (
         authState: 'failed',
         error: 'Error while fetching data'
       };
-      case BOOTH:
-        return { ...state, loading: true };
-      case BOOTH_SUCCESS:
-        return { ...state, loading: false, boothState: action.payload.data };
-      case BOOTH_FAIL:
-        return {
-          ...state,
-          loading: false,
-          authState: 'failed',
-          error: 'Error while fetching data'
-        };
+
+    case BOOTH:
+      return { ...state, loading: true };
+    case BOOTH_SUCCESS:
+      return { ...state, loading: false, boothState: action.payload.data };
+    case BOOTH_FAIL:
+      return {
+        ...state,
+        loading: false,
+        authState: 'failed',
+        error: 'Error while fetching data'
+      };
+      
+    case GET_EVENTS:
+      return { ...state, loading: true };
+    case GET_EVENTS_SUCCESS:
+      return { ...state, loading: false, eventsState: action.payload.data };
+    case GET_EVENTS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        authState: 'failed',
+        error: 'Error while fetching data'
+      };
+  
     default:
       return state;
   }
 };
+
+
 
 export const setData = (query, data) => {
   return firebase
@@ -147,5 +167,22 @@ export const api =  (url, method, headers, data) =>{
         data
       }
     }
+  }
 }
+
+export const getEvents =  (headers, data) =>{
+  const defaultHeaders = {"Content-Type": "application/json"};
+  return {
+    type: GET_EVENTS,
+    payload: {
+      request: {
+        method: "GET",
+        url:'/events.json',
+        headers: {
+          ...defaultHeaders, ...headers
+        },
+        data
+      }
+    }
+  }
 }

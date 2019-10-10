@@ -47,14 +47,9 @@ class HomePage extends React.Component {
     booths: []
   };
 
-  OnhandleGetBooths = async () => {
-    const booths = await getData(`booths/`);
-    this.setState({ booths });
-  };
-
   getDataFromApi = async () => {
-    const data = await this.props.getBooths('/booths')
-    console.log(data);
+    // const data = await this.props.getBooths('booths')
+    // console.log(data);
   };
 
   componentWillMount = () => {
@@ -92,7 +87,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps =(dispatch)=>{
   return {
-    getBooths:(url)=>{ return dispatch(api(url)) }
+    getBooths:(url)=>{ return dispatch(api(url)) },
+
   }
 };
 

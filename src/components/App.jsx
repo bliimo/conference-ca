@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const client = axios.create({
   method: 'post',
-  baseURL: 'https://us-central1-msap-dev.cloudfunctions.net/api',
+  baseURL: 'https://msap-dev.firebaseio.com/',
   responseType: 'json'
 });
 
