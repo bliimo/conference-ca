@@ -1,8 +1,7 @@
-import MainPage from './components/Pages/MainPage/Page'
-import HomePage from './components/Pages/HomePage/Page';
-import NotFoundPage from './components/Pages/NotFoundPage/Page';
-import LoginPage from './components/Pages/LoginPage/Page';
-import RegistrationPage from './components/Pages/RegistrationPage/Page';
+import HomePage from './components/Screens/HomePage/Page';
+import NotFoundPage from './components/Screens/NotFoundPage/Page';
+import LoginPage from './components/Screens/LoginPage/Page';
+import RegistrationPage from './components/Screens/RegistrationPage/Page';
 
 export default [
   // {
