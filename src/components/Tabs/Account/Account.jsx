@@ -90,8 +90,8 @@ class HomePage extends React.Component {
     return (
       <Block>
         <div className="account">
-          {/* <HandleDisplayAccount data={this.state} /> */}
-          <Row>
+          <HandleDisplayAccount data={this.state} />
+          {/* <Row>
             <div className="notice">Oh! Looks like you haven't logged in yet! Log in or Sign up now.</div>
             <div className="social-buttons">
               <Button color="blue" raised fill onClick={this.login}>
@@ -104,7 +104,7 @@ class HomePage extends React.Component {
                 Login
               </Button>
             </div>
-          </Row>
+          </Row> */}
         </div>
       </Block>
     );

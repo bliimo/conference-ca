@@ -39,7 +39,7 @@ export default class HomePage extends Component {
               <img src={BoothsIcon} alt="Booth icon" />
             </div>
           </Link>
-          <Link tabLink="#account" tabLinkActive>
+          <Link tabLink="#account">
             <div>
               <img src={AccountIcon} alt="Account icon" />
             </div>
@@ -52,7 +52,7 @@ export default class HomePage extends Component {
           <Tab id="booths" className="page-content">
             <Booth />
           </Tab>
-          <Tab id="account" className="page-content" tabActive>
+          <Tab id="account" className="page-content">
             <Account />
           </Tab>
         </Tabs>
