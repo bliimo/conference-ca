@@ -235,3 +235,17 @@ export const getBooths =  (headers, data) =>{
     }
   }
 }
+
+export function pushData(query, data) {
+  return firebase
+    .database()
+    .ref(query)
+    .push(data)
+    .then(e => {
+      return { response: 'success', data: e };
+    })
+    .catch(e => {
+      return { response: 'failed', error: e };
+    })
+}
+

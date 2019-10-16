@@ -68,15 +68,14 @@ const HandleDisplayTalks = (props) => {
 
 const HandleDisplaySlide = (data) => {
   let {activity} = data;
-  console.log(activity)
   return (
     <div>
       <img src={activity.thumbnail} alt={activity.name} className='featured-activity-bg-image' />
       <div className='content'>
         <div className='left'>
           <div className='logo'><img src={MPossibleLogo} alt='' /></div>
-          <div className='title'>{activity.date} | {activity.name}</div>
-          <div className='description'>{activity.description}</div>
+          <div className='title'>{activity.date}</div>
+          <div className='description'>{activity.shortDesc}</div>
         </div>
         <div className='right'>
           <div className='profile-picture'><img src={activity.speakerDP} alt='' /></div>
@@ -88,6 +87,7 @@ const HandleDisplaySlide = (data) => {
 }
 
 const HandleDisplayFeaturedActivity = (props) => {
+  console.log(props)
   let {activities, click} = props;
 
   if(activities.length > 0){
@@ -134,18 +134,21 @@ class HomePage extends React.Component {
   state = {
     featuredActivity: {},
     activities: {}, 
-    display: 'dashboard'
+    display: 'dashboard' // 'dashboard'
   }
 
   HandleGetEvents = async () => {
     const events = await this.props.getEvents('/events?orderByValue=\"featured\"&equalTo="true');
     let featuredActivity = HandleFilterFeatured(Object.entries(events.payload.data));
-
     this.setState({activities: events.payload.data, featuredActivity: featuredActivity});
   };
 
   componentWillMount = () => {
     this.HandleGetEvents(); 
+  }
+
+  HandleActivities = () =>{
+    this.setState({display:'activity'})
   }
 
   componentDidMount = () => {
@@ -158,13 +161,13 @@ class HomePage extends React.Component {
         { ( this.state.display === 'dashboard' ) ? 
           <div>
             <div className='featured-activity'>
-              <HandleDisplayFeaturedActivity click={ (e) => { console.log(e); } } activities={this.state.featuredActivity} /> 
+              <HandleDisplayFeaturedActivity click={ () => { this.HandleActivities() } } activities={this.state.featuredActivity} /> 
             </div>
             <div className='activities'>
               <HandleDisplayEvents activities={this.state.activities} /> 
             </div>
           </div> : 
-          <Activity uid={this.props.uid} event={ (e) => { this.setState({display: e ? 'dashboard' : '' }) } } />
+          <Activity featured={this.state.featuredActivity} event={ (e) => { this.setState({display: e ? 'dashboard' : '' }) } } />
         }
       </div>
     )
