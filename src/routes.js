@@ -21,8 +21,8 @@ export default [
     path: '/register',
     component: RegistrationPage
   },
-  {
-    path: '(.*)',
-    component: NotFoundPage
-  }
+  // {
+  //   path: '(.*)',
+  //   component: NotFoundPage
+  // }
 ];

@@ -4,9 +4,12 @@
   padding: 100px 0px;
 }
 
-.booth img {
+.booth img ,.booth a {
   width: 100%;
   height: 100%;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1em;
 }
 
 .booth.active {
@@ -24,6 +27,9 @@
 .profile img{
   display: block;
   margin: 0 auto;
+  border-radius: 100%;
+  position: relative;
+  bottom: 1em;
 }
 
 .divider {
@@ -47,4 +53,30 @@
 .social-buttons a {
   margin-bottom: 10px;
   width: 100%;
+}
+.modal-sheet{
+  position: absolute;
+  background: #fff;
+  width: 85%;
+  top: 45%;
+}
+
+.modal-sheet.hide{
+  display: none;
+}
+
+.modal-sheet.show{
+  display:block;
+}
+
+a.sheet-btn.button {
+  display: inline-block;
+}
+
+.sheet-btn-wrapper{
+  text-align: right;
+}
+
+.sheet-div{
+  text-align: right;
 }
