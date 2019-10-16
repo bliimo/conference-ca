@@ -1,5 +1,5 @@
 import React from 'react';
-import { App, Button, Row, Col, Block, Link } from 'framework7-react';
+import { App, Button, Row, Col, Block, BlockTitle } from 'framework7-react';
 
 import style from './style.css';
 
@@ -9,10 +9,18 @@ import JackAndJillLogo from '../../../img/Booths/JackAndJillLogo.png';
 import PepsiLogo from '../../../img/Booths/PepsiLogo.png';
 import UratexLogo from '../../../img/Booths/UratexLogo.png';
 import FritolayLogo from '../../../img/Booths/FritolayLogo.png';
-import { firebaseIni, setStorage, setData,getVisitedBooths, getStorage, getBooths } from '../../../reducers/reducer';
+import {
+  firebaseIni,
+  setStorage,
+  setData,
+  getVisitedBooths,
+  getStorage,
+  getBooths
+} from '../../../reducers/reducer';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { async } from 'q';
+import image from '../../../img/HomePage/profilePicture.png';
 firebaseIni();
 
 const auth = firebase.auth;
@@ -25,7 +33,13 @@ const HandleDisplayBooth = props => {
         return (
           <Col width="25" key={key}>
             <div className={`booth ${booth.isActive}`} key={key}>
-              <img src={booth.logo} alt={booth.booth} />
+              {booth.isActive === 'inactive' ? (
+                <Button sheetOpen=".sheet" onClick={() => props.HandleBoothChoose(booth)}>
+                  <img src={booth.logo} alt={booth.booth} />
+                </Button>
+              ) : (
+                <img src={booth.logo} alt={booth.booth} />
+              )}
             </div>
           </Col>
         );
@@ -51,7 +65,7 @@ const HandleDisplayAccount = props => {
     <div>
       <HandleDisplayProfile profile={profile} />
       <div className="divider"></div>
-      <HandleDisplayBooth list={booths} />
+      <HandleDisplayBooth HandleBoothChoose={props.data.HandleBoothChoose} list={booths} />
       <div className="divider"></div>
       <Button>Logout</Button>
     </div>
@@ -61,49 +75,96 @@ const HandleDisplayAccount = props => {
 class HomePage extends React.Component {
   state = {
     booths: [],
+    boothChoose: {
+      code: '',
+      company: '',
+      description: '',
+      isActive: '',
+      logo: '',
+      phone: '',
+      website: '',
+      boothKey:''
+    },
     profile: {
       name: 'Juan Dela Cruz',
-      image: require('../../../img/HomePage/profilePicture.png')
+      image
     },
-    user: null
+    user: null,
+    HandleBoothChoose: null,
+    isOpen: false,
+    code: '',
+    visitedBooths: []
   };
 
   login = async () => {
     const user = await auth().signInWithPopup(provider);
     this.setState({ user });
-    let userData = { accountID: user.user.uid, firstname: user.additionalUserInfo.profile.first_name, middlename: '', lastname: user.additionalUserInfo.profile.last_name, email: user.additionalUserInfo.profile.email, status: false, profilePicture: user.additionalUserInfo.profile.picture.data.url };
+    let userData = {
+      accountID: user.user.uid,
+      firstname: user.additionalUserInfo.profile.first_name,
+      middlename: '',
+      lastname: user.additionalUserInfo.profile.last_name,
+      email: user.additionalUserInfo.profile.email,
+      status: false,
+      profilePicture: user.additionalUserInfo.profile.picture.data.url
+    };
     await setData(`user/${user.user.uid}`, userData);
     setStorage({ uid: user.user.uid });
+  };
+
+  HandleBoothChoose = boothChoose => {
+    this.setState({ isOpen: true, code: '' });
+    this.setState({ boothChoose });
   };
 
   logout = async () => {
     await auth().signOut();
   };
 
-  HandleGetVisitedBooths = async() =>{
-    const uid = getStorage("uid");
+  HandleGetVisitedBooths = async () => {
+    const uid = getStorage('uid');
     const visitedJSON = await this.props.getVisitedBooths(`/visitedBooths`);
     const boothJSON = await this.props.getBooths('/booths');
     const visitedBooths = visitedJSON.payload.data[uid];
-    const booths = []
-     
-    Object.keys(boothJSON.payload.data).map(bj=>{
-      visitedBooths.map(vb=>{
-        if(vb == bj){
-          booths.push({...boothJSON.payload.data[bj],isActive:'active'})
-          delete boothJSON.payload.data[bj]
+    const booths = [];
+
+    Object.keys(boothJSON.payload.data).map(bj => {
+      visitedBooths.map(vb => {
+        if (vb === bj) {
+          booths.push({ ...boothJSON.payload.data[bj], isActive: 'active' });
+          delete boothJSON.payload.data[bj];
         }
-      })
-    })
-    
-    Object.keys(boothJSON.payload.data).map(bj=>{
-      booths.push({...boothJSON.payload.data[bj],isActive:'inactive'})
-    })
-    this.setState({booths})
-  }
+      });
+    });
+
+    Object.keys(boothJSON.payload.data).map(bj => {
+      booths.push({ ...boothJSON.payload.data[bj], isActive: 'inactive', boothKey:bj });
+    });
+    this.setState({ booths, visitedBooths });
+  };
+
+  setModal = isOpen => {
+    this.setState({ isOpen });
+  };
+
+  handleSubmitCode = async () => {
+    const uid = getStorage('uid');
+    if (this.state.code === this.state.boothChoose.code) {
+      const visitedBooths = this.state.visitedBooths;
+      visitedBooths.push(this.state.boothChoose.boothKey);
+      await setData(`visitedBooths/${uid}`, visitedBooths);
+      alert('Nice one!');
+      this.HandleGetVisitedBooths();
+      this.setState({ HandleBoothChoose: this.HandleBoothChoose });
+      this.setModal(false)
+    } else {
+      alert("Code doesn't match!");
+    }
+  };
 
   componentWillMount = () => {
     this.HandleGetVisitedBooths();
+    this.setState({ HandleBoothChoose: this.HandleBoothChoose });
   };
 
   componentDidMount = () => {};
@@ -127,6 +188,45 @@ class HomePage extends React.Component {
               </Button>
             </div>
           </Row> */}
+          <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
+            <Block style={{ width: '100%' }}>
+              <BlockTitle style={{ textTransform: 'capitalize' }}>
+                {this.state.boothChoose.company}
+                <p style={{ color: '#222', fontSize: '14px', margin: '0 0 1em 0' }}>
+                  {this.state.boothChoose.description}
+                </p>
+                <input
+                  style={{ color: '#222' }}
+                  type="text"
+                  placeholder="Code"
+                  clearButton
+                  value={this.state.code}
+                  onInput={e => {
+                    this.setState({ code: e.target.value });
+                  }}
+                />
+                <div className="sheet-div">
+                  <Button
+                    className="sheet-btn"
+                    onClick={() => {
+                      this.handleSubmitCode();
+                    }}
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    className="sheet-btn"
+                    color="red"
+                    onClick={() => {
+                      this.setModal(false);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </BlockTitle>
+            </Block>
+          </div>
         </div>
       </Block>
     );
@@ -139,12 +239,18 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps =(dispatch)=>{
+const mapDispatchToProps = dispatch => {
   return {
-    setData:()=>{return dispatch(setData())},
-    getVisitedBooths:()=>{ return dispatch(getVisitedBooths()) },
-    getBooths:()=>{ return dispatch(getBooths()) },
-  }
+    setData: (query, data) => {
+      return dispatch(setData(query, data));
+    },
+    getVisitedBooths: () => {
+      return dispatch(getVisitedBooths());
+    },
+    getBooths: () => {
+      return dispatch(getBooths());
+    }
+  };
 };
 
 export default connect(
