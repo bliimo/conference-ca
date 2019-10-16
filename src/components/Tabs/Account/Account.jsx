@@ -52,15 +52,12 @@ const HandleDisplayAccount = props => {
       <div className="divider"></div>
       <HandleDisplayBooth list={booths} />
       <div className="divider"></div>
-      <Button>Logout</Button>
+      <Button onClick={props.logout}>Logout</Button>
     </div>
   );
 };
 
 class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     booths: [],
     profile: {
@@ -73,13 +70,22 @@ class HomePage extends React.Component {
   login = async () => {
     const user = await auth().signInWithPopup(provider);
     this.setState({ user });
-    let userData = { accountID: user.user.uid, firstname: user.additionalUserInfo.profile.first_name, middlename: '', lastname: user.additionalUserInfo.profile.last_name, email: user.additionalUserInfo.profile.email, status: false, profilePicture: user.additionalUserInfo.profile.picture.data.url };
+    let userData = {
+      accountID: user.user.uid,
+      firstname: user.additionalUserInfo.profile.first_name,
+      middlename: '',
+      lastname: user.additionalUserInfo.profile.last_name,
+      email: user.additionalUserInfo.profile.email,
+      status: false,
+      profilePicture: user.additionalUserInfo.profile.picture.data.url
+    };
     await setData(`user/${user.user.uid}`, userData);
     setStorage({ uid: user.user.uid });
   };
 
   logout = async () => {
     await auth().signOut();
+    this.setState({user:null})
   };
 
   componentWillMount = () => {};
@@ -90,21 +96,26 @@ class HomePage extends React.Component {
     return (
       <Block>
         <div className="account">
-          <HandleDisplayAccount data={this.state} />
-          {/* <Row>
-            <div className="notice">Oh! Looks like you haven't logged in yet! Log in or Sign up now.</div>
-            <div className="social-buttons">
-              <Button color="blue" raised fill onClick={this.login}>
-                Sign up with facebook
-              </Button>
-              <Button color="blue" raised fill href="/register">
-                Sign up with email
-              </Button>
-              <Button color="blue" raised fill href="/login">
-                Login
-              </Button>
-            </div>
-          </Row> */}
+          {this.state.user ? (
+            <HandleDisplayAccount data={this.state} logout={this.logout} />
+          ) : (
+            <Row>
+              <div className="notice">
+                Oh! Looks like you haven't logged in yet! Log in or Sign up now.
+              </div>
+              <div className="social-buttons">
+                <Button color="blue" raised fill onClick={this.login}>
+                  Sign up with facebook
+                </Button>
+                <Button color="blue" raised fill href="/register">
+                  Sign up with email
+                </Button>
+                <Button color="blue" raised fill href="/login">
+                  Login
+                </Button>
+              </div>
+            </Row>
+          )}
         </div>
       </Block>
     );
