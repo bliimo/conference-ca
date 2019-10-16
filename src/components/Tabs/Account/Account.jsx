@@ -3,13 +3,7 @@ import { App, Button, Row, Col, Block, Link } from 'framework7-react';
 
 import style from './style.css';
 
-import HarleyLogo from '../../../img/Booths/HarleyLogo.png';
-import InquirerLogo from '../../../img/Booths/InquirerLogo.png';
-import JackAndJillLogo from '../../../img/Booths/JackAndJillLogo.png';
-import PepsiLogo from '../../../img/Booths/PepsiLogo.png';
-import UratexLogo from '../../../img/Booths/UratexLogo.png';
-import FritolayLogo from '../../../img/Booths/FritolayLogo.png';
-import { firebaseIni, setStorage, setData } from '../../../reducers/reducer';
+import { firebaseIni, setStorage, setData, getStorage, getData } from '../../../reducers/reducer';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 firebaseIni();
@@ -37,8 +31,8 @@ const HandleDisplayProfile = props => {
   let { profile } = props;
   return (
     <div className="profile">
-      <img src={profile.image} alt={profile.name} />
-      <div className="account-name">{profile.name}</div>
+      <img src={profile.profilePicture} alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''} />
+      <div className="account-name">{profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}</div>
     </div>
   );
 };
@@ -60,10 +54,7 @@ const HandleDisplayAccount = props => {
 class HomePage extends React.Component {
   state = {
     booths: [],
-    profile: {
-      name: 'Juan Dela Cruz',
-      image: require('../../../img/HomePage/profilePicture.png')
-    },
+    profile:{},
     user: null
   };
 
@@ -88,7 +79,15 @@ class HomePage extends React.Component {
     this.setState({user:null})
   };
 
-  componentWillMount = () => {};
+  handleGetUser = async() =>{
+    const uid = getStorage("uid");
+    const profile = await getData(`user/${uid}`);
+    this.setState({profile});
+  }
+
+  componentWillMount = () => {
+    this.handleGetUser();
+  };
 
   componentDidMount = () => {};
 
@@ -129,7 +128,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  setData
+  setData,
+  
 };
 
 export default connect(
