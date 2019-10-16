@@ -141,3 +141,14 @@
 .item-input-wrap.input-dropdown::before{
   display: none;
 }
+
+#tabs{
+  background: transparent !important;
+}
+#tabs a.link.tab-link{
+  color: #717171;
+}
+
+#tabs a.link.tab-link.tab-link-active{
+  color: #fff !important;
+}

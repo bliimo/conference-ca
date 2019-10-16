@@ -152,7 +152,7 @@ class Activity extends React.Component {
         </div>
         <div className="description" dangerouslySetInnerHTML={{ __html: longDesc }}></div>
         <div className="get-data-from-user">
-          <Toolbar tabbar bottom>
+          <Toolbar id="tabs" tabbar bottom>
             <Link tabLink="#tab-1" tabLinkActive>
               Questions
             </Link>

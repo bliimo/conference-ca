@@ -124,9 +124,11 @@ class HomePage extends React.Component {
     const uid = getStorage('uid');
     const visitedJSON = await this.props.getVisitedBooths(`/visitedBooths`);
     const boothJSON = await this.props.getBooths('/booths');
-    const visitedBooths = visitedJSON.payload.data[uid];
-    const booths = [];
-    console.log("test",boothJSON)
+    let visitedBooths = []
+    if(visitedJSON.payload.data){
+      visitedBooths = visitedJSON.payload.data[uid]
+    }
+    const booths = [];  
 
 
     Object.keys(boothJSON.payload.data).map(bj => {
@@ -187,9 +189,8 @@ class HomePage extends React.Component {
           <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
             <Block style={{ width: '100%' }}>
               <BlockTitle style={{ textTransform: 'capitalize' }}>
+                <p style={{fontSize:"18px"}}>
                 {this.state.boothChoose.company}
-                <p style={{ color: '#222', fontSize: '14px', margin: '0 0 1em 0' }}>
-                  {this.state.boothChoose.description}
                 </p>
                 <input
                   style={{ color: '#222' }}
