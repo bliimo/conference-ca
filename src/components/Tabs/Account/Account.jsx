@@ -129,12 +129,14 @@ class HomePage extends React.Component {
     const booths = [];
 
     Object.keys(boothJSON.payload.data).map(bj => {
-      visitedBooths.map(vb => {
-        if (vb === bj) {
-          booths.push({ ...boothJSON.payload.data[bj], isActive: 'active' });
-          delete boothJSON.payload.data[bj];
-        }
-      });
+      if(visitedBooths){
+        visitedBooths.map(vb => {
+          if (vb === bj) {
+            booths.push({ ...boothJSON.payload.data[bj], isActive: 'active' });
+            delete boothJSON.payload.data[bj];
+          }
+        });
+      }
     });
 
     Object.keys(boothJSON.payload.data).map(bj => {
