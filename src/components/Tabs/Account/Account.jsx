@@ -15,7 +15,8 @@ import {
   setData,
   getVisitedBooths,
   getStorage,
-  getBooths
+  getBooths,
+  getData
 } from '../../../reducers/reducer';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
@@ -52,8 +53,8 @@ const HandleDisplayProfile = props => {
   let { profile } = props;
   return (
     <div className="profile">
-      <img src={profile.image} alt={profile.name} />
-      <div className="account-name">{profile.name}</div>
+      <img src={profile.profilePicture} alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''} />
+      <div className="account-name">{profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}</div>
     </div>
   );
 };
@@ -67,7 +68,7 @@ const HandleDisplayAccount = props => {
       <div className="divider"></div>
       <HandleDisplayBooth HandleBoothChoose={props.data.HandleBoothChoose} list={booths} />
       <div className="divider"></div>
-      <Button>Logout</Button>
+      <Button onClick={props.logout}>Logout</Button>
     </div>
   );
 };
@@ -85,10 +86,7 @@ class HomePage extends React.Component {
       website: '',
       boothKey:''
     },
-    profile: {
-      name: 'Juan Dela Cruz',
-      image
-    },
+    profile: null,
     user: null,
     HandleBoothChoose: null,
     isOpen: false,
@@ -119,6 +117,7 @@ class HomePage extends React.Component {
 
   logout = async () => {
     await auth().signOut();
+    this.setState({user:null})
   };
 
   HandleGetVisitedBooths = async () => {
@@ -127,6 +126,8 @@ class HomePage extends React.Component {
     const boothJSON = await this.props.getBooths('/booths');
     const visitedBooths = visitedJSON.payload.data[uid];
     const booths = [];
+    console.log("test",boothJSON)
+
 
     Object.keys(boothJSON.payload.data).map(bj => {
       if(visitedBooths){
@@ -142,7 +143,7 @@ class HomePage extends React.Component {
     Object.keys(boothJSON.payload.data).map(bj => {
       booths.push({ ...boothJSON.payload.data[bj], isActive: 'inactive', boothKey:bj });
     });
-    this.setState({ booths, visitedBooths });
+    this.setState({ booths, visitedBooths : visitedBooths ? visitedBooths : [] });
   };
 
   setModal = isOpen => {
@@ -163,10 +164,17 @@ class HomePage extends React.Component {
       alert("Code doesn't match!");
     }
   };
+ 
+  handleGetUser = async() =>{
+    const uid = getStorage("uid");
+    const profile = await getData(`user/${uid}`);
+    this.setState({profile});
+  }
 
   componentWillMount = () => {
     this.HandleGetVisitedBooths();
     this.setState({ HandleBoothChoose: this.HandleBoothChoose });
+    this.handleGetUser();
   };
 
   componentDidMount = () => {};
@@ -175,21 +183,7 @@ class HomePage extends React.Component {
     return (
       <Block>
         <div className="account">
-          <HandleDisplayAccount data={this.state} />
-          {/* <Row>
-            <div className="notice">Oh! Looks like you haven't logged in yet! Log in or Sign up now.</div>
-            <div className="social-buttons">
-              <Button color="blue" raised fill onClick={this.login}>
-                Sign up with facebook
-              </Button>
-              <Button color="blue" raised fill href="/register">
-                Sign up with email
-              </Button>
-              <Button color="blue" raised fill href="/login">
-                Login
-              </Button>
-            </div>
-          </Row> */}
+          {this.state.profile && (<HandleDisplayAccount data={this.state} />)}
           <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
             <Block style={{ width: '100%' }}>
               <BlockTitle style={{ textTransform: 'capitalize' }}>
@@ -229,6 +223,20 @@ class HomePage extends React.Component {
               </BlockTitle>
             </Block>
           </div>
+          {this.state.profile === null &&(<Row>
+            <div className="notice">Oh! Looks like you haven't logged in yet! Log in or Sign up now.</div>
+            <div className="social-buttons">
+              <Button color="blue" raised fill onClick={this.login}>
+                Sign up with facebook
+              </Button>
+              <Button color="blue" raised fill href="/register">
+                Sign up with email
+              </Button>
+              <Button color="blue" raised fill href="/login">
+                Login
+              </Button>
+            </div>
+          </Row>)}
         </div>
       </Block>
     );
@@ -245,6 +253,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setData: (query, data) => {
       return dispatch(setData(query, data));
+    },
+    getData: (query)=>{
+      return dispatch(getData(query))
     },
     getVisitedBooths: () => {
       return dispatch(getVisitedBooths());
