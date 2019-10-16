@@ -9,9 +9,10 @@ import JackAndJillLogo from '../../../img/Booths/JackAndJillLogo.png';
 import PepsiLogo from '../../../img/Booths/PepsiLogo.png';
 import UratexLogo from '../../../img/Booths/UratexLogo.png';
 import FritolayLogo from '../../../img/Booths/FritolayLogo.png';
-import { firebaseIni, setStorage, setData } from '../../../reducers/reducer';
+import { firebaseIni, setStorage, setData,getVisitedBooths, getStorage, getBooths } from '../../../reducers/reducer';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
+import { async } from 'q';
 firebaseIni();
 
 const auth = firebase.auth;
@@ -23,7 +24,7 @@ const HandleDisplayBooth = props => {
       {props.list.map((booth, key) => {
         return (
           <Col width="25" key={key}>
-            <div className="booth inactive" key={key}>
+            <div className={`booth ${booth.isActive}`} key={key}>
               <img src={booth.logo} alt={booth.booth} />
             </div>
           </Col>
@@ -58,9 +59,6 @@ const HandleDisplayAccount = props => {
 };
 
 class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     booths: [],
     profile: {
@@ -82,7 +80,31 @@ class HomePage extends React.Component {
     await auth().signOut();
   };
 
-  componentWillMount = () => {};
+  HandleGetVisitedBooths = async() =>{
+    const uid = getStorage("uid");
+    const visitedJSON = await this.props.getVisitedBooths(`/visitedBooths`);
+    const boothJSON = await this.props.getBooths('/booths');
+    const visitedBooths = visitedJSON.payload.data[uid];
+    const booths = []
+     
+    Object.keys(boothJSON.payload.data).map(bj=>{
+      visitedBooths.map(vb=>{
+        if(vb == bj){
+          booths.push({...boothJSON.payload.data[bj],isActive:'active'})
+          delete boothJSON.payload.data[bj]
+        }
+      })
+    })
+    
+    Object.keys(boothJSON.payload.data).map(bj=>{
+      booths.push({...boothJSON.payload.data[bj],isActive:'inactive'})
+    })
+    this.setState({booths})
+  }
+
+  componentWillMount = () => {
+    this.HandleGetVisitedBooths();
+  };
 
   componentDidMount = () => {};
 
@@ -117,8 +139,12 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  setData
+const mapDispatchToProps =(dispatch)=>{
+  return {
+    setData:()=>{return dispatch(setData())},
+    getVisitedBooths:()=>{ return dispatch(getVisitedBooths()) },
+    getBooths:()=>{ return dispatch(getBooths()) },
+  }
 };
 
 export default connect(

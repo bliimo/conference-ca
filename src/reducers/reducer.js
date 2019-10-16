@@ -9,6 +9,10 @@ export const BOOTH = 'BOOTH';
 export const BOOTH_SUCCESS = 'BOOTH_SUCCESS';
 export const BOOTH_FAIL = 'BOOTH_FAIL';
 
+export const VISITED_BOOTH = 'VISITED_BOOTH';
+export const VISITED_BOOTH_SUCCESS = 'VISITED_BOOTH_SUCCESS';
+export const VISITED_BOOTH_FAIL = 'VISTED_BOOTH_FAIL';
+
 export const GET_EVENTS = 'GET_EVENTS';
 export const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS';
 export const GET_EVENTS_FAIL = 'GET_EVENTS_FAIL';
@@ -55,7 +59,18 @@ export const reducer = (
         loading: false,
         authState: 'failed',
         error: 'Error while fetching data'
-      };
+      }
+    case VISITED_BOOTH:
+      return { ...state, loading: true };
+    case VISITED_BOOTH_SUCCESS:
+      return { ...state, loading: false, boothState: action.payload.data };
+    case VISITED_BOOTH_FAIL:
+      return {
+        ...state,
+        loading: false,
+        authState: 'failed',
+        error: 'Error while fetching data'
+      }
       
     case GET_EVENTS:
       return { ...state, loading: true };
@@ -178,6 +193,40 @@ export const getEvents =  (headers, data) =>{
       request: {
         method: "GET",
         url:'/events.json',
+        headers: {
+          ...defaultHeaders, ...headers
+        },
+        data
+      }
+    }
+  }
+}
+
+export const getVisitedBooths =  (headers, data) =>{
+  const defaultHeaders = {"Content-Type": "application/json"};
+  return {
+    type: VISITED_BOOTH,
+    payload: {
+      request: {
+        method: "GET",
+        url:'/visitedBooths.json',
+        headers: {
+          ...defaultHeaders, ...headers
+        },
+        data
+      }
+    }
+  }
+}
+
+export const getBooths =  (headers, data) =>{
+  const defaultHeaders = {"Content-Type": "application/json"};
+  return {
+    type: BOOTH,
+    payload: {
+      request: {
+        method: "GET",
+        url:'/booths.json',
         headers: {
           ...defaultHeaders, ...headers
         },
