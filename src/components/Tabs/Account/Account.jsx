@@ -189,7 +189,7 @@ class HomePage extends React.Component {
           <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
             <Block style={{ width: '100%' }}>
               <BlockTitle style={{ textTransform: 'capitalize' }}>
-                <p style={{fontSize:"18px"}}>
+                <p style={{fontSize:"18px",color:"#222"}}>
                 {this.state.boothChoose.company}
                 </p>
                 <input
