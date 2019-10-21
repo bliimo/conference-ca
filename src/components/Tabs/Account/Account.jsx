@@ -59,7 +59,7 @@ const HandleDisplayProfile = props => {
   );
 };
 
-const HandleDisplayAccount = props => {
+const HandleDisplayAccount = props => { 
   let { booths, profile } = props.data;
 
   return (
@@ -117,7 +117,8 @@ class HomePage extends React.Component {
 
   logout = async () => {
     await auth().signOut();
-    this.setState({user:null})
+    this.setState({user:null,profile:null})
+    localStorage.clear();
   };
 
   HandleGetVisitedBooths = async () => {
@@ -185,7 +186,7 @@ class HomePage extends React.Component {
     return (
       <Block>
         <div className="account">
-          {this.state.profile && (<HandleDisplayAccount data={this.state} />)}
+          {this.state.profile && (<HandleDisplayAccount data={this.state} logout={this.logout} />)}
           <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
             <Block style={{ width: '100%' }}>
               <BlockTitle style={{ textTransform: 'capitalize' }}>
