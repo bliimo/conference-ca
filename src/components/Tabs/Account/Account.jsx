@@ -130,12 +130,11 @@ class HomePage extends React.Component {
       visitedBooths = visitedJSON.payload.data[uid]
     }
     const booths = [];  
-
-
     Object.keys(boothJSON.payload.data).map(bj => {
       if(visitedBooths){
         visitedBooths.map(vb => {
-          if (vb === bj) {
+          console.log(vb['booth'] , bj)
+          if (vb['booth'] === bj) {
             booths.push({ ...boothJSON.payload.data[bj], isActive: 'active' });
             delete boothJSON.payload.data[bj];
           }
@@ -157,7 +156,8 @@ class HomePage extends React.Component {
     const uid = getStorage('uid');
     if (this.state.code === this.state.boothChoose.code) {
       const visitedBooths = this.state.visitedBooths;
-      visitedBooths.push(this.state.boothChoose.boothKey);
+      visitedBooths.push({booth:this.state.boothChoose.boothKey,dateAvailable:firebase.database.ServerValue.TIMESTAMP});
+      console.log(visitedBooths)
       await setData(`visitedBooths/${uid}`, visitedBooths);
       alert('Nice one!');
       this.HandleGetVisitedBooths();
