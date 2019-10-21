@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide, Link } from 'framework7-react';
 import style from './style.css';
 
 import {connect} from 'react-redux';
-import { getEvents } from '../../../reducers/reducer';
+import { getEvents, getStorage } from '../../../reducers/reducer';
 
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
@@ -105,7 +105,7 @@ const HandleDisplayFeaturedActivity = (props) => {
           activities.map( (activity, index) => {
             return(
               <SwiperSlide key={index}>
-                <Link onClick={ () => { click(activity[1].eventId) } } >
+                <Link onClick={ () => { getStorage('uid') ? click(activity[1].eventId) : alert('You need to login') } } >
                   <HandleDisplaySlide activity={activity[1]} />
                 </Link>
               </SwiperSlide>
