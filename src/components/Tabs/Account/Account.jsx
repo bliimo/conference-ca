@@ -2,13 +2,6 @@ import React from 'react';
 import { App, Button, Row, Col, Block, BlockTitle } from 'framework7-react';
 
 import style from './style.css';
-
-import HarleyLogo from '../../../img/Booths/HarleyLogo.png';
-import InquirerLogo from '../../../img/Booths/InquirerLogo.png';
-import JackAndJillLogo from '../../../img/Booths/JackAndJillLogo.png';
-import PepsiLogo from '../../../img/Booths/PepsiLogo.png';
-import UratexLogo from '../../../img/Booths/UratexLogo.png';
-import FritolayLogo from '../../../img/Booths/FritolayLogo.png';
 import {
   firebaseIni,
   setStorage,
@@ -131,7 +124,6 @@ class HomePage extends React.Component {
     }
     const booths = [];  
 
-
     Object.keys(boothJSON.payload.data).map(bj => {
       if(visitedBooths){
         visitedBooths.map(vb => {
@@ -197,9 +189,8 @@ class HomePage extends React.Component {
                   style={{ color: '#222' }}
                   type="text"
                   placeholder="Code"
-                  clearButton
                   value={this.state.code}
-                  onInput={e => {
+                  onChange={e => {
                     this.setState({ code: e.target.value });
                   }}
                 />
