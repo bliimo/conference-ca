@@ -65,9 +65,6 @@ class HomePage extends React.Component {
     return (
       <div className="booths">
         <Navbar>
-          <NavLeft>
-            <i className="f7-icons">chevron_left</i>
-          </NavLeft>
           <NavTitle>Activities/Booths</NavTitle>
         </Navbar>
 
