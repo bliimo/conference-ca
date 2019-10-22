@@ -79,3 +79,8 @@ a.sheet-btn.button {
 .sheet-div{
   text-align: right;
 }
+#account-pic{
+  height:100px;
+  width:100px;
+  border-radius:100%;
+}

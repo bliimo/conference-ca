@@ -24,9 +24,9 @@ class Activity extends React.Component {
       question: null,
       answer: null
     },
-    rate: 1,
+    rate: 0,
     isRated:false,
-    question: null,
+    question: '',
     display: 'dashboard',
     description: `<h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Heck</span></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Place</span></h1><p>
@@ -40,12 +40,13 @@ class Activity extends React.Component {
       </div>
     </div>
     </p>`,
-    featured: null
+    featured: null,
+    stars:[]
   };
 
   HandleGetFeaturedData = () => {
-    this.setState({ featured: this.props.featured[0] });
-    this.HandleGetQuestion(this.props.featured[0]);
+    this.setState({ featured: this.props.featured });
+    this.HandleGetQuestion(this.props.featured);
   };
 
   HandleGetQuestion = async featured => {
@@ -68,49 +69,60 @@ class Activity extends React.Component {
   };
 
   
-  handleRate = async()=>{
+  handleRate = async(rate)=>{
     const { eventId } = this.state.featured[1];
-    const uid = getStorage('uid');
-    const { rate } = this.state;
+    const uid = getStorage('uid'); 
     const data = await setData(`/rates/${eventId}/${uid}`, rate);
     if(data.response === "success"){
       this.setState({rate, isRated:true})
-    } 
+    }else{
+      this.setState({rate:0})
+    }
+    this.handleStar(rate)
   }
 
   handleGetRate = async ()=>{
-    const { eventId } = this.props.featured[0][1];
+    const { eventId } = this.props.featured[1];
     const uid = getStorage('uid');
     const rate = await getData(`/rates/${eventId}/${uid}`);
     if(rate){
       this.setState({rate,isRated:true})
     }else{
-      this.setState({rate,isRated:false})
+      this.setState({rate:0,isRated:false})
     }
+    this.handleStar()
   }
 
   componentWillMount = () => {
     this.HandleGetFeaturedData();
-    this.handleGetRate();
-
+    this.handleGetRate(); 
   };
 
   componentWillReceiveProps() {
     this.HandleGetFeaturedData();
+    this.handleGetRate();
   }
 
   componentDidMount = () => {};
 
-  handleStar = ()=>{
+  setStars = (rate) =>{
+    this.setState({rate})
+    this.handleRate(rate)
+  }
+  
+  handleStar = (ratings = 0)=>{
     let stars = []
-    const {rate} = this.state;
-    for(let i = 0; i < rate; i++){
-      stars.push(<span style={{color:"yellow"}}>&#9733;</span>);
+    let {rate,isRated} = this.state;
+    rate = rate ? rate : ratings;
+    for(let i = 1; i <= rate; i++){
+      stars.push(!isRated ? <span style={{color:"yellow"}}  onClick={()=>{this.setStars(i)}}>&#9733;</span> : <span style={{color:"yellow"}} >&#9733;</span>);
     }
-    for(let i = 0; i < 5 - rate; i++){
-      stars.push(<span style={{color:"gray"}}>&#9733;</span>);
+    for(let i = 1; i <= 5 - rate; i++){
+      stars.push(!isRated ? <span style={{color:"gray"}}  onClick={()=>{this.setStars(i)}}>&#9733;</span>: <span style={{color:"gray"}} >&#9733;</span>);
     }
-    return stars;
+    stars.push(` (${rate ? rate : 0})`)
+    stars.push(isRated ? <p key={0}>Thank you so much for taking the time to leave this excellent review.  We really appreciate that.  Please let us know what we can do for you in the future.</p> : <p key={0}>Please rate me!</p>)
+    this.setState({stars})
   }
 
   render() {
@@ -133,12 +145,12 @@ class Activity extends React.Component {
             this.props.event(true);
           }}
         ></Link>
-        <img src={thumbnail} alt="event bg" className="bg-image" />
+        {thumbnail && <img src={thumbnail} alt="event bg" className="bg-image" />}
         <div className="profile">
           <img src={MPossibleLogo} alt="logo" className="logo" />
           <img
             alt=""
-            src={speakerDP ? speakerDP : 'https://i.pravatar.cc/300'}
+            src={speakerDP !== '' ? speakerDP : 'https://api.adorable.io/avatars/285/abott@adorable.png'}
             className="picture circle-img"
             id="profilePicture-activity"
           />
@@ -192,7 +204,7 @@ class Activity extends React.Component {
               )}
             </Tab>
             <Tab id="tab-2" className="page-content">
-            {!isRated && <Block style={{textAlign:"center"}}> 
+            {/* {!isRated && <Block style={{textAlign:"center"}}> 
                 <label style={{display:"inline-block"}}>Rate this event</label>
                 <ListInput style={{width:"auto",textAlign:"center",display:"inline-block", marginLeft:"1em"}}
                   type="select"
@@ -208,10 +220,10 @@ class Activity extends React.Component {
                   <option value="5">5</option>
                 </ListInput>
                 <Button fill style={{position:"relative",top:"5em"}} onClick={()=>{this.handleRate()}}>Submit</Button>
-              </Block>}
-              {isRated && <Block>
-                <p>You already rated this event with {this.handleStar()}</p>
-              </Block>}
+              </Block>} */}
+               <Block>
+                {this.state.stars}
+              </Block>
             </Tab>
           </Tabs>
         </div>

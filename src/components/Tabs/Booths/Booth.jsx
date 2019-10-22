@@ -7,6 +7,9 @@ import Dotdotdot from 'react-dotdotdot';
 import { getData, api } from '../../../reducers/reducer';
 
 const HandleDisplayBooth = props => {
+  const htmlRender = () =>{
+    return {__html:props.data.description}
+  }
   return (
     <AccordionItem>
       <AccordionToggle>
@@ -17,7 +20,7 @@ const HandleDisplayBooth = props => {
           <div className="right">
             <div className="booth-name">{props.data.company}</div>
             <Dotdotdot clamp={2}>
-              <div className="booth-description">{props.data.description}</div>
+              <div className="booth-description" dangerouslySetInnerHTML={htmlRender()}/>
             </Dotdotdot>
           </div>
         </div>
@@ -48,8 +51,8 @@ class HomePage extends React.Component {
   };
 
   getDataFromApi = async () => {
-    // const data = await this.props.getBooths('booths')
-    // console.log(data);
+    const data = await this.props.getBooths('booths.json')
+    this.setState({booths:data.payload.data})
   };
 
   componentWillMount = () => {
@@ -62,9 +65,6 @@ class HomePage extends React.Component {
     return (
       <div className="booths">
         <Navbar>
-          <NavLeft>
-            <i className="f7-icons">chevron_left</i>
-          </NavLeft>
           <NavTitle>Activities/Booths</NavTitle>
         </Navbar>
 

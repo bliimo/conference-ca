@@ -37,15 +37,23 @@ class Login extends Component {
     if (data.response == 'success') {
       setStorage({ uid: data.id });
       alert('Successfully logged in');
-      this.$f7router.navigate('/home');
+      this.$f7router.navigate('/');
     } else {
-      alert(data);
+      alert('Invalid account')
     }
   };
 
   render() {
     return (
       <Page pageContent={false} loginScreen>
+        <Link
+          iconMd="material:keyboard_arrow_left"
+          color="white"
+          className="back-button"
+          onClick={() => {
+            this.$f7router.navigate('/');
+          }}
+        ></Link>
         <div className="page no-navbar no-toolbar no-swipeback">
           <div className="page-content login-screen-content login-page">
             <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>

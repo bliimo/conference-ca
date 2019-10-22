@@ -1,5 +1,5 @@
 import React from 'react';
-import { App, Button, Row, Col, Block, BlockTitle } from 'framework7-react';
+import { App, Button, Row, Col, Block, BlockTitle,Link } from 'framework7-react';
 
 import style from './style.css';
 import {
@@ -46,7 +46,7 @@ const HandleDisplayProfile = props => {
   let { profile } = props;
   return (
     <div className="profile">
-      <img src={profile.profilePicture} alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''} />
+      <img id="account-pic" src={profile.profilePicture ? profile.profilePicture : 'https://api.adorable.io/avatars/285/abott@adorable.png'} alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''} />
       <div className="account-name">{profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}</div>
     </div>
   );
@@ -101,6 +101,7 @@ class HomePage extends React.Component {
     };
     await setData(`user/${user.user.uid}`, userData);
     setStorage({ uid: user.user.uid });
+    this.handleGetUser()
   };
 
   HandleBoothChoose = boothChoose => {
@@ -123,11 +124,11 @@ class HomePage extends React.Component {
       visitedBooths = visitedJSON.payload.data[uid]
     }
     const booths = [];  
-
     Object.keys(boothJSON.payload.data).map(bj => {
       if(visitedBooths){
         visitedBooths.map(vb => {
-          if (vb === bj) {
+          console.log(vb['booth'] , bj)
+          if (vb['booth'] === bj) {
             booths.push({ ...boothJSON.payload.data[bj], isActive: 'active' });
             delete boothJSON.payload.data[bj];
           }
@@ -149,7 +150,8 @@ class HomePage extends React.Component {
     const uid = getStorage('uid');
     if (this.state.code === this.state.boothChoose.code) {
       const visitedBooths = this.state.visitedBooths;
-      visitedBooths.push(this.state.boothChoose.boothKey);
+      visitedBooths.push({booth:this.state.boothChoose.boothKey,dateAvailable:firebase.database.ServerValue.TIMESTAMP});
+      console.log(visitedBooths)
       await setData(`visitedBooths/${uid}`, visitedBooths);
       alert('Nice one!');
       this.HandleGetVisitedBooths();

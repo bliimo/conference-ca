@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide, Link } from 'framework7-react';
 import style from './style.css';
 
 import {connect} from 'react-redux';
-import { getEvents } from '../../../reducers/reducer';
+import { getEvents, getStorage } from '../../../reducers/reducer';
 
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
@@ -13,16 +13,17 @@ import Activity from './Activity';
 
 const HandleDisplayEvents = (props) => {
   let activities = Object.entries(props.activities);
+  let click = props.click;
   if(activities.length > 0){
     return (
       <div>
       {
         activities.map((activity, item) => {
           return (
-            <div key={item}>
-              {activity[0]}
-              <HandleDisplayTalks talks={Object.entries(activity[1])} click={ e => {console.log(e);} } />
-            </div>
+              <div key={item}>
+                {activity[0]}
+                <HandleDisplayTalks click={click} talks={Object.entries(activity[1])}/>
+              </div>
           )
         })
       }
@@ -53,7 +54,7 @@ const HandleDisplayTalks = (props) => {
 
           return(
             <SwiperSlide key={index}>
-              <Link onClick={ () => { click(talk[1].eventId); } } >
+              <Link onClick={ () => { click(talk); } } >
                 <div className='talk'>
                   <img src={talk[1].speakerDP} alt={talk[1].title} />
                   <div className='title'>{talk[1].name}</div>
@@ -89,7 +90,6 @@ const HandleDisplaySlide = (data) => {
 }
 
 const HandleDisplayFeaturedActivity = (props) => {
-
   let {activities, click} = props;
 
   if(activities.length > 0){
@@ -107,7 +107,7 @@ const HandleDisplayFeaturedActivity = (props) => {
           activities.map( (activity, index) => {
             return(
               <SwiperSlide key={index}>
-                <Link onClick={ () => { click(activity[1].eventId) } } >
+                <Link onClick={ () => { getStorage('uid') ? click(activity) : alert('You need to login') } } >
                   <HandleDisplaySlide activity={activity[1]} />
                 </Link>
               </SwiperSlide>
@@ -136,6 +136,7 @@ class HomePage extends React.Component {
   state = {
     featuredActivity: {},
     activities: {}, 
+    activity:{},
     display: 'dashboard' // 'dashboard'
   }
 
@@ -149,12 +150,12 @@ class HomePage extends React.Component {
     this.HandleGetEvents(); 
   }
 
-  HandleActivities = () =>{
-    this.setState({display:'activity'})
+  HandleActivities = (activity) =>{
+    this.setState({display:'activity',activity})
   }
 
   componentDidMount = () => {
-  }
+  } 
 
   render(){
     // this.setState({display: e})
@@ -163,13 +164,13 @@ class HomePage extends React.Component {
         { ( this.state.display === 'dashboard' ) ? 
           <div>
             <div className='featured-activity'>
-              <HandleDisplayFeaturedActivity click={ () => { this.HandleActivities() } } activities={this.state.featuredActivity} /> 
+              <HandleDisplayFeaturedActivity click={this.HandleActivities} activities={this.state.featuredActivity} /> 
             </div>
             <div className='activities'>
-              <HandleDisplayEvents activities={this.state.activities} /> 
+              <HandleDisplayEvents click={this.HandleActivities} activities={this.state.activities} /> 
             </div>
           </div> : 
-          <Activity featured={this.state.featuredActivity} event={ (e) => { this.setState({display: e ? 'dashboard' : '' }) } } />
+          <Activity featured={this.state.activity} event={ (e) => { this.setState({display: e ? 'dashboard' : '' }) } } />
         }
       </div>
     )
