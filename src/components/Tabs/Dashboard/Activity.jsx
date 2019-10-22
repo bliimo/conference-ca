@@ -45,8 +45,8 @@ class Activity extends React.Component {
   };
 
   HandleGetFeaturedData = () => {
-    this.setState({ featured: this.props.featured[0] });
-    this.HandleGetQuestion(this.props.featured[0]);
+    this.setState({ featured: this.props.featured });
+    this.HandleGetQuestion(this.props.featured);
   };
 
   HandleGetQuestion = async featured => {
@@ -82,13 +82,13 @@ class Activity extends React.Component {
   }
 
   handleGetRate = async ()=>{
-    const { eventId } = this.props.featured[0][1];
+    const { eventId } = this.props.featured[1];
     const uid = getStorage('uid');
     const rate = await getData(`/rates/${eventId}/${uid}`);
     if(rate){
       this.setState({rate,isRated:true})
     }else{
-      this.setState({rate,isRated:false})
+      this.setState({rate:0,isRated:false})
     }
     this.handleStar()
   }
@@ -100,6 +100,7 @@ class Activity extends React.Component {
 
   componentWillReceiveProps() {
     this.HandleGetFeaturedData();
+    this.handleGetRate();
   }
 
   componentDidMount = () => {};
