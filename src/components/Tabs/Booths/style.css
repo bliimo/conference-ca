@@ -1,5 +1,6 @@
 .booth-information {
   display: inline-block;
+  width:100%;
 }
 
 .booth-information .left,

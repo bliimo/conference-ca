@@ -40,8 +40,6 @@ const HandleDisplayProfile = (props) => {
 
 const HandleDisplayAccount = (props) => {
   let {booths, profile} = props.data;
-
-  console.log(booths, profile);
   return (
     <div>
       <HandleDisplayProfile profile={profile} />
