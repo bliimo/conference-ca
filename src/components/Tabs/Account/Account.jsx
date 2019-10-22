@@ -1,5 +1,5 @@
 import React from 'react';
-import { App, Button, Row, Col, Block, BlockTitle } from 'framework7-react';
+import { App, Button, Row, Col, Block, BlockTitle,Link } from 'framework7-react';
 
 import style from './style.css';
 
@@ -53,7 +53,7 @@ const HandleDisplayProfile = props => {
   let { profile } = props;
   return (
     <div className="profile">
-      <img src={profile.profilePicture} alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''} />
+      <img id="account-pic" src={profile.profilePicture ? profile.profilePicture : 'https://api.adorable.io/avatars/285/abott@adorable.png'} alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''} />
       <div className="account-name">{profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}</div>
     </div>
   );
@@ -108,6 +108,7 @@ class HomePage extends React.Component {
     };
     await setData(`user/${user.user.uid}`, userData);
     setStorage({ uid: user.user.uid });
+    this.handleGetUser()
   };
 
   HandleBoothChoose = boothChoose => {

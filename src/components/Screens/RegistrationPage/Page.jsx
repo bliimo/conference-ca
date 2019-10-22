@@ -47,7 +47,7 @@ class Register extends Component {
         await setData(`user/${data.id}`, userData);
         setStorage({ uid: data.id });
         alert('Registration successful!');
-        this.$f7router.navigate('/home');
+        this.$f7router.navigate('/');
       } else if (data.error.code == 'auth/network-request-failed') {
         alert('No internet');
       } else if (data.error.code == 'auth/email-already-in-use') {
@@ -63,6 +63,14 @@ class Register extends Component {
   render() {
     return (
       <Page pageContent={false}>
+        <Link
+          iconMd="material:keyboard_arrow_left"
+          color="white"
+          className="back-button"
+          onClick={() => {
+            this.$f7router.navigate('/');
+          }}
+        ></Link>
         <div className="page no-navbar no-toolbar no-swipeback">
           <div className="page-content login-screen-content signup-page">
             <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
