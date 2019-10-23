@@ -122,7 +122,14 @@ class Activity extends React.Component {
     }
     stars.push(` (${rate ? rate : 0})`)
     stars.push(isRated ? <p key={0}>Thank you so much for taking the time to leave this excellent review.  We really appreciate that.  Please let us know what we can do for you in the future.</p> : <p key={0}>Please rate me!</p>)
-    this.setState({stars})
+    const uid = getStorage('uid');
+    if(uid){
+      this.setState({stars});
+    }else{
+      const login = (<Block><span>You need to </span><Link color="blue" raised fill tabLink="#account">login</Link><span> to rate this booths.</span></Block>)
+      this.setState({stars:login})
+    }
+    
   }
 
   render() {
@@ -140,6 +147,7 @@ class Activity extends React.Component {
     } = this.state.featured[1];
     const { question, answer } = this.state.questionAndAswer;
     const {isRated} = this.state;
+    const uid = getStorage('uid') 
 
     return (
       <div className="container activity">
@@ -172,7 +180,7 @@ class Activity extends React.Component {
           </Toolbar>
           <Tabs>
             <Tab id="tab-1" className="page-content" tabActive>
-              {question === null && (
+              {question === null && uid && (
                 <Block>
                   <textarea
                     value={this.state.question}
@@ -198,7 +206,7 @@ class Activity extends React.Component {
                   </Button>
                 </Block>
               )}
-              {question !== null && (
+              {question !== null && uid && (
                 <Block>
                   <p>
                     Q:{' '}
@@ -209,6 +217,15 @@ class Activity extends React.Component {
                       : ''}
                   </p>{' '}
                   {answer && <p>A: {answer}</p>}
+                </Block>
+              )}
+              {uid === null && (
+                <Block>
+                  <span>You need to </span>
+                  <Link color="blue" raised fill tabLink="#account">
+                    login
+                  </Link>
+                  <span> to ask questions.</span>
                 </Block>
               )}
             </Tab>
@@ -231,9 +248,7 @@ class Activity extends React.Component {
                 </ListInput>
                 <Button fill style={{position:"relative",top:"5em"}} onClick={()=>{this.handleRate()}}>Submit</Button>
               </Block>} */}
-               <Block>
                 {this.state.stars}
-              </Block>
             </Tab>
           </Tabs>
         </div>
