@@ -127,16 +127,10 @@ class Activity extends React.Component {
 
   render() {
     const {
-      date,
-      longDesc,
-      eventId,
+      longDescription,
       name,
-      speaker,
       speakerDP,
       thumbnail,
-      timeEnd,
-      timeStart,
-      title
     } = this.state.featured[1];
     const { question, answer } = this.state.questionAndAswer;
     const {isRated} = this.state;
@@ -160,14 +154,12 @@ class Activity extends React.Component {
             className="picture circle-img"
             id="profilePicture-activity"
           />
-          <p className="name">{`${name}`}</p>
+          <p className="name">{name}</p>
         </div>
-        <div className="description" dangerouslySetInnerHTML={{ __html: longDesc }}></div>
+        <div className="description" dangerouslySetInnerHTML={{ __html: longDescription }}></div>
         <div className="get-data-from-user">
           <Toolbar id="tabs" tabbar bottom>
-            <Link tabLink="#tab-1" tabLinkActive>
-              Questions
-            </Link>
+            <Link tabLink="#tab-1" tabLinkActive>Questions</Link>
             <Link tabLink="#tab-2">Ratings</Link>
           </Toolbar>
           <Tabs>
@@ -175,8 +167,7 @@ class Activity extends React.Component {
               {question === null && (
                 <Block>
                   <textarea
-                    value={this.state.question}
-                    onInput={e => {
+                    onChange={e => {
                       this.setState({ question: e.target.value });
                     }}
                     placeholder="Your question"
@@ -187,7 +178,7 @@ class Activity extends React.Component {
                       color: '#222',
                       padding: '1em'
                     }}
-                  ></textarea>
+                  >{this.state.question}</textarea>
                   <Button
                     fill
                     small
@@ -218,7 +209,6 @@ class Activity extends React.Component {
                 <ListInput style={{width:"auto",textAlign:"center",display:"inline-block", marginLeft:"1em"}}
                   type="select"
                   placeholder="Please choose..."
-                  value={this.state.rate}
                   onInput={e => {
                     this.setState({ rate: e.target.value });
                   }}

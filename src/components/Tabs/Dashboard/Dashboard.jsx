@@ -51,11 +51,12 @@ const HandleDisplayTalks = (props) => {
     >
       {
         talks.map( (talk, index) => {
+
           return(
             <SwiperSlide key={index}>
               <Link onClick={ () => { click(talk); } } >
                 <div className='talk'>
-                  <img src={talk[1].thumbnail} alt={talk[1].title} />
+                  <img src={talk[1].speakerDP} alt={talk[1].title} />
                   <div className='title'>{talk[1].name}</div>
                 </div>
               </Link>
@@ -69,6 +70,7 @@ const HandleDisplayTalks = (props) => {
 
 const HandleDisplaySlide = (data) => {
   let {activity} = data;
+
   return (
     <div>
       <img src={activity.thumbnail} alt={activity.name} className='featured-activity-bg-image' />
@@ -76,7 +78,7 @@ const HandleDisplaySlide = (data) => {
         <div className='left'>
           <div className='logo'><img src={MPossibleLogo} alt='' /></div>
           <div className='title'>{activity.date}</div>
-          <div className='description'>{activity.shortDesc}</div>
+          <div className='description'>{activity.shortDescription}</div>
         </div>
         <div className='right'>
           <div className='profile-picture'><img src={activity.speakerDP} alt='' /></div>
@@ -139,7 +141,7 @@ class HomePage extends React.Component {
   }
 
   HandleGetEvents = async () => {
-    const events = await this.props.getEvents('/events?orderByValue=\"featured\"&equalTo="true');
+    const events = await this.props.getEvents('/events?orderByValue=\"featured\"&equalTo="true"');
     let featuredActivity = HandleFilterFeatured(Object.entries(events.payload.data));
     this.setState({activities: events.payload.data, featuredActivity: featuredActivity});
   };
@@ -174,8 +176,6 @@ class HomePage extends React.Component {
     )
   }
 }
-
-
 
 const mapStateToProps = state => {
   return {
