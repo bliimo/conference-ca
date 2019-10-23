@@ -62,6 +62,16 @@
   /* transform: translateY(20%); */
 }
 
+.featured-activity .content::after{
+  content: '';
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  display: block;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #0d254100 , #0d2541);
+}
+
 .featured-activity .content .left {
   width: 60%;
   box-sizing: border-box;
@@ -106,6 +116,8 @@
 
 .activities {
   padding: 10px;
+  z-index: 9999;
+  position: relative;
 }
 
 .activities .talk img {
