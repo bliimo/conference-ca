@@ -221,9 +221,9 @@ class HomePage extends React.Component {
           {this.state.profile === null &&(<Row>
             <div className="notice">Oh! Looks like you haven't logged in yet! Log in or Sign up now.</div>
             <div className="social-buttons">
-              <Button color="blue" raised fill onClick={this.login}>
+              {/* <Button color="blue" raised fill onClick={this.login}>
                 Sign up with facebook
-              </Button>
+              </Button> */}
               <Button color="blue" raised fill href="/register">
                 Sign up with email
               </Button>
