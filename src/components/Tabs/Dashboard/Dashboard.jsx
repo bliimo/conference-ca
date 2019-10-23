@@ -107,7 +107,7 @@ const HandleDisplayFeaturedActivity = (props) => {
           activities.map( (activity, index) => {
             return(
               <SwiperSlide key={index}>
-                <Link onClick={ () => { getStorage('uid') ? click(activity) : alert('You need to login') } } >
+                <Link onClick={ () => {click(activity)} } >
                   <HandleDisplaySlide activity={activity[1]} />
                 </Link>
               </SwiperSlide>
