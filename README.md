@@ -3,21 +3,24 @@
 To get started, clone this repo as whatever you want to name your app:
 
 ```
-git clone https://github.com/framework7io/framework7-react-app-template/ my-app
+$ git clone https://github.com/framework7io/framework7-react-app-template/ my-app
 ```
 
 Running the app:
 
 ```
-npm install
-npm start
+$ npm install
+$ npm start
 ```
 
 To build your app for deployment, run:
 
 ```
-npm run build
+$ npm run build
 ```
+
+To build cordova app
+$ cordova build android
 
 The build folder will then contain all of your app's files, optimized and ready for deployment.
 
