@@ -11,7 +11,6 @@ import DashboardIcon from '../../../img/icons/activities.svg';
 import BoothsIcon from '../../../img/icons/booths.svg';
 import AccountIcon from '../../../img/icons/account.svg';
 import {getStorage} from '../../../reducers/reducer'
-import SVG from 'react-inlinesvg';
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
