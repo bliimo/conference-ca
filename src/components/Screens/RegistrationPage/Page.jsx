@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Page, Link, Toolbar, Tab, Tabs, Preloader, LoginScreen, LoginScreenTitle, List, ListButton, ListInput } from 'framework7-react';
+import { Page, Link, Toolbar, Tab, Tabs, Preloader, LoginScreen, LoginScreenTitle, List, ListButton, ListInput,Navbar,NavTitle } from 'framework7-react';
 
 import Dashboard from '../../Tabs/Dashboard/Dashboard';
 import Booth from '../../Tabs/Booths/Booth';
@@ -53,8 +53,7 @@ class Register extends Component {
       } else if (data.error.code == 'auth/email-already-in-use') {
         alert('Email already used !');
       } else {
-        alert('Something went wrong');
-        console.log('Something went wrong', data);
+        alert('Invalid Credentials');
       }
     }
     this.setState({ logging: false });
@@ -63,19 +62,21 @@ class Register extends Component {
   render() {
     return (
       <Page pageContent={false}>
-        <Link
-          iconMd="material:keyboard_arrow_left"
-          color="white"
-          className="back-button"
-          onClick={() => {
-            this.$f7router.navigate('/');
-          }}
-        ></Link>
-        <div className="page no-navbar no-toolbar no-swipeback">
+        <Navbar className="nav-account" style={{marginTop:'2em'}}>
+          <Link
+            iconMd="material:keyboard_arrow_left"
+            color="white"
+            className="back-button" 
+            onClick={() => {
+              this.$f7router.navigate('/');
+            }}
+          ></Link>
+          <NavTitle className="top-title">Register</NavTitle>
+        </Navbar>
+        <div className="page no-navbar no-toolbar no-swipeback" style={{marginTop:'6em'}}>
           <div className="page-content login-screen-content signup-page">
             <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
-            <LoginScreenTitle>Register</LoginScreenTitle>
-            <List form style={{ display: this.state.logging ? 'none' : 'block' }}>
+            <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'1.5em' }}>
               <ListInput
                 value={this.state.firstname}
                 onInput={e => {
@@ -130,7 +131,7 @@ class Register extends Component {
                 type="password"
                 placeholder="Re-type Password"
               />
-              <ListButton onClick={() => this.onHandleRegister()}>Register</ListButton>
+              <ListButton className='btn-reg' style={{color:'#fff !important'}} onClick={() => this.onHandleRegister()}>Register</ListButton>
             </List>
           </div>
         </div>
