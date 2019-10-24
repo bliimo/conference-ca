@@ -26,7 +26,7 @@ const HandleDisplayBooth = props => {
         </div>
       </AccordionToggle>
       <AccordionContent>
-        <div className="booth-information">
+        <div className="booth-information collapse-info">
           <div className="right">
             <span>Website: </span>
             <Link href={props.data.website} external target="_blank">
@@ -64,8 +64,14 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="booths">
-        <Navbar>
-          <NavTitle>Activities/Booths</NavTitle>
+        <Navbar className="nav-booths">
+        <Link
+          iconMd="material:keyboard_arrow_left"
+          color="white"
+          className="back-button"
+          tabLink="#dashboard"
+        ></Link>
+          <NavTitle className="top-title">Activities/Booths</NavTitle>
         </Navbar>
 
         <Block inner accordionList>
