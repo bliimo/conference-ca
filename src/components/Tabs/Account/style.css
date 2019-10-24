@@ -84,3 +84,8 @@ a.sheet-btn.button {
   width:100px;
   border-radius:100%;
 }
+span.range-booths {
+  position: relative;
+  float: right;
+  top: 1em;
+}
