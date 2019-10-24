@@ -1,5 +1,5 @@
 import React from 'react';
-import { App, Button, Row, Col, Block, BlockTitle,Link } from 'framework7-react';
+import { App, Button, Row, Col, Block, BlockTitle, Link, NavTitle, Navbar } from 'framework7-react';
 
 import style from './style.css';
 import {
@@ -46,13 +46,23 @@ const HandleDisplayProfile = props => {
   let { profile } = props;
   return (
     <div className="profile">
-      <img id="account-pic" src={profile.profilePicture ? profile.profilePicture : 'https://api.adorable.io/avatars/285/abott@adorable.png'} alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''} />
-      <div className="account-name">{profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}</div>
+      <img
+        id="account-pic"
+        src={
+          profile.profilePicture
+            ? profile.profilePicture
+            : 'https://api.adorable.io/avatars/285/abott@adorable.png'
+        }
+        alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}
+      />
+      <div className="account-name">
+        {profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}
+      </div>
     </div>
   );
 };
 
-const HandleDisplayAccount = props => { 
+const HandleDisplayAccount = props => {
   let { booths, profile } = props.data;
 
   return (
@@ -77,7 +87,7 @@ class HomePage extends React.Component {
       logo: '',
       phone: '',
       website: '',
-      boothKey:''
+      boothKey: ''
     },
     profile: null,
     user: null,
@@ -101,7 +111,7 @@ class HomePage extends React.Component {
     };
     await setData(`user/${user.user.uid}`, userData);
     setStorage({ uid: user.user.uid });
-    this.handleGetUser()
+    this.handleGetUser();
   };
 
   HandleBoothChoose = boothChoose => {
@@ -111,7 +121,7 @@ class HomePage extends React.Component {
 
   logout = async () => {
     await auth().signOut();
-    this.setState({user:null,profile:null})
+    this.setState({ user: null, profile: null });
     localStorage.clear();
   };
 
@@ -119,15 +129,15 @@ class HomePage extends React.Component {
     const uid = getStorage('uid');
     const visitedJSON = await this.props.getVisitedBooths(`/visitedBooths`);
     const boothJSON = await this.props.getBooths('/booths');
-    let visitedBooths = []
-    if(visitedJSON.payload.data){
-      visitedBooths = visitedJSON.payload.data[uid]
+    let visitedBooths = [];
+    if (visitedJSON.payload.data) {
+      visitedBooths = visitedJSON.payload.data[uid];
     }
-    const booths = [];  
+    const booths = [];
     Object.keys(boothJSON.payload.data).map(bj => {
-      if(visitedBooths){
+      if (visitedBooths) {
         visitedBooths.map(vb => {
-          console.log(vb['booth'] , bj)
+          console.log(vb['booth'], bj);
           if (vb['booth'] === bj) {
             booths.push({ ...boothJSON.payload.data[bj], isActive: 'active' });
             delete boothJSON.payload.data[bj];
@@ -137,9 +147,9 @@ class HomePage extends React.Component {
     });
 
     Object.keys(boothJSON.payload.data).map(bj => {
-      booths.push({ ...boothJSON.payload.data[bj], isActive: 'inactive', boothKey:bj });
+      booths.push({ ...boothJSON.payload.data[bj], isActive: 'inactive', boothKey: bj });
     });
-    this.setState({ booths, visitedBooths : visitedBooths ? visitedBooths : [] });
+    this.setState({ booths, visitedBooths: visitedBooths ? visitedBooths : [] });
   };
 
   setModal = isOpen => {
@@ -150,23 +160,26 @@ class HomePage extends React.Component {
     const uid = getStorage('uid');
     if (this.state.code === this.state.boothChoose.code) {
       const visitedBooths = this.state.visitedBooths;
-      visitedBooths.push({booth:this.state.boothChoose.boothKey,dateAvailable:firebase.database.ServerValue.TIMESTAMP});
-      console.log(visitedBooths)
+      visitedBooths.push({
+        booth: this.state.boothChoose.boothKey,
+        dateAvailable: firebase.database.ServerValue.TIMESTAMP
+      });
+      console.log(visitedBooths);
       await setData(`visitedBooths/${uid}`, visitedBooths);
       alert('Nice one!');
       this.HandleGetVisitedBooths();
       this.setState({ HandleBoothChoose: this.HandleBoothChoose });
-      this.setModal(false)
+      this.setModal(false);
     } else {
       alert("Code doesn't match!");
     }
   };
- 
-  handleGetUser = async() =>{
-    const uid = getStorage("uid");
+
+  handleGetUser = async () => {
+    const uid = getStorage('uid');
     const profile = await getData(`user/${uid}`);
-    this.setState({profile});
-  }
+    this.setState({ profile });
+  };
 
   componentWillMount = () => {
     this.HandleGetVisitedBooths();
@@ -179,14 +192,21 @@ class HomePage extends React.Component {
   render() {
     return (
       <Block>
+        <Navbar className="nav-account">
+          <Link
+            iconMd="material:keyboard_arrow_left"
+            color="white"
+            className="back-button"
+            tabLink="#booths"
+          ></Link>
+          <NavTitle className="top-title">Your Profile</NavTitle>
+        </Navbar>
         <div className="account">
-          {this.state.profile && (<HandleDisplayAccount data={this.state} logout={this.logout} />)}
+          {this.state.profile && <HandleDisplayAccount data={this.state} logout={this.logout} />}
           <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
             <Block style={{ width: '100%' }}>
               <BlockTitle style={{ textTransform: 'capitalize' }}>
-                <p style={{fontSize:"18px",color:"#222"}}>
-                {this.state.boothChoose.company}
-                </p>
+                <p style={{ fontSize: '18px', color: '#222' }}>{this.state.boothChoose.company}</p>
                 <input
                   style={{ color: '#222' }}
                   type="text"
@@ -218,20 +238,24 @@ class HomePage extends React.Component {
               </BlockTitle>
             </Block>
           </div>
-          {this.state.profile === null &&(<Row>
-            <div className="notice">Oh! Looks like you haven't logged in yet! Log in or Sign up now.</div>
-            <div className="social-buttons">
-              {/* <Button color="blue" raised fill onClick={this.login}>
+          {this.state.profile === null && (
+            <Row>
+              <div className="notice">
+                Oh! Looks like you haven't logged in yet! Log in or Sign up now.
+              </div>
+              <div className="social-buttons">
+                {/* <Button color="blue" raised fill onClick={this.login}>
                 Sign up with facebook
               </Button> */}
-              <Button color="blue" raised fill href="/register">
-                Sign up with email
-              </Button>
-              <Button color="blue" raised fill href="/login">
-                Login
-              </Button>
-            </div>
-          </Row>)}
+                <Button color="blue" raised fill href="/register">
+                  Sign up with email
+                </Button>
+                <Button color="blue" raised fill href="/login">
+                  Login
+                </Button>
+              </div>
+            </Row>
+          )}
         </div>
       </Block>
     );
@@ -249,8 +273,8 @@ const mapDispatchToProps = dispatch => {
     setData: (query, data) => {
       return dispatch(setData(query, data));
     },
-    getData: (query)=>{
-      return dispatch(getData(query))
+    getData: query => {
+      return dispatch(getData(query));
     },
     getVisitedBooths: () => {
       return dispatch(getVisitedBooths());

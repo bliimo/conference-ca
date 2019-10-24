@@ -16,7 +16,7 @@
 }
 
 .activity .description {
-  padding: 10px;
+  padding: 2.2em;
   font-family: var(--font-light);
   font-size: var(--normal-text);
 }
@@ -88,6 +88,7 @@
   font-size: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 23vh;
 }
 
 .featured-activity .content .right {
@@ -146,8 +147,9 @@
 }
 .profile .name{
   margin: 0;
-  margin-top: .4em;
   font-size: 1.5em !important;
+  position: relative;
+    bottom: .5em;
 }
 
 .item-input-wrap.input-dropdown::before{
@@ -163,4 +165,44 @@
 
 #tabs a.link.tab-link.tab-link-active{
   color: #fff !important;
+}
+.content{
+  padding: .8em;
+}
+
+.activities {
+  padding: 1.5em;
+}
+.activity-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.wrapper-star{
+  padding: 1em;
+}
+
+
+i.icon.material-icons {
+  font-weight: bold;
+  font-size: 3em;
+}
+a.btn-Question.button.button-fill.button-small{
+  float: right;
+  width: 50%;
+  margin-top: 1em;
+  background:#0171a6;
+  border-radius:0;
+}
+
+.date-activity {
+  font-size: 1.7em;
+  position: relative;
+  top: .4em;
+}
+.top-title{
+  font-size: 1.5em;
+  font-weight: bolder !important;
+  width: 70% !important;
+  text-align: center !important;
+  letter-spacing: 2px;
 }
