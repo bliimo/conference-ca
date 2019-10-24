@@ -1,7 +1,7 @@
 .account {
   width: 90%;
   margin: 0 auto;
-  padding: 100px 0px;
+  padding: 50px 0px;
 }
 
 .booth img ,.booth a {
@@ -83,6 +83,23 @@ a.sheet-btn.button {
   height:100px;
   width:100px;
   border-radius:100%;
+}
+
+.nav-booths{
+    position: relative !important;
+    top: 1.5em !important;
+    padding: .2em;
+}
+
+a.back-button.link.icon-only.tab-link.color-white {
+  padding: 0em !important;
+}
+
+.block.accordion-list {
+  position: relative;
+  top: 2em;
+  padding-left: 2.8em;
+  padding-right: 2.8em;
 }
 span.range-booths {
   position: relative;

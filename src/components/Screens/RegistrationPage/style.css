@@ -60,3 +60,20 @@
     margin: 15px;
     color: white !important;
 } 
+.md .item-input-wrap::after{
+    display: none !important;
+}
+
+input,.btn-reg{
+    padding: 1em !important;
+}
+
+a.list-button {
+    background: #2295f3;
+    color: #fff !important;
+    border-radius: 5px;
+}
+
+ul li input{
+    border-radius: 0 !important;
+}

@@ -121,7 +121,7 @@ class Activity extends React.Component {
       stars.push(!isRated ? <span style={{color:"gray"}}  onClick={()=>{this.setStars(i)}}>&#9733;</span>: <span style={{color:"gray"}} >&#9733;</span>);
     }
     stars.push(` (${rate ? rate : 0})`)
-    stars.push(isRated ? <p key={0}>Thank you so much for taking the time to leave this excellent review.  We really appreciate that.  Please let us know what we can do for you in the future.</p> : <p key={0}>Please rate me!</p>)
+    stars.push(isRated ? <p key={0}>Thank you so much for taking the time to leave this excellent review.  We really appreciate that.  Please let us know what we can do for you in the future.</p> : <p key={0}> Please rate me if you enjoy the talk.</p>)
     const uid = getStorage('uid');
     if(uid){
       this.setState({stars});
@@ -144,7 +144,7 @@ class Activity extends React.Component {
     const uid = getStorage('uid') 
 
     return (
-      <div className="container activity">
+      <div className="container activity" >
         <Link
           iconMd="material:keyboard_arrow_left"
           color="white"
@@ -152,6 +152,7 @@ class Activity extends React.Component {
           onClick={() => {
             this.props.event(true);
           }}
+           style={{marginTop:'4em'}}
         ></Link>
         {thumbnail && <img src={thumbnail} alt="event bg" className="bg-image" />}
         <div className="profile">
@@ -167,8 +168,8 @@ class Activity extends React.Component {
         <div className="description" dangerouslySetInnerHTML={{ __html: longDescription }}></div>
         <div className="get-data-from-user">
           <Toolbar id="tabs" tabbar bottom>
-            <Link tabLink="#tab-1" tabLinkActive>Questions</Link>
-            <Link tabLink="#tab-2">Ratings</Link>
+            <Link tabLink="#tab-1" tabLinkActive>Ask a question</Link>
+            <Link tabLink="#tab-2">Rate the talk</Link>
           </Toolbar>
           <Tabs>
             <Tab id="tab-1" className="page-content" tabActive>
@@ -190,10 +191,10 @@ class Activity extends React.Component {
                   <Button
                     fill
                     small
-                    style={{ float: 'right', width: '100px', marginTop: '1em' }}
+                    className='btn-Question'
                     onClick={() => this.HandleSendQuestion()}
                   >
-                    Submit
+                    Send question
                   </Button>
                 </Block>
               )}
@@ -238,7 +239,9 @@ class Activity extends React.Component {
                 </ListInput>
                 <Button fill style={{position:"relative",top:"5em"}} onClick={()=>{this.handleRate()}}>Submit</Button>
               </Block>} */}
-                {this.state.stars}
+                <div className="wrapper-star">
+                  {this.state.stars}
+                </div>
             </Tab>
           </Tabs>
         </div>

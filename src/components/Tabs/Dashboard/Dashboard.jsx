@@ -1,15 +1,12 @@
 import React from 'react';
 import { Swiper, SwiperSlide, Link } from 'framework7-react';
-
 import style from './style.css';
-
 import {connect} from 'react-redux';
-import { getEvents, getStorage } from '../../../reducers/reducer';
-
+import { getEvents } from '../../../reducers/reducer';
 import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
-
 import Activity from './Activity';
+import {getReadableDate} from '../../../helpers/helper'
 
 const HandleDisplayEvents = (props) => {
   let activities = Object.entries(props.activities);
@@ -21,7 +18,7 @@ const HandleDisplayEvents = (props) => {
         activities.map((activity, item) => {
           return (
               <div key={item}>
-                {activity[0]}
+                <div className="date-activity">{getReadableDate(activity[0])}</div>
                 <HandleDisplayTalks click={click} talks={Object.entries(activity[1])}/>
               </div>
           )
@@ -77,12 +74,12 @@ const HandleDisplaySlide = (data) => {
       <div className='content'>
         <div className='left'>
           <div className='logo'><img src={MPossibleLogo} alt='' /></div>
-          <div className='title'>{activity.date}</div>
+          <div className='title activity-title'>{activity.title}</div>
           <div className='description'>{activity.shortDescription}</div>
         </div>
         <div className='right'>
           <div className='profile-picture'><img src={activity.speakerDP} alt='' /></div>
-          <div className='name'>{activity.speaker}</div>
+          <div className='name speaker-name'>{activity.speaker}</div>
         </div>
       </div>
     </div>
