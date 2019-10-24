@@ -165,7 +165,7 @@ class HomePage extends React.Component {
         dateAvailable: firebase.database.ServerValue.TIMESTAMP
       });
       await setData(`visitedBooths/${uid}`, visitedBooths);
-      alert('Successfully added entries');
+      alert('Successfully entered codes');
       this.HandleGetVisitedBooths();
       this.setState({ HandleBoothChoose: this.HandleBoothChoose });
       this.setModal(false);
