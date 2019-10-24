@@ -7,9 +7,9 @@ import Account from '../../Tabs/Account/Account';
 
 import style from './style.css';
 
-import DashboardIcon from '../../../img/icons/activities.png';
-import BoothsIcon from '../../../img/icons/booths.png';
-import AccountIcon from '../../../img/icons/account.png';
+import DashboardIcon from '../../../img/icons/activities.svg';
+import BoothsIcon from '../../../img/icons/booths.svg';
+import AccountIcon from '../../../img/icons/account.svg';
 
 import { connect } from 'react-redux';
 import { auth, setStorage, getStorage } from '../../../reducers/reducer';
