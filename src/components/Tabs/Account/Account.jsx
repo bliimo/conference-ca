@@ -25,7 +25,7 @@ const HandleDisplayBooth = props => {
     <Row>
       {props.list.map((booth, key) => {
         return (
-          <Col width="25" key={key}>
+          <Col width="33" key={key}>
             <div className={`booth ${booth.isActive}`} key={key}>
               {booth.isActive === 'inactive' ? (
                 <Button sheetOpen=".sheet" onClick={() => props.HandleBoothChoose(booth)}>
@@ -138,7 +138,6 @@ class HomePage extends React.Component {
     Object.keys(boothJSON.payload.data).map(bj => {
       if (visitedBooths) {
         visitedBooths.map(vb => {
-          console.log(vb['booth'], bj);
           if (vb['booth'] === bj) {
             booths.push({ ...boothJSON.payload.data[bj], isActive: 'active' });
             delete boothJSON.payload.data[bj];
@@ -165,9 +164,8 @@ class HomePage extends React.Component {
         booth: this.state.boothChoose.boothKey,
         dateAvailable: firebase.database.ServerValue.TIMESTAMP
       });
-      console.log(visitedBooths);
       await setData(`visitedBooths/${uid}`, visitedBooths);
-      alert('Nice one!');
+      alert('Successfully added entries');
       this.HandleGetVisitedBooths();
       this.setState({ HandleBoothChoose: this.HandleBoothChoose });
       this.setModal(false);

@@ -9,13 +9,20 @@
 }
 
 .booth-information .left {
+  text-align: center; margin: 1em 0;
   width: 20%;
+  height: 50px;
 }
 
-.booth-information .left img {
-  width: 70px;
+.booth-information img {
+  width: auto;
   height: 70px;
-  border-radius: 100%;
+}
+
+.left img{
+  width: 100% !important;
+  height: auto;
+  vertical-align: middle;
 }
 
 .booth-information .right {
@@ -23,7 +30,6 @@
   padding: 0px 0px 0px 20px;
   box-sizing: border-box;
   float: right;
-  margin-top: 0.6em;
 }
 
 .booth-description {
@@ -45,9 +51,10 @@
 }
 
 .booth-img{
-  width: 100px;
+  width: auto;
+  max-width: 100% !important;
+  margin: auto !important;
   height: 100px;
-  border-radius: 100%;
 }
 
 .booth-wrapper{
