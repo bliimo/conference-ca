@@ -77,3 +77,7 @@ a.list-button {
 ul li input{
     border-radius: 0 !important;
 }
+
+a.back-button.link.icon-only.tab-link.color-white.tab-link-active{
+    background: transparent !important;
+}

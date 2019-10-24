@@ -152,7 +152,7 @@ class Activity extends React.Component {
           onClick={() => {
             this.props.event(true);
           }}
-           style={{marginTop:'4em'}}
+           style={{marginTop:'2.1em'}}
         ></Link>
         {thumbnail && <img src={thumbnail} alt="event bg" className="bg-image" />}
         <div className="profile">

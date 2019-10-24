@@ -10,12 +10,15 @@ import style from './style.css';
 import DashboardIcon from '../../../img/icons/activities.svg';
 import BoothsIcon from '../../../img/icons/booths.svg';
 import AccountIcon from '../../../img/icons/account.svg';
-import {getStorage} from '../../../reducers/reducer'
+import {getStorage} from '../../../reducers/reducer';
+import bg from '../../../img/bg.png';
+
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uid:null
+      uid:null,
+      isLoad:false
     }
   }
 
@@ -24,10 +27,16 @@ export default class HomePage extends Component {
    if(!uid)this.$f7router.navigate('/')
    this.setState({uid})
   };
+  componentWillMount = () =>{
+    setTimeout(() => {
+      this.setState({isLoad:true})
+    }, 3000);
+  }
   render() {
-    return (
+    return ( 
       <Page pageContent={false} >
-        <Toolbar tabbar bottom>
+        <img src={bg} className='splash-img' alt="" style={{display:this.state.isLoad ? 'none':'block'}}/>
+        <Toolbar tabbar bottom style={{visibility:this.state.isLoad ? 'visible':'hidden'}}>
           <Link tabLink='#dashboard' href='#dashboard' onClick={this.OnHandleCheck.bind(this)} tabLinkActive>
             <div className='icon-wrapper'>
               <img src={DashboardIcon} alt="Dashboard icon" />
@@ -44,7 +53,7 @@ export default class HomePage extends Component {
             </div>
           </Link>
         </Toolbar>
-        <Tabs swipeable>
+        <Tabs swipeable style={{visibility:this.state.isLoad ? 'visible':'hidden'}}>
           <Tab id="dashboard" tabActive onTabShow={this.OnHandleCheck.bind(this)} className="page-content">
             <Dashboard uid={this.state.uid} />
           </Tab>
@@ -55,7 +64,7 @@ export default class HomePage extends Component {
             <Account />
           </Tab>
         </Tabs>
-      </Page>
+      </Page> 
     );
   }
 }
