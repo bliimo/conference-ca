@@ -18,7 +18,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       uid:null,
-      isLoad:false
+      isLoad:true //make false to enable splashscreen
     }
   }
 
@@ -27,9 +27,9 @@ export default class HomePage extends Component {
    if(!uid)this.$f7router.navigate('/')
    this.setState({uid})
   };
-  componentWillMount = () =>{
+  componentWillMount = () =>{ 
     setTimeout(() => {
-      this.setState({isLoad:true})
+      this.setState({isLoad:true}) 
     }, 3000);
   }
   render() {
