@@ -6,6 +6,16 @@ import {connect} from 'react-redux';
 import Dotdotdot from 'react-dotdotdot';
 import { getData, api } from '../../../reducers/reducer';
 
+const DisplayBooth = (props) =>{
+  return (
+    <div className='booth-wrapper'>
+      <img className='booth-img' src={props.data.logo} alt={props.data.booth} />
+      <p className='company-name'>{props.data.company}</p>
+      <div className='company-desc'>{props.data.description}</div>
+    </div>
+  )
+
+}
 const HandleDisplayBooth = props => {
   const htmlRender = () =>{
     return {__html:props.data.description}
@@ -13,19 +23,19 @@ const HandleDisplayBooth = props => {
   return (
     <AccordionItem>
       <AccordionToggle>
-        <div className="booth-information">
+        <div className="booth-information" onClick={()=>{props.click('booth',props.data)}}>
           <div className="left">
             <img src={props.data.logo} alt={props.data.booth} />
           </div>
           <div className="right">
-            <div className="booth-name">{props.data.company}</div>
-            <Dotdotdot clamp={2}>
+            <div className="booth-name" style={{fontSize:'1.2em',marginTop:'.5em'}}>{props.data.company}</div>
+            <Dotdotdot clamp={1}>
               <div className="booth-description" dangerouslySetInnerHTML={htmlRender()}/>
             </Dotdotdot>
           </div>
         </div>
       </AccordionToggle>
-      <AccordionContent>
+      {/* <AccordionContent>
         <div className="booth-information collapse-info">
           <div className="right">
             <span>Website: </span>
@@ -40,14 +50,16 @@ const HandleDisplayBooth = props => {
             </Link>
           </div>
         </div>
-      </AccordionContent>
+      </AccordionContent> */}
     </AccordionItem>
   );
 };
 
 class HomePage extends React.Component {
   state = {
-    booths: []
+    booths: [],
+    boothOpen:{},
+    display:'main'
   };
 
   getDataFromApi = async () => {
@@ -61,6 +73,10 @@ class HomePage extends React.Component {
 
   componentDidMount = () => {};
 
+  handleClick = (display,boothOpen) =>{
+    this.setState({display,boothOpen})
+  }
+
   render() {
     return (
       <div className="booths">
@@ -69,15 +85,18 @@ class HomePage extends React.Component {
           iconMd="material:keyboard_arrow_left"
           color="white"
           className="back-button"
-          tabLink="#dashboard"
+          tabLink={`${this.state.display === 'main' ? '#dashboard':'#'}`}
+          onClick={()=>{ this.state.display === 'booth' ? this.setState({display:'main'}): console.log('main')}}
+          
         ></Link>
-          <NavTitle className="top-title">Activities/Booths</NavTitle>
+          <NavTitle className="top-title">{this.state.display === 'main' ? 'Activities/Booths': 'Booths'}</NavTitle>
         </Navbar>
 
         <Block inner accordionList>
-          {Object.keys(this.state.booths).map((booth, index) => {
-            return <HandleDisplayBooth key={index} data={this.state.booths[booth]} />;
+          {this.state.display === 'main' && Object.keys(this.state.booths).map((booth, index) => {
+            return <HandleDisplayBooth click={this.handleClick} key={index} data={this.state.booths[booth]} />
           })}
+          {this.state.display === 'booth' && <DisplayBooth data={this.state.boothOpen}/>}
         </Block>
       </div>
     );

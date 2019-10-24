@@ -200,7 +200,7 @@ class HomePage extends React.Component {
             className="back-button"
             tabLink="#booths"
           ></Link>
-          <NavTitle className="top-title">Your Profile</NavTitle>
+          <NavTitle className="top-title">{this.state.profile ? 'Your Profile':'Login/Register'}</NavTitle>
         </Navbar>
         <div className="account">
           {this.state.profile && (<HandleDisplayAccount data={this.state} logout={this.logout} range={`(${this.state.visitedBooths.length}/${this.state.booths.length})`}/>)}
