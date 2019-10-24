@@ -11,7 +11,7 @@
 }
 
 .link.tab-link.tab-link-active div{
-    padding: 8px;
+    padding: 3px !important;
     border-radius: 50%;
     border: 1px solid #fff;
 }

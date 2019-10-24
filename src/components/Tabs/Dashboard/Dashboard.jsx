@@ -7,6 +7,7 @@ import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
 import Activity from './Activity';
 import {getReadableDate} from '../../../helpers/helper'
+import Dotdotdot from 'react-dotdotdot';
 
 const HandleDisplayEvents = (props) => {
   let activities = Object.entries(props.activities);
@@ -67,15 +68,15 @@ const HandleDisplayTalks = (props) => {
 
 const HandleDisplaySlide = (data) => {
   let {activity} = data;
-
   return (
     <div>
       <img src={activity.thumbnail} alt={activity.name} className='featured-activity-bg-image' />
       <div className='content'>
         <div className='left'>
           <div className='logo'><img src={MPossibleLogo} alt='' /></div>
-          <div className='title activity-title'>{activity.title}</div>
-          <div className='description'>{activity.shortDescription}</div>
+            <div className='title activity-title'>{activity.title}</div>
+            <div className='title activity-title'>{activity.name}</div>
+          <div className=''>{`${activity.timeStart} - ${activity.timeEnd}`}</div>
         </div>
         <div className='right'>
           <div className='profile-picture'><img src={activity.speakerDP} alt='' /></div>

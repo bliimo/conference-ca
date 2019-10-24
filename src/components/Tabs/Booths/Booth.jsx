@@ -21,7 +21,7 @@ const DisplayBooth = props => {
       <img className="booth-img" src={props.data.logo} alt={props.data.booth} />
       <p className="company-name">{props.data.company}</p>
       <div className="company-desc">{props.data.description}</div>
-      <div style={{textAlign:'left',marginTop:'1em' }}>
+      {/* <div className="booth-information collapse-info" style={{textAlign:'left',marginTop:'1em' }}>
         <div>
           <span>Website: </span>
           <Link href={props.data.website} external target="_blank">
@@ -34,7 +34,7 @@ const DisplayBooth = props => {
             {props.data.phone}
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -122,7 +122,7 @@ class HomePage extends React.Component {
             }}
           ></Link>
           <NavTitle className="top-title">
-            {this.state.display === 'main' ? 'Activities/Booths' : 'Booths'}
+          Activities/Booths
           </NavTitle>
         </Navbar>
 

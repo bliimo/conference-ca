@@ -61,7 +61,7 @@ class Activity extends React.Component {
     const uid = getStorage('uid');
     if (question) {
       const data = await setData(`/questions/${eventId}/${uid}/question`, question);
-      alert(data.response);
+      alert(data.response ? 'Successfully send questions' : 'Unable to send questions');
       this.HandleGetFeaturedData();
     } else {
       alert('Required questions');
@@ -239,7 +239,7 @@ class Activity extends React.Component {
                 </ListInput>
                 <Button fill style={{position:"relative",top:"5em"}} onClick={()=>{this.handleRate()}}>Submit</Button>
               </Block>} */}
-                <div className="wrapper-star">
+                <div className={uid != null ? 'wrapper-star':''}>
                   {this.state.stars}
                 </div>
             </Tab>
