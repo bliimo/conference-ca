@@ -38,3 +38,12 @@
 .navbar-inner.sliding{
     color:#fff !important;
 }
+.icon-wrapper{
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+}
+.icon-wrapper img{
+    width: 100%;
+    height: 100%;
+}

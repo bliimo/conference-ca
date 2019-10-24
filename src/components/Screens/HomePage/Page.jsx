@@ -7,11 +7,11 @@ import Account from '../../Tabs/Account/Account';
 
 import style from './style.css';
 
-import DashboardIcon from '../../../img/icons/activities.png';
-import BoothsIcon from '../../../img/icons/booths.png';
-import AccountIcon from '../../../img/icons/account.png';
+import DashboardIcon from '../../../img/icons/activities.svg';
+import BoothsIcon from '../../../img/icons/booths.svg';
+import AccountIcon from '../../../img/icons/account.svg';
 import {getStorage} from '../../../reducers/reducer'
-
+import SVG from 'react-inlinesvg';
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -27,20 +27,20 @@ export default class HomePage extends Component {
   };
   render() {
     return (
-      <Page pageContent={false} onPageAfterIn={this.OnHandleCheck.bind(this)} onPageBeforeIn={this.OnHandleCheck.bind(this)}>
+      <Page pageContent={false} >
         <Toolbar tabbar bottom>
-          <Link tabLink='#dashboard' onClick={this.OnHandleCheck.bind(this)} tabLinkActive>
-            <div>
+          <Link tabLink='#dashboard' href='#dashboard' onClick={this.OnHandleCheck.bind(this)} tabLinkActive>
+            <div className='icon-wrapper'>
               <img src={DashboardIcon} alt="Dashboard icon" />
             </div>
           </Link>
-          <Link tabLink="#booths">
-            <div>
+          <Link tabLink="#booths" href='#booths'>
+            <div className='icon-wrapper'>
               <img src={BoothsIcon} alt="Booth icon" />
             </div>
           </Link>
-          <Link tabLink="#account">
-            <div>
+          <Link tabLink="#account" href='#account'>
+            <div className='icon-wrapper'>
               <img src={AccountIcon} alt="Account icon" />
             </div>
           </Link>
