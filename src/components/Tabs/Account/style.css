@@ -101,3 +101,8 @@ a.back-button.link.icon-only.tab-link.color-white {
   padding-left: 2.8em;
   padding-right: 2.8em;
 }
+span.range-booths {
+  position: relative;
+  float: right;
+  top: 1em;
+}

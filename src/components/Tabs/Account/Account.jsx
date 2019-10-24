@@ -68,6 +68,7 @@ const HandleDisplayAccount = props => {
   return (
     <div>
       <HandleDisplayProfile profile={profile} />
+      <span className="range-booths">{props.range}</span>
       <div className="divider"></div>
       <HandleDisplayBooth HandleBoothChoose={props.data.HandleBoothChoose} list={booths} />
       <div className="divider"></div>
@@ -202,7 +203,7 @@ class HomePage extends React.Component {
           <NavTitle className="top-title">Your Profile</NavTitle>
         </Navbar>
         <div className="account">
-          {this.state.profile && <HandleDisplayAccount data={this.state} logout={this.logout} />}
+          {this.state.profile && (<HandleDisplayAccount data={this.state} logout={this.logout} range={`(${this.state.visitedBooths.length}/${this.state.booths.length})`}/>)}
           <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
             <Block style={{ width: '100%' }}>
               <BlockTitle style={{ textTransform: 'capitalize' }}>
