@@ -19,6 +19,13 @@ To build your app for deployment, run:
 $ npm run build
 ```
 
+to install cordova
+$npm i cordova -g
+
+To add platform
+$ cordova add platform [platform]
+  e.g $ cordova add platform android or $ cordova add platform ios
+
 To build cordova app
 $ cordova build android
 
