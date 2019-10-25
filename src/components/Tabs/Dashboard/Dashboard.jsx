@@ -88,6 +88,7 @@ const HandleDisplaySlide = (data) => {
 }
 
 const HandleDisplayFeaturedActivity = (props) => {
+  console.log(props.activities)
   let {activities, click} = props;
 
   if(activities.length > 0){
