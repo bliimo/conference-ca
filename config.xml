@@ -25,10 +25,14 @@
         <icon src="assets/hdpi.png" density="hdpi" />
         <icon src="assets/xdpi.png" density="xhdpi" />
         <icon src="assets/xxdpi.png" density="xxhdpi" /> -->
+        <preference name="CordovaWebViewEngine" value="CDVUIWebViewEngine" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
     <preference name="CordovaWebViewEngine" value="CDVUIWebViewEngine" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
 </widget>

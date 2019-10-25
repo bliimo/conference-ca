@@ -20,7 +20,20 @@ const DisplayBooth = props => {
     <div className="booth-wrapper">
       <img className="booth-img" src={props.data.logo} alt={props.data.booth} />
       <p className="company-name">{props.data.company}</p>
-      <div className="company-desc">{props.data.description}</div>
+      <div className="company-desc" style={{color:'#fff',marginBottom:'1em'}}>{props.data.description}</div>
+       {props.data.website && ( <div style={{textAlign:'left'}}>
+          <span>Website: </span>
+          <Link href={props.data.website} external target="_blank">
+            {props.data.website}
+          </Link>
+        </div>
+       )}
+        <div style={{textAlign:'left'}}>
+          <span>Contact: </span>
+          <Link href={`tel:${props.data.phone}`} external target="_blank">
+            {props.data.phone}
+          </Link>
+        </div>
       {/* <div className="booth-information collapse-info" style={{textAlign:'left',marginTop:'1em' }}>
         <div>
           <span>Website: </span>
