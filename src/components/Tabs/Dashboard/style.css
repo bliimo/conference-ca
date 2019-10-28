@@ -212,3 +212,11 @@ a.btn-Question.button.button-fill.button-small{
 .date-activity {
   margin-top: 1.1em;
 }
+
+.poweredBy{
+  height: 30px;
+  position: absolute;
+  z-index: 999999999;
+  right: 1em;
+  top: .8em;
+}

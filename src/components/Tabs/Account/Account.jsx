@@ -15,6 +15,8 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { async } from 'q';
 import image from '../../../img/HomePage/profilePicture.png';
+import poweredBy from '../../../img/icons/bliimo-white-msap.png'
+
 firebaseIni();
 
 const auth = firebase.auth;
@@ -190,7 +192,8 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <Block>
+      <Block className='block-content'>
+        <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
         <Navbar className="nav-account">
           <Link
             iconMd="material:keyboard_arrow_left"
