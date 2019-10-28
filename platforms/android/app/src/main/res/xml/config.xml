@@ -8,9 +8,9 @@
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
         <param name="onload" value="true" />
     </feature>
-    <name>Bliimo Conference App</name>
+    <name>Mpossible App</name>
     <description>
-        Bliimo conference app
+        Mpossible App
     </description>
     <author email="info@bliimo.com" href="http://bliimo.com">
         Bliimo Technologies Inc.
@@ -26,6 +26,11 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <icon density="mdpi" src="./platforms/android/app/src/main/res/icons/android/icon.png" />
+    <icon density="ldpi" src="./platforms/android/app/src/main/res/icons/android/icon.png" />
+    <icon density="hdpi" src="./platforms/android/app/src/main/res/icons/android/icon.png" />
+    <icon density="xhdpi" src="./platforms/android/app/src/main/res/icons/android/icon.png" />
+    <icon density="xxhdpi" src="./platforms/android/app/src/main/res/icons/android/icon.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
