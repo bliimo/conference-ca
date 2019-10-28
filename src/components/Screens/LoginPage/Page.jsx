@@ -13,6 +13,7 @@ import AccountIcon from '../../../img/icons/account.svg';
 
 import { connect } from 'react-redux';
 import { auth, setStorage, getStorage } from '../../../reducers/reducer';
+import poweredBy from '../../../img/icons/bliimo-white-msap.png'
 
 class Login extends Component {
   constructor(props) {
@@ -46,7 +47,8 @@ class Login extends Component {
   render() {
     return (
       <Page pageContent={false} loginScreen>
-        <Navbar className="nav-account" style={{marginTop:'2em'}}>
+      <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
+        <Navbar className="nav-account-reg" style={{marginTop:'2em'}}>
           <Link
             iconMd="material:keyboard_arrow_left"
             color="white"
@@ -54,13 +56,14 @@ class Login extends Component {
             onClick={() => {
               this.$f7router.navigate('/');
             }}
+            style={{padding:0}}
           ></Link>
           <NavTitle className="top-title">Login</NavTitle>
           </Navbar>
         <div className="page no-navbar no-toolbar no-swipeback" style={{marginTop:'6em'}}>
           <div className="page-content login-screen-content login-page">
             <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
-            <List form style={{ display: this.state.logging ? 'none' : 'block' }}>
+            <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em'  }}>
               <ListInput
                 value={this.state.email}
                 onInput={e => {

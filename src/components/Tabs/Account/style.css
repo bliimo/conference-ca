@@ -26,7 +26,6 @@
 .profile img{
   display: block;
   margin: 0 auto;
-  position: relative;
   bottom: 1em;
 }
 
@@ -104,4 +103,15 @@ span.range-booths {
   position: relative;
   float: right;
   top: 1em;
+}
+
+.block-content{
+  position: initial !important;
+  margin-top: 3em !important;
+  padding-left: .5em !important;
+  padding-right: .5em !important;
+}
+
+.nav-account .sliding{
+  padding: 0 !important; 
 }

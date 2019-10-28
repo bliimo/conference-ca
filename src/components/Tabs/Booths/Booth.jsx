@@ -14,6 +14,7 @@ import style from './style.css';
 import { connect } from 'react-redux';
 import Dotdotdot from 'react-dotdotdot';
 import { getData, api } from '../../../reducers/reducer';
+import poweredBy from '../../../img/icons/bliimo-white-msap.png'
 
 const DisplayBooth = props => {
   return (
@@ -122,7 +123,8 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="booths">
-        <Navbar className="nav-booths">
+          <img src={poweredBy} alt='' className='poweredBy'/>
+        <Navbar className="nav-booths" style={{marginTop:'.8em'}}>
           <Link
             iconMd="material:keyboard_arrow_left"
             color="white"
