@@ -75,8 +75,10 @@ const HandleDisplaySlide = (data) => {
         <div className='left'>
           <div className='logo'><img src={MPossibleLogo} alt='' /></div>
             <div className='title activity-title'>{activity.title}</div>
-            <div className='title activity-title'>{activity.name}</div>
-          <div className=''>{`${activity.timeStart} - ${activity.timeEnd}`}</div>
+            <Dotdotdot clamp={5}>
+              <div className='title activity-desc'>{activity.shortDescription}</div>
+            </Dotdotdot>
+          <div className='activity-time'>{`${activity.timeStart} - ${activity.timeEnd}`}</div>
         </div>
         <div className='right'>
           <div className='profile-picture'><img src={activity.speakerDP} alt='' /></div>
