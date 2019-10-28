@@ -81,3 +81,7 @@ ul li input{
 a.back-button.link.icon-only.tab-link.color-white.tab-link-active{
     background: transparent !important;
 }
+
+.nav-account-reg .sliding{
+    padding: .5em !important;
+}

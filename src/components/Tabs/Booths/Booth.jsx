@@ -15,7 +15,12 @@ import {
 import style from './style.css';
 import { connect } from 'react-redux';
 import Dotdotdot from 'react-dotdotdot';
+<<<<<<< HEAD
 import { getData, api,setStorage,getStorage } from '../../../reducers/reducer';
+=======
+import { getData, api } from '../../../reducers/reducer';
+import poweredBy from '../../../img/icons/bliimo-white-msap.png'
+>>>>>>> origin
 
 const DisplayBooth = props => {
   return (

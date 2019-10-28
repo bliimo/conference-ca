@@ -8,6 +8,7 @@ import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
 import Activity from './Activity';
 import {getReadableDate} from '../../../helpers/helper'
 import Dotdotdot from 'react-dotdotdot';
+import poweredBy from '../../../img/icons/bliimo-white-msap.png'
 
 const HandleDisplayEvents = (props) => {
   let activities = Object.entries(props.activities);
@@ -161,7 +162,8 @@ class HomePage extends React.Component {
   render(){
     // this.setState({display: e})
     return(
-      <div className='dashboard'>
+      <div className='dashboard'> 
+        <img src={poweredBy} alt='' className='poweredBy'/>
         { ( this.state.display === 'dashboard' ) ? 
           <div>
             <div className='featured-activity'>

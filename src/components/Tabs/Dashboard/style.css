@@ -218,3 +218,10 @@ a.btn-Question.button.button-fill.button-small{
   font-family: sans-serif;
   font-size: .8em;
 }
+.poweredBy{
+  height: 30px;
+  position: absolute;
+  z-index: 999999999;
+  right: 1em;
+  top: .8em;
+}
