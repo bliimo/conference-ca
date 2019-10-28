@@ -73,3 +73,42 @@
   font-family: sans-serif;
   letter-spacing: 1px;
 }
+
+.pop-info {
+  position: absolute;
+  background: #fff;
+  color: #222;
+  z-index: 9999999;
+  width: 72%;
+  margin: auto;
+  left: 10%;
+  top: 20%;
+  padding: 1em;
+}
+
+.notif-wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+  background-color: #000000e0 !important;
+}
+
+.pop-info h1{
+  font-size: 1.1em;
+  font-weight: bolder;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.pop-info p{
+  font-size: .8em;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.pop-info label{
+  font-size: .8em;
+  margin-right: .3em;
+  font-weight: lighter;
+}

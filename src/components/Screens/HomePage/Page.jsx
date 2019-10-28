@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Page, Link, Toolbar, Tab, Tabs } from 'framework7-react';
+import { Page, Link, Toolbar, Tab, Tabs, Checkbox, Button } from 'framework7-react';
 
 import Dashboard from '../../Tabs/Dashboard/Dashboard';
 import Booth from '../../Tabs/Booths/Booth';
@@ -10,7 +10,7 @@ import style from './style.css';
 import DashboardIcon from '../../../img/icons/activities.svg';
 import BoothsIcon from '../../../img/icons/booths.svg';
 import AccountIcon from '../../../img/icons/account.svg';
-import {getStorage} from '../../../reducers/reducer';
+import {getStorage, setStorage} from '../../../reducers/reducer';
 import bg from '../../../img/bg.png';
 
 export default class HomePage extends Component {
@@ -18,7 +18,9 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       uid:null,
-      isLoad:true //make false to enable splashscreen
+      isLoad:true, //make false to enable splashscreen
+      isClicked:false, 
+      showBoothNotification: true
     }
   }
 
@@ -27,11 +29,13 @@ export default class HomePage extends Component {
    if(!uid)this.$f7router.navigate('/')
    this.setState({uid})
   };
+
   componentWillMount = () =>{ 
     setTimeout(() => {
-      this.setState({isLoad:true}) 
+      this.setState({isLoad:true, showBoothNotification: true}) 
     }, 3000);
   }
+
   render() {
     return ( 
       <Page pageContent={false} >
@@ -57,8 +61,8 @@ export default class HomePage extends Component {
           <Tab id="dashboard" tabActive onTabShow={this.OnHandleCheck.bind(this)} className="page-content">
             <Dashboard uid={this.state.uid} />
           </Tab>
-          <Tab id="booths" className="page-content">
-            <Booth />
+          <Tab id="booths" className="page-content" onTabShow={ () => { this.setState({showBoothNotification: true}) } }>
+            <Booth showNotification={this.state.showBoothNotification} closeNotication={ (status) => {this.setState({showBoothNotification: false})} } />
           </Tab>
           <Tab id="account" className="page-content">
             <Account />
