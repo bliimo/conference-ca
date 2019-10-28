@@ -15,12 +15,8 @@ import {
 import style from './style.css';
 import { connect } from 'react-redux';
 import Dotdotdot from 'react-dotdotdot';
-<<<<<<< HEAD
-import { getData, api,setStorage,getStorage } from '../../../reducers/reducer';
-=======
 import { getData, api } from '../../../reducers/reducer';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
->>>>>>> origin
 
 const DisplayBooth = props => {
   return (
@@ -163,6 +159,7 @@ class HomePage extends React.Component {
   render() { 
     return (
       <div className="booths">
+      <img src={poweredBy} alt='' className='poweredBy'/>
         {this.props.showNotification && <div className='notif-wrapper'> <Notification props={this.props}/> </div>}
         <Navbar className="nav-booths">
           <Link
