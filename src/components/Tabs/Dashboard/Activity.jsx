@@ -168,7 +168,7 @@ class Activity extends React.Component {
         <div className="description" dangerouslySetInnerHTML={{ __html: longDescription }}></div>
         <div className="get-data-from-user">
           <Toolbar id="tabs" tabbar bottom>
-            <Link tabLink="#tab-1" tabLinkActive>Ask a question</Link>
+            <Link tabLink="#tab-1" tabLinkActive>Give a feedback</Link>
             <Link tabLink="#tab-2">Rate the talk</Link>
           </Toolbar>
           <Tabs>

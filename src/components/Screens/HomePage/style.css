@@ -55,3 +55,7 @@
      width:100%;
      z-index:999999;
 }
+.navbar-inner.sliding {
+    padding-left: .5em;
+    padding-right: .5em;
+}
