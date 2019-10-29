@@ -7,7 +7,9 @@ import {
   AccordionItem,
   AccordionContent,
   AccordionToggle,
-  Link
+  Link,
+  Checkbox,
+  Button
 } from 'framework7-react';
 
 import style from './style.css';
@@ -98,6 +100,36 @@ const HandleDisplayBooth = props => {
   );
 };
 
+// let isNotShow = getStorage('isShow');
+
+// const OnHandleSetNotif = (e)=>{
+//   isNotShow = e.target.checked
+// }
+
+// const OnHandleSaveNotif = () =>{
+//   setStorage({isNotShow})
+// }
+
+const Notification = (props) =>{
+  return (
+    <div className='pop-info'>
+      <h1>
+        GET A CHANCE TO WIN PRIZES!
+      </h1>
+      <p>
+        Visit the booths.  Take the booth's challenge.  Present your app profile for validation. The more visits and challenges you take, the more chances of winning!
+      </p>
+      <div className='pop-action'>
+        {/* <Checkbox name="isShow" onChange={(e)=>OnHandleSetNotif(e)}></Checkbox>
+        <label>Don't show again</label> */}
+        <Button fill onClick={()=>{
+          props.props.closeNotication(false)
+        }}>Ok</Button>
+      </div>
+    </div>
+  )
+}
+
 class HomePage extends React.Component {
   state = {
     booths: [],
@@ -114,17 +146,22 @@ class HomePage extends React.Component {
     this.getDataFromApi();
   };
 
-  componentDidMount = () => {};
+  componentDidMount = () => {
+  };
+  componentWillReceiveProps = () =>{
+    // this.props.closeNotication(true)
+  }
 
   handleClick = (display, boothOpen) => {
     this.setState({ display, boothOpen });
   };
 
-  render() {
+  render() { 
     return (
       <div className="booths">
-          <img src={poweredBy} alt='' className='poweredBy'/>
-        <Navbar className="nav-booths" style={{marginTop:'.8em'}}>
+      <img src={poweredBy} alt='' className='poweredBy'/>
+        {this.props.showNotification && <div className='notif-wrapper'> <Notification props={this.props}/> </div>}
+        <Navbar className="nav-booths">
           <Link
             iconMd="material:keyboard_arrow_left"
             color="white"
@@ -154,6 +191,7 @@ class HomePage extends React.Component {
             })}
           {this.state.display === 'booth' && <DisplayBooth data={this.state.boothOpen} />}
         </Block>
+      
       </div>
     );
   }
