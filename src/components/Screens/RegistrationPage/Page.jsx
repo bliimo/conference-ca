@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import { Page, Link, Toolbar, Tab, Tabs, Preloader, LoginScreen, LoginScreenTitle, List, ListButton, ListInput,Navbar,NavTitle } from 'framework7-react';
-
-import Dashboard from '../../Tabs/Dashboard/Dashboard';
-import Booth from '../../Tabs/Booths/Booth';
-import Account from '../../Tabs/Account/Account';
-
-import style from './style.css';
-
-import DashboardIcon from '../../../img/icons/activities.svg';
-import BoothsIcon from '../../../img/icons/booths.svg';
-import AccountIcon from '../../../img/icons/account.svg';
-
+import { Page, Link, Preloader, List, ListButton, ListInput,Navbar,NavTitle } from 'framework7-react';
 import { connect } from 'react-redux';
 import { addAuth, setData, setStorage, getStorage } from '../../../reducers/reducer';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
+import style from './style.css';
 
 class Register extends Component {
   constructor(props) {
@@ -39,19 +29,19 @@ class Register extends Component {
   onHandleRegister = async () => {
     let { email, password, firstname, middlename, lastname, repassword } = this.state;
     this.setState({ logging: true });
-    if (password != repassword) {
+    if (password !== repassword) {
       alert('Password and re-type password should same ');
     } else {
       const data = await addAuth(email, password);
-      if (data.response == 'success') {
+      if (data.response === 'success') {
         let userData = { accountID: data.id, firstname, middlename, lastname, email, status: false, profilePicture: '' };
         await setData(`user/${data.id}`, userData);
         setStorage({ uid: data.id });
         alert('Registration successful!');
         this.$f7router.navigate('/');
-      } else if (data.error.code == 'auth/network-request-failed') {
+      } else if (data.error.code === 'auth/network-request-failed') {
         alert('No internet');
-      } else if (data.error.code == 'auth/email-already-in-use') {
+      } else if (data.error.code === 'auth/email-already-in-use') {
         alert('Email already used !');
       } else {
         alert('Invalid Credentials');

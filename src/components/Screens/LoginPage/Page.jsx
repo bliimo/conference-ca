@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import { Page, Link, Toolbar, Tab, Tabs, ListInput, List, ListButton, LoginScreenTitle, Preloader, Navbar, NavTitle } from 'framework7-react';
-
-import Dashboard from '../../Tabs/Dashboard/Dashboard';
-import Booth from '../../Tabs/Booths/Booth';
-import Account from '../../Tabs/Account/Account';
-
-import style from './style.css';
-
-import DashboardIcon from '../../../img/icons/activities.svg';
-import BoothsIcon from '../../../img/icons/booths.svg';
-import AccountIcon from '../../../img/icons/account.svg';
-
+import { Page, Link, ListInput, List, ListButton, Preloader, Navbar, NavTitle } from 'framework7-react';
 import { connect } from 'react-redux';
 import { auth, setStorage, getStorage } from '../../../reducers/reducer';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
+import style from './style.css';
 
 class Login extends Component {
   constructor(props) {
@@ -35,7 +25,7 @@ class Login extends Component {
     this.setState({ logging: true });
     const data = await auth(email, password);
     this.setState({ logging: false });
-    if (data.response == 'success') {
+    if (data.response === 'success') {
       setStorage({ uid: data.id });
       alert('Successfully logged in');
       this.$f7router.navigate('/');

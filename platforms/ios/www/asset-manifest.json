@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "./static/css/main.d1900bd0.chunk.css",
-    "main.js": "./static/js/main.c2f78ef3.chunk.js",
-    "main.js.map": "./static/js/main.c2f78ef3.chunk.js.map",
+    "main.css": "./static/css/main.567bbe37.chunk.css",
+    "main.js": "./static/js/main.ee1d987b.chunk.js",
+    "main.js.map": "./static/js/main.ee1d987b.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.b4778a21.js",
     "runtime-main.js.map": "./static/js/runtime-main.b4778a21.js.map",
     "static/css/2.67d0ebac.chunk.css": "./static/css/2.67d0ebac.chunk.css",
-    "static/js/2.becf4834.chunk.js": "./static/js/2.becf4834.chunk.js",
-    "static/js/2.becf4834.chunk.js.map": "./static/js/2.becf4834.chunk.js.map",
+    "static/js/2.fc8da930.chunk.js": "./static/js/2.fc8da930.chunk.js",
+    "static/js/2.fc8da930.chunk.js.map": "./static/js/2.fc8da930.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.ee75f2ce3cebb88eb0b7a458f4ad0d0e.js": "./precache-manifest.ee75f2ce3cebb88eb0b7a458f4ad0d0e.js",
+    "precache-manifest.45dcee4f382d455e9962361fd239e70d.js": "./precache-manifest.45dcee4f382d455e9962361fd239e70d.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.67d0ebac.chunk.css.map": "./static/css/2.67d0ebac.chunk.css.map",
-    "static/css/main.d1900bd0.chunk.css.map": "./static/css/main.d1900bd0.chunk.css.map",
+    "static/css/main.567bbe37.chunk.css.map": "./static/css/main.567bbe37.chunk.css.map",
     "static/media/DigitalRevolution.png": "./static/media/DigitalRevolution.d696a99f.png",
     "static/media/icons.css": "./static/media/MaterialIcons-Regular.e79bfd88.eot",
     "static/media/InvestoMania.png": "./static/media/InvestoMania.63f8c017.png",
@@ -20,14 +20,17 @@
     "static/media/MillenialTalks.png": "./static/media/MillenialTalks.26252532.png",
     "static/media/MpossibleLogo.png": "./static/media/MpossibleLogo.a2723a19.png",
     "static/media/SaveMoney.png": "./static/media/SaveMoney.0a8eaf49.png",
+    "static/media/account.svg": "./static/media/account.5b705d46.svg",
+    "static/media/activities.svg": "./static/media/activities.425d0b9a.svg",
+    "static/media/booths.svg": "./static/media/booths.796a2c3c.svg",
     "static/media/featured-activity-bg.png": "./static/media/featured-activity-bg.854b5b2a.png",
     "static/media/profilePicture.png": "./static/media/profilePicture.e4bcfb89.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b4778a21.js",
     "static/css/2.67d0ebac.chunk.css",
-    "static/js/2.becf4834.chunk.js",
-    "static/css/main.d1900bd0.chunk.css",
-    "static/js/main.c2f78ef3.chunk.js"
+    "static/js/2.fc8da930.chunk.js",
+    "static/css/main.567bbe37.chunk.css",
+    "static/js/main.ee1d987b.chunk.js"
   ]
 }

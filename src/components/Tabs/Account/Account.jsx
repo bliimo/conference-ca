@@ -13,8 +13,6 @@ import {
 } from '../../../reducers/reducer';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { async } from 'q';
-import image from '../../../img/HomePage/profilePicture.png';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
 
 firebaseIni();

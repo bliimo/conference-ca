@@ -1,18 +1,11 @@
 import React from 'react';
-import { Link, List, ListInput, Icon, Toolbar, Tabs, Tab, Block, Button } from 'framework7-react';
+import { Link, Toolbar, Tabs, Tab, Block, Button } from 'framework7-react';
 
-import style from './style.css';
-
-import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
-
-import DigitalRevolution from '../../../img/HomePage/DigitalRevolution.png';
-import InvestoMania from '../../../img/HomePage/InvestoMania.png';
-import MPossible from '../../../img/HomePage/MPossible.png';
-import MillenialTalks from '../../../img/HomePage/MillenialTalks.png';
-import SaveMoney from '../../../img/HomePage/SaveMoney.png';
 import { getData, getStorage, pushData, setData } from '../../../reducers/reducer';
 import { connect } from 'react-redux';
+import style from './style.css';
+
 class Activity extends React.Component {
   state = {
     user: {
@@ -28,18 +21,6 @@ class Activity extends React.Component {
     isRated:false,
     question: '',
     display: 'dashboard',
-    description: `<h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Heck</span></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <h1 style='font-family: var(--font-light)'>The <span style='font-family: var(--font-bold)'>Place</span></h1><p>
-    <div class="swiper-container swiper-init demo-swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src='${DigitalRevolution}' alt=''></div>
-        <div class="swiper-slide"><img src='${InvestoMania}' alt=''></div>
-        <div class="swiper-slide"><img src='${MPossible}' alt=''></div>
-        <div class="swiper-slide"><img src='${MillenialTalks}' alt=''></div>
-        <div class="swiper-slide"><img src='${SaveMoney}' alt=''></div>
-      </div>
-    </div>
-    </p>`,
     featured: null,
     stars:[]
   };
@@ -55,6 +36,7 @@ class Activity extends React.Component {
     const questionAndAswer = await getData(`/questions/${eventId}/${uid}`);
     if (questionAndAswer) this.setState({ questionAndAswer });
   };
+
   HandleSendQuestion = async () => {
     const { question } = this.state;
     const { eventId } = this.state.featured[1];
@@ -115,10 +97,10 @@ class Activity extends React.Component {
     let {rate,isRated} = this.state;
     rate = rate ? rate : ratings;
     for(let i = 1; i <= rate; i++){
-      stars.push(!isRated ? <span style={{color:"yellow"}}  onClick={()=>{this.setStars(i)}}>&#9733;</span> : <span style={{color:"yellow"}} >&#9733;</span>);
+      stars.push(!isRated ? <span style={{color:"yellow"}} key={Math.floor(Math.random() * 100)} onClick={()=>{this.setStars(i)}}>&#9733;</span> : <span style={{color:"yellow"}} >&#9733;</span>);
     }
     for(let i = 1; i <= 5 - rate; i++){
-      stars.push(!isRated ? <span style={{color:"gray"}}  onClick={()=>{this.setStars(i)}}>&#9733;</span>: <span style={{color:"gray"}} >&#9733;</span>);
+      stars.push(!isRated ? <span style={{color:"gray"}} key={Math.floor(Math.random() * 100)} onClick={()=>{this.setStars(i)}}>&#9733;</span>: <span style={{color:"gray"}} >&#9733;</span>);
     }
     stars.push(` (${rate ? rate : 0})`)
     stars.push(isRated ? <p key={0}>Thank you so much for taking the time to leave this excellent review.  We really appreciate that.  Please let us know what we can do for you in the future.</p> : <p key={0}> Please rate me if you enjoy the talk.</p>)
@@ -129,7 +111,6 @@ class Activity extends React.Component {
       const login = (<Block><span>You need to </span><Link color="blue" raised fill tabLink="#account">login</Link><span> to rate this booths.</span></Block>)
       this.setState({stars:login})
     }
-    
   }
 
   render() {
@@ -140,7 +121,6 @@ class Activity extends React.Component {
       thumbnail,
     } = this.state.featured[1];
     const { question, answer } = this.state.questionAndAswer;
-    const {isRated} = this.state;
     const uid = getStorage('uid') 
 
     return (
@@ -154,7 +134,9 @@ class Activity extends React.Component {
           }}
            style={{marginTop:'2.1em'}}
         ></Link>
+        
         {thumbnail && <img src={thumbnail} alt="event bg" className="bg-image" />}
+
         <div className="profile">
           <img src={MPossibleLogo} alt="logo" className="logo" />
           <img
@@ -165,7 +147,9 @@ class Activity extends React.Component {
           />
           <p className="name">{name}</p>
         </div>
+
         <div className="description" dangerouslySetInnerHTML={{ __html: longDescription }}></div>
+
         <div className="get-data-from-user">
           <Toolbar id="tabs" tabbar bottom>
             <Link tabLink="#tab-1" tabLinkActive>Give a feedback</Link>
@@ -187,7 +171,7 @@ class Activity extends React.Component {
                       color: '#222',
                       padding: '1em'
                     }}
-                  >{this.state.question}</textarea>
+                  ></textarea>
                   <Button
                     fill
                     small
@@ -222,23 +206,6 @@ class Activity extends React.Component {
               )}
             </Tab>
             <Tab id="tab-2" className="page-content">
-            {/* {!isRated && <Block style={{textAlign:"center"}}> 
-                <label style={{display:"inline-block"}}>Rate this event</label>
-                <ListInput style={{width:"auto",textAlign:"center",display:"inline-block", marginLeft:"1em"}}
-                  type="select"
-                  placeholder="Please choose..."
-                  onInput={e => {
-                    this.setState({ rate: e.target.value });
-                  }}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </ListInput>
-                <Button fill style={{position:"relative",top:"5em"}} onClick={()=>{this.handleRate()}}>Submit</Button>
-              </Block>} */}
                 <div className={uid != null ? 'wrapper-star':''}>
                   {this.state.stars}
                 </div>
