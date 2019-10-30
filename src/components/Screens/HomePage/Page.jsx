@@ -26,7 +26,7 @@ export default class HomePage extends Component {
 
   render() {
     return ( 
-      <Page pageContent={false}>
+      <Page url=''>
         <Toolbar tabbar bottom>
           <Link tabLink='#dashboard' href='#dashboard' onClick={this.OnHandleCheck.bind(this)} tabLinkActive>
             <div className='icon-wrapper'>

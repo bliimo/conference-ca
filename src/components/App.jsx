@@ -6,29 +6,41 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import multiClientMiddleware from 'redux-axios-middleware';
 import axios from 'axios';
-
+import Page from '../components/Screens/HomePage/Page'
 const client = axios.create({
   method: 'post',
   baseURL: 'https://msap-dev.firebaseio.com/',
   responseType: 'json'
 });
 
+const Test = () =>{
+  return (
+    <div style={{marginTop:'30%'}}>
+      <p style={{color:'red'}}>
+      test
+      </p>
+    </div>
+  )
+}
+
 const store = createStore(reducer, applyMiddleware(multiClientMiddleware(client)));
 const f7params = {
-  id: 'io.framework7.testapp', // App bundle ID
-  name: 'Framework7', // App name
-  theme: 'auto', // Automatic theme detection
-  routes // app routes
+  id: 'io.framework7.testapp',
+  name: 'Framework7',
+  theme: 'auto',
+  routes
 };
 export default class Apps extends Component {
-  componentDidMount() {
+  componentDidMount() { 
     firebaseIni();
   }
   render() {
     return (
       <Provider store={store}>
         <App params={f7params}>
-          <View id="main-view" url="/" main className="safe-areas" />
+          <View url='/'>
+            
+          </View>
         </App>
       </Provider>
     );

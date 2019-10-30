@@ -162,17 +162,6 @@ class HomePage extends React.Component {
       <img src={poweredBy} alt='' className='poweredBy'/>
         {this.props.showNotification && <div className='notif-wrapper'> <Notification props={this.props}/> </div>}
         <Navbar className="nav-booths">
-          <Link
-            iconMd="material:keyboard_arrow_left"
-            color="white"
-            className="back-button"
-            tabLink={`${this.state.display === 'main' ? '#dashboard' : '#'}`}
-            onClick={() => {
-              this.state.display === 'booth'
-                ? this.setState({ display: 'main' })
-                : console.log('main');
-            }}
-          ></Link>
           <NavTitle className="top-title">
           Activities/Booths
           </NavTitle>

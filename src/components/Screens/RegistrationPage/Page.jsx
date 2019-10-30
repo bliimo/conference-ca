@@ -56,7 +56,7 @@ class Register extends Component {
       <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
         <Navbar className="nav-account-reg" style={{marginTop:'2em',padding:'1em'}}>
           <Link
-            iconMd="material:keyboard_arrow_left"
+            iconF7="chevron_left"
             color="white"
             className="back-button" 
             onClick={() => {

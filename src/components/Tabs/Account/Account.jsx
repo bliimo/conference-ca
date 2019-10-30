@@ -193,12 +193,6 @@ class HomePage extends React.Component {
       <Block className='block-content'>
         <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
         <Navbar className="nav-account">
-          <Link
-            iconMd="material:keyboard_arrow_left"
-            color="white"
-            className="back-button"
-            tabLink="#booths"
-          ></Link>
           <NavTitle className="top-title">{this.state.profile ? 'Your Profile':'Login/Register'}</NavTitle>
         </Navbar>
         <div className="account">

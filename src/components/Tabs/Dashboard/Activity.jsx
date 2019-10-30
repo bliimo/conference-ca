@@ -126,7 +126,7 @@ class Activity extends React.Component {
     return (
       <div className="container activity" >
         <Link
-          iconMd="material:keyboard_arrow_left"
+          iconF7="chevron_left"
           color="white"
           className="back-button"
           onClick={() => {
