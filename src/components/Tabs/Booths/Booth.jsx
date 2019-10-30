@@ -158,15 +158,22 @@ class HomePage extends React.Component {
 
   render() { 
     return (
-      <div className="booths">
+      <div className="block-content">
+      {this.props.showNotification && <div className='notif-wrapper'> <Notification props={this.props}/> </div>}
       <img src={poweredBy} alt='' className='poweredBy'/>
-        {this.props.showNotification && <div className='notif-wrapper'> <Notification props={this.props}/> </div>}
-        <Navbar className="nav-booths">
-          <NavTitle className="top-title">
-          Activities/Booths
-          </NavTitle>
-        </Navbar>
-
+      <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
+        <Link
+            iconF7="chevron_left"
+            color="white"
+            className="back-button" 
+            tabLink='#dashboard' href='#dashboard'
+            // onClick={() => {
+            //   this.$f7router.navigate('/');
+            // }}
+            style={{padding:0}}
+          ></Link>
+         <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>Activities/Booths</span>
+        </div>
         <Block inner accordionList>
           {this.state.display === 'main' &&
             Object.keys(this.state.booths).map((booth, index) => {
@@ -180,7 +187,6 @@ class HomePage extends React.Component {
             })}
           {this.state.display === 'booth' && <DisplayBooth data={this.state.boothOpen} />}
         </Block>
-      
       </div>
     );
   }

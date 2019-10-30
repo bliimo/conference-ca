@@ -116,3 +116,11 @@
 .nav-booths .sliding{
   margin-top: .7em !important;
 }
+
+.block.accordion-list{
+  top: -2em !important;
+}
+.notif-wrapper {
+  top: 0;
+  left: 0;
+}

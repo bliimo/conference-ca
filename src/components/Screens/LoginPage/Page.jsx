@@ -38,8 +38,8 @@ class Login extends Component {
     return (
       <Page pageContent={false} loginScreen>
       <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
-        <Navbar className="nav-account-reg" style={{marginTop:'2em'}}>
-          <Link
+       <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
+        <Link
             iconF7="chevron_left"
             color="white"
             className="back-button" 
@@ -48,9 +48,9 @@ class Login extends Component {
             }}
             style={{padding:0}}
           ></Link>
-          <NavTitle className="top-title">Login</NavTitle>
-          </Navbar>
-        <div className="page no-navbar no-toolbar no-swipeback" style={{marginTop:'6em'}}>
+        <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'2em !important'}}>Login</span>
+       </div>
+        <div>
           <div className="page-content login-screen-content login-page">
             <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
             <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em'  }}>

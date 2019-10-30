@@ -88,8 +88,11 @@ class Activity extends React.Component {
   componentDidMount = () => {};
 
   setStars = (rate) =>{
-    this.setState({rate})
-    this.handleRate(rate)
+    let conf = window.confirm('Are you sure you want to rate this with '+rate+' stars?');
+    if(conf){
+      this.setState({rate})
+      this.handleRate(rate)
+    }
   }
   
   handleStar = (ratings = 0)=>{
@@ -152,13 +155,13 @@ class Activity extends React.Component {
 
         <div className="get-data-from-user">
           <Toolbar id="tabs" tabbar bottom>
-            <Link tabLink="#tab-1" tabLinkActive>Give a feedback</Link>
-            <Link tabLink="#tab-2">Rate the talk</Link>
+            <Link tabLink="#tab-1" href='#tab-1' tabLinkActive>Give a feedback</Link>
+            <Link tabLink="#tab-2" href='#tab-2'>Rate the talk</Link>
           </Toolbar>
           <Tabs>
             <Tab id="tab-1" className="page-content" tabActive>
               {question === null && uid && (
-                <Block>
+                <div>
                   <textarea
                     onChange={e => {
                       this.setState({ question: e.target.value });
@@ -180,10 +183,10 @@ class Activity extends React.Component {
                   >
                     Send question
                   </Button>
-                </Block>
+                </div>
               )}
               {question !== null && uid && (
-                <Block>
+                <div>
                   <p>
                     Q:{' '}
                     {question
@@ -193,16 +196,16 @@ class Activity extends React.Component {
                       : ''}
                   </p>{' '}
                   {answer && <p>A: {answer}</p>}
-                </Block>
+                </div>
               )}
               {uid === null && (
-                <Block>
-                  <span>You need to </span>
+                <div>
+                  <span style={{color:'#fff !important'}}>You need to </span>
                   <Link color="blue" raised fill tabLink="#account">
                     login
                   </Link>
-                  <span> to ask questions.</span>
-                </Block>
+                  <span style={{color:'#fff !important'}}> to ask questions.</span>
+                </div>
               )}
             </Tab>
             <Tab id="tab-2" className="page-content">
