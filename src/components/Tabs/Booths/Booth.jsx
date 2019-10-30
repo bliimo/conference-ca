@@ -24,33 +24,22 @@ const DisplayBooth = props => {
       <img className="booth-img" src={props.data.logo} alt={props.data.booth} />
       <p className="company-name">{props.data.company}</p>
       <div className="company-desc" style={{color:'#fff',marginBottom:'1em'}}>{props.data.description}</div>
-       {props.data.website && ( <div style={{textAlign:'left'}}>
+      {props.data.website && ( 
+        <div style={{textAlign:'left'}}>
           <span>Website: </span>
           <Link href={props.data.website} external target="_blank">
             {props.data.website}
           </Link>
         </div>
-       )}
+      )}
+      {(props.data.phone !== '' && props.data.phone !== 'N/A') && (
         <div style={{textAlign:'left'}}>
           <span>Contact: </span>
           <Link href={`tel:${props.data.phone}`} external target="_blank">
             {props.data.phone}
           </Link>
-        </div>
-      {/* <div className="booth-information collapse-info" style={{textAlign:'left',marginTop:'1em' }}>
-        <div>
-          <span>Website: </span>
-          <Link href={props.data.website} external target="_blank">
-            {props.data.website}
-          </Link>
-        </div>
-        <div>
-          <span>Contact: </span>
-          <Link href={`tel:${props.data.phone}`} external target="_blank">
-            {props.data.phone}
-          </Link>
-        </div>
-      </div> */}
+        </div>         
+      )}
     </div>
   );
 };
@@ -158,26 +147,22 @@ class HomePage extends React.Component {
 
   render() { 
     return (
-      <div className="booths">
+      <div className="block-content">
+      {this.props.showNotification && <div className='notif-wrapper'> <Notification props={this.props}/> </div>}
       <img src={poweredBy} alt='' className='poweredBy'/>
-        {this.props.showNotification && <div className='notif-wrapper'> <Notification props={this.props}/> </div>}
-        <Navbar className="nav-booths">
-          <Link
-            iconMd="material:keyboard_arrow_left"
+      <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
+        <Link
+            iconF7="chevron_left"
             color="white"
-            className="back-button"
-            tabLink={`${this.state.display === 'main' ? '#dashboard' : '#'}`}
-            onClick={() => {
-              this.state.display === 'booth'
-                ? this.setState({ display: 'main' })
-                : console.log('main');
-            }}
+            className="back-button" 
+            onClick={()=>{this.setState({display:'main'})}}
+            // onClick={() => {
+            //   this.$f7router.navigate('/');
+            // }}
+            style={{padding:0}}
           ></Link>
-          <NavTitle className="top-title">
-          Activities/Booths
-          </NavTitle>
-        </Navbar>
-
+         <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>Activities/Booths</span>
+        </div>
         <Block inner accordionList>
           {this.state.display === 'main' &&
             Object.keys(this.state.booths).map((booth, index) => {
@@ -191,7 +176,6 @@ class HomePage extends React.Component {
             })}
           {this.state.display === 'booth' && <DisplayBooth data={this.state.boothOpen} />}
         </Block>
-      
       </div>
     );
   }

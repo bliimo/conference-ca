@@ -1,7 +1,7 @@
 .account {
   width: 90%;
   margin: 0 auto;
-  padding: 50px 0px;
+  padding: 10px 0px;
 }
 
 .booth img ,.booth a {
@@ -114,4 +114,8 @@ span.range-booths {
 
 .nav-account .sliding{
   padding: 0 !important; 
+}
+
+.block-account{
+  top: -2em !important;
 }

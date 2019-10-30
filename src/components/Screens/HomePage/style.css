@@ -59,3 +59,12 @@
     padding-left: .5em;
     padding-right: .5em;
 }
+input{
+    border: none !important;
+}
+
+.top-title{
+    color: #fff !important;
+    position: relative !important;
+    bottom: .3em !important;
+}

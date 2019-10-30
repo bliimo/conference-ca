@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import { Page, Link, Toolbar, Tab, Tabs, ListInput, List, ListButton, LoginScreenTitle, Preloader, Navbar, NavTitle } from 'framework7-react';
-
-import Dashboard from '../../Tabs/Dashboard/Dashboard';
-import Booth from '../../Tabs/Booths/Booth';
-import Account from '../../Tabs/Account/Account';
-
-import style from './style.css';
-
-import DashboardIcon from '../../../img/icons/activities.svg';
-import BoothsIcon from '../../../img/icons/booths.svg';
-import AccountIcon from '../../../img/icons/account.svg';
-
+import { Page, Link, ListInput, List, ListButton, Preloader, Navbar, NavTitle } from 'framework7-react';
 import { connect } from 'react-redux';
 import { auth, setStorage, getStorage } from '../../../reducers/reducer';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
+import style from './style.css';
 
 class Login extends Component {
   constructor(props) {
@@ -35,7 +25,7 @@ class Login extends Component {
     this.setState({ logging: true });
     const data = await auth(email, password);
     this.setState({ logging: false });
-    if (data.response == 'success') {
+    if (data.response === 'success') {
       setStorage({ uid: data.id });
       alert('Successfully logged in');
       this.$f7router.navigate('/');
@@ -48,9 +38,9 @@ class Login extends Component {
     return (
       <Page pageContent={false} loginScreen>
       <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
-        <Navbar className="nav-account-reg" style={{marginTop:'2em'}}>
-          <Link
-            iconMd="material:keyboard_arrow_left"
+       <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
+        <Link
+            iconF7="chevron_left"
             color="white"
             className="back-button" 
             onClick={() => {
@@ -58,9 +48,9 @@ class Login extends Component {
             }}
             style={{padding:0}}
           ></Link>
-          <NavTitle className="top-title">Login</NavTitle>
-          </Navbar>
-        <div className="page no-navbar no-toolbar no-swipeback" style={{marginTop:'6em'}}>
+        <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'2em !important'}}>Login</span>
+       </div>
+        <div>
           <div className="page-content login-screen-content login-page">
             <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
             <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em'  }}>

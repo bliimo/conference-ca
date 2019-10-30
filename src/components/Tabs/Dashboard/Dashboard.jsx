@@ -1,14 +1,13 @@
 import React from 'react';
 import { Swiper, SwiperSlide, Link } from 'framework7-react';
-import style from './style.css';
 import {connect} from 'react-redux';
 import { getEvents } from '../../../reducers/reducer';
-import thumbnail from '../../../img/HomePage/featured-activity-bg.png';
 import MPossibleLogo from '../../../img/EventPage/MpossibleLogo.png';
 import Activity from './Activity';
 import {getReadableDate} from '../../../helpers/helper'
 import Dotdotdot from 'react-dotdotdot';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
+import style from './style.css';
 
 const HandleDisplayEvents = (props) => {
   let activities = Object.entries(props.activities);
@@ -91,7 +90,6 @@ const HandleDisplaySlide = (data) => {
 }
 
 const HandleDisplayFeaturedActivity = (props) => {
-  console.log(props.activities)
   let {activities, click} = props;
 
   if(activities.length > 0){
@@ -139,7 +137,7 @@ class HomePage extends React.Component {
     featuredActivity: {},
     activities: {}, 
     activity:{},
-    display: 'dashboard' // 'dashboard'
+    display: 'dashboard'
   }
 
   HandleGetEvents = async () => {
@@ -160,7 +158,6 @@ class HomePage extends React.Component {
   } 
 
   render(){
-    // this.setState({display: e})
     return(
       <div className='dashboard'> 
         <img src={poweredBy} alt='' className='poweredBy'/>

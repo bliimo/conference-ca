@@ -59,3 +59,12 @@
     margin: 15px;
     color: white !important;
 }
+#top-title{
+    font-size: 2em !important;
+}
+#top-nav{
+    margin-top: 1em !important;
+}
+form.list{
+    padding-top: 0 !important;
+}
