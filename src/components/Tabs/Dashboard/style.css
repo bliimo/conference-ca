@@ -225,3 +225,21 @@ a.btn-Question.button.button-fill.button-small{
   right: 1em;
   top: .8em;
 }
+
+div#tab-1, div#tab-2 {
+  padding: 0 !important;
+  height: auto !important;
+  margin:0 !important;
+}
+
+div#tab-1 > div, div#tab-2 > div{
+  padding: 2em;
+}
+
+div#tabs {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.wrapper-star span {
+  font-size: 3.3em;
+}
