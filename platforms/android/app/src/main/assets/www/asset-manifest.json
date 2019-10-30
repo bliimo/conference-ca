@@ -1,37 +1,29 @@
 {
   "files": {
-    "main.css": "./static/css/main.30d80bb2.chunk.css",
-    "main.js": "./static/js/main.31ec0cca.chunk.js",
-    "main.js.map": "./static/js/main.31ec0cca.chunk.js.map",
+    "main.css": "./static/css/main.c6bcd764.chunk.css",
+    "main.js": "./static/js/main.3ba728fd.chunk.js",
+    "main.js.map": "./static/js/main.3ba728fd.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.b4778a21.js",
     "runtime-main.js.map": "./static/js/runtime-main.b4778a21.js.map",
     "static/css/2.67d0ebac.chunk.css": "./static/css/2.67d0ebac.chunk.css",
-    "static/js/2.ccfec313.chunk.js": "./static/js/2.ccfec313.chunk.js",
-    "static/js/2.ccfec313.chunk.js.map": "./static/js/2.ccfec313.chunk.js.map",
+    "static/js/2.90d3c507.chunk.js": "./static/js/2.90d3c507.chunk.js",
+    "static/js/2.90d3c507.chunk.js.map": "./static/js/2.90d3c507.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.88feb955c47f3e43bbd0c2fec501eb65.js": "./precache-manifest.88feb955c47f3e43bbd0c2fec501eb65.js",
+    "precache-manifest.f38c4514a7da151aae7a5d3965565d62.js": "./precache-manifest.f38c4514a7da151aae7a5d3965565d62.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.67d0ebac.chunk.css.map": "./static/css/2.67d0ebac.chunk.css.map",
-    "static/css/main.30d80bb2.chunk.css.map": "./static/css/main.30d80bb2.chunk.css.map",
-    "static/media/DigitalRevolution.png": "./static/media/DigitalRevolution.d696a99f.png",
+    "static/css/main.c6bcd764.chunk.css.map": "./static/css/main.c6bcd764.chunk.css.map",
     "static/media/icons.css": "./static/media/MaterialIcons-Regular.e79bfd88.eot",
-    "static/media/InvestoMania.png": "./static/media/InvestoMania.63f8c017.png",
-    "static/media/MPossible.png": "./static/media/MPossible.a69b98e6.png",
-    "static/media/MillenialTalks.png": "./static/media/MillenialTalks.26252532.png",
     "static/media/MpossibleLogo.png": "./static/media/MpossibleLogo.a2723a19.png",
-    "static/media/SaveMoney.png": "./static/media/SaveMoney.0a8eaf49.png",
     "static/media/account.svg": "./static/media/account.5b705d46.svg",
     "static/media/activities.svg": "./static/media/activities.425d0b9a.svg",
-    "static/media/bg.png": "./static/media/bg.223ed75b.png",
-    "static/media/booths.svg": "./static/media/booths.796a2c3c.svg",
-    "static/media/featured-activity-bg.png": "./static/media/featured-activity-bg.854b5b2a.png",
-    "static/media/profilePicture.png": "./static/media/profilePicture.e4bcfb89.png"
+    "static/media/booths.svg": "./static/media/booths.796a2c3c.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b4778a21.js",
     "static/css/2.67d0ebac.chunk.css",
-    "static/js/2.ccfec313.chunk.js",
-    "static/css/main.30d80bb2.chunk.css",
-    "static/js/main.31ec0cca.chunk.js"
+    "static/js/2.90d3c507.chunk.js",
+    "static/css/main.c6bcd764.chunk.css",
+    "static/js/main.3ba728fd.chunk.js"
   ]
 }

@@ -13,8 +13,6 @@ import {
 } from '../../../reducers/reducer';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { async } from 'q';
-import image from '../../../img/HomePage/profilePicture.png';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
 
 firebaseIni();
@@ -194,19 +192,22 @@ class HomePage extends React.Component {
     return (
       <Block className='block-content'>
         <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
-        <Navbar className="nav-account">
-          <Link
-            iconMd="material:keyboard_arrow_left"
+        <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
+        <Link
+            iconF7="chevron_left"
             color="white"
-            className="back-button"
-            tabLink="#booths"
+            className="back-button" 
+            onClick={() => {
+              this.$f7router.navigate('/');
+            }}
+            style={{padding:0}}
           ></Link>
-          <NavTitle className="top-title">{this.state.profile ? 'Your Profile':'Login/Register'}</NavTitle>
-        </Navbar>
+          <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>{this.state.profile ? 'Your Profile':'Login/Register'}</span>
+        </div>
         <div className="account">
           {this.state.profile && (<HandleDisplayAccount data={this.state} logout={this.logout} range={`(${this.state.visitedBooths.length}/${this.state.booths.length})`}/>)}
           <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
-            <Block style={{ width: '100%' }}>
+            <Block className='block-account' style={{ width: '100%' }}>
               <BlockTitle style={{ textTransform: 'capitalize' }}>
                 <p style={{ fontSize: '18px', color: '#222' }}>{this.state.boothChoose.company}</p>
                 <input
