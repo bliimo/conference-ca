@@ -95,7 +95,8 @@ class HomePage extends React.Component {
     HandleBoothChoose: null,
     isOpen: false,
     code: '',
-    visitedBooths: []
+    visitedBooths: [],
+    modalText:''
   };
 
   login = async () => {
@@ -164,13 +165,12 @@ class HomePage extends React.Component {
         booth: this.state.boothChoose.boothKey,
         dateAvailable: firebase.database.ServerValue.TIMESTAMP
       });
-      await setData(`visitedBooths/${uid}`, visitedBooths);
-      alert('Successfully entered codes');
+      await setData(`visitedBooths/${uid}`, visitedBooths); 
       this.HandleGetVisitedBooths();
-      this.setState({ HandleBoothChoose: this.HandleBoothChoose });
+      this.setState({ HandleBoothChoose: this.HandleBoothChoose,modalText:'Successfully entered codes' });
       this.setModal(false);
     } else {
-      alert("Code doesn't match!");
+      this.setState({ HandleBoothChoose: this.HandleBoothChoose,modalText:'Code doesn\'t match!' });
     }
   };
 
@@ -187,6 +187,10 @@ class HomePage extends React.Component {
   };
 
   componentDidMount = () => {};
+
+  HandleDisplayModal = () =>{
+    this.setState({modalText:''})
+  }
 
   render() {
     return (
@@ -258,6 +262,10 @@ class HomePage extends React.Component {
             </Row>
           )}
         </div>
+        {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
+          <span>{this.state.modalText}</span>
+          <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
+        </div></div>)}
       </Block>
     );
   }
