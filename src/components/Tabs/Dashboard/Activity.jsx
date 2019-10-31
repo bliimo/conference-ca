@@ -63,7 +63,7 @@ class Activity extends React.Component {
     } else {
       this.setState({ rate: 0 });
     }
-    this.handleStar(rate);
+      this.handleStar(rate);
   };
 
   handleGetRate = async () => {
@@ -101,40 +101,42 @@ class Activity extends React.Component {
     let stars = [];
     let { rate, isRated } = this.state;
     rate = rate ? rate : ratings;
-    for (let i = 1; i <= rate; i++) {
-      stars.push(
-        !isRated ? (
-          <span
-            style={{ color: 'yellow' }}
-            key={Math.floor(Math.random() * 100)}
-            onClick={() => {
-              this.setStars(i);
-            }}
-          >
-            &#9733;
-          </span>
-        ) : (
-          <span style={{ color: 'yellow' }}>&#9733;</span>
-        )
-      );
-    }
-    for (let i = 1; i <= 5 - rate; i++) {
-      stars.push(
-        !isRated ? (
-          <span
-            style={{ color: 'gray' }}
-            key={Math.floor(Math.random() * 100)}
-            onClick={() => {
-              this.setStars(i);
-            }}
-          >
-            &#9733;
-          </span>
-        ) : (
-          <span style={{ color: 'gray' }}>&#9733;</span>
-        )
-      );
-    }
+      for (let i = 1; i <= rate; i++) {
+        stars.push(
+          !isRated ? (
+            <span
+              style={{ color: 'yellow' }}
+              key={Math.floor(Math.random() * 100)}
+              onClick={() => {
+                this.setStars(i);
+              }}
+            >
+              &#9733;
+            </span>
+          ) : (
+            <span style={{ color: 'yellow' }}>&#9733;</span>
+          )
+        );
+      }
+      for (let i = 1; i <= 5 - rate; i++) {
+        stars.push(
+          !isRated ? (
+            <span
+              style={{ color: 'gray' }}
+              key={Math.floor(Math.random() * 100)}
+              onClick={() => {
+                this.setStars(i);
+              }}
+            >
+              &#9733;
+            </span>
+          ) : (
+            <span style={{ color: 'gray' }}>&#9733;</span>
+          )
+        );
+      }
+      
+    if(stars.length > 5) stars.shift();
     stars.push(` (${rate ? rate : 0})`);
     stars.push(
       isRated ? (
