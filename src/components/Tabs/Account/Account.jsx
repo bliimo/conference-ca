@@ -14,7 +14,7 @@ import {
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
-
+import msapIcon from '../../../img/icons/MSAP Logo 1500x1500.png'
 firebaseIni();
 
 const auth = firebase.auth;
@@ -51,7 +51,7 @@ const HandleDisplayProfile = props => {
         src={
           profile.profilePicture
             ? profile.profilePicture
-            : 'https://api.adorable.io/avatars/285/abott@adorable.png'
+            : msapIcon
         }
         alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}
       />
@@ -197,9 +197,7 @@ class HomePage extends React.Component {
             iconF7="chevron_left"
             color="white"
             className="back-button" 
-            onClick={() => {
-              this.$f7router.navigate('/');
-            }}
+            tabLink='#booths' href='#booths'
             style={{padding:0}}
           ></Link>
           <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>{this.state.profile ? 'Your Profile':'Login/Register'}</span>

@@ -57,7 +57,4 @@
     <preference name="SplashScreenDelay" value="0" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <feature name="Notification">
-        <param name="ios-package" value="CDVNotification" />
-    </feature>
 </widget>

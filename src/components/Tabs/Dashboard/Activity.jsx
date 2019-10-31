@@ -22,7 +22,9 @@ class Activity extends React.Component {
     question: '',
     display: 'dashboard',
     featured: null,
-    stars:[]
+    stars:[],
+    modalText:'',
+    rated:0,
   };
 
   HandleGetFeaturedData = () => {
@@ -43,10 +45,10 @@ class Activity extends React.Component {
     const uid = getStorage('uid');
     if (question) {
       const data = await setData(`/questions/${eventId}/${uid}/question`, question);
-      alert(data.response ? 'Successfully send questions' : 'Unable to send questions');
+      this.setState({modalText:data.response ? 'Successfully send questions' : 'Unable to send questions'})
       this.HandleGetFeaturedData();
     } else {
-      alert('Required questions');
+      this.setState({modalText:'Required questions'})
     }
   };
 
@@ -88,11 +90,7 @@ class Activity extends React.Component {
   componentDidMount = () => {};
 
   setStars = (rate) =>{
-    let conf = window.confirm('Are you sure you want to rate this with '+rate+' stars?');
-    if(conf){
-      this.setState({rate})
-      this.handleRate(rate)
-    }
+    this.setState({rated:rate,modalText:'Are you sure you want to rate this with '+rate+' stars?'})
   }
   
   handleStar = (ratings = 0)=>{
@@ -113,6 +111,15 @@ class Activity extends React.Component {
     }else{
       const login = (<Block><span>You need to </span><Link color="blue" raised fill tabLink="#account">login</Link><span> to rate this booths.</span></Block>)
       this.setState({stars:login})
+    }
+  }
+
+  HandleDisplayModal = (rated) =>{
+    if(rated > 0){
+      this.setState({modalText:'',rate:this.state.rated})
+      this.handleRate(this.state.rated)
+    }else{
+      this.setState({modalText:''})
     }
   }
 
@@ -164,7 +171,7 @@ class Activity extends React.Component {
                 <div>
                   <textarea
                     onChange={e => {
-                      this.setState({ question: e.target.value });
+                      this.setState({ question: e.target.value,rated:0 });
                     }}
                     placeholder="Your question"
                     style={{
@@ -215,6 +222,11 @@ class Activity extends React.Component {
             </Tab>
           </Tabs>
         </div>
+        {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
+          <span>{this.state.modalText}</span>
+          <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal(this.state.rated)}}>Ok</a>
+          {this.state.rated > 0 && <a href='javascript:void(0)' onClick={()=>{this.setState({rated:0});this.HandleDisplayModal()}} style={{background:'red',float:'left'}}>Cancel</a>}
+        </div></div>)}
       </div>
     );
   }

@@ -18,7 +18,6 @@
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "cordova-android": "^8.1.0",
     "cordova-ios": "^5.0.1",
-    "cordova-plugin-dialogs": "^2.0.2",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "5.1.0",
@@ -159,8 +158,7 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-dialogs": {}
+      "cordova-plugin-whitelist": {}
     },
     "platforms": [
       "android",

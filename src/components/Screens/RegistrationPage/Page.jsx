@@ -15,7 +15,9 @@ class Register extends Component {
       middlename: '',
       lastname: '',
       repassword: '',
-      logging: false
+      logging: false,
+      isRegister:false,
+      modalText:''
     };
   }
 
@@ -30,25 +32,31 @@ class Register extends Component {
     let { email, password, firstname, middlename, lastname, repassword } = this.state;
     this.setState({ logging: true });
     if (password !== repassword) {
-      alert('Password and re-type password should same ');
+      this.setState({modalText:'Password and re-type password should same'})
     } else {
       const data = await addAuth(email, password);
       if (data.response === 'success') {
         let userData = { accountID: data.id, firstname, middlename, lastname, email, status: false, profilePicture: '' };
         await setData(`user/${data.id}`, userData);
         setStorage({ uid: data.id });
-        alert('Registration successful!');
-        this.$f7router.navigate('/');
+        this.setState({modalText:'Successfully registered',isRegister:true})
       } else if (data.error.code === 'auth/network-request-failed') {
-        alert('No internet');
+        this.setState({modalText:'No internet',isRegister:false})
       } else if (data.error.code === 'auth/email-already-in-use') {
-        alert('Email already used !');
+        this.setState({modalText:'Email already used',isRegister:false})
       } else {
-        alert('Invalid Credentials');
+        this.setState({modalText:'Invalid Credentials',isRegister:false})
       }
     }
     this.setState({ logging: false });
   };
+
+  HandleDisplayModal = () =>{
+    this.setState({modalText:''})
+    if(this.state.isRegister){
+      this.$f7router.navigate('/');
+    }
+  }
 
   render() {
     return (
@@ -68,7 +76,7 @@ class Register extends Component {
        </div>
         <div className="page no-navbar no-toolbar no-swipeback" style={{marginTop:'6em'}}>
           <div className="page-content login-screen-content signup-page">
-            <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
+            <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%',zIndex:'999999999999' }}></Preloader>
             <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em' }}>
               <ListInput
                 value={this.state.firstname}
@@ -128,6 +136,10 @@ class Register extends Component {
             </List>
           </div>
         </div>
+        {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
+          <span>{this.state.modalText}</span>
+          <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
+        </div></div>)}
       </Page>
     );
   }

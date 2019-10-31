@@ -11,7 +11,9 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      logging: false
+      logging: false,
+      modalText:'',
+      loginSuccess:false
     };
   }
 
@@ -24,19 +26,24 @@ class Login extends Component {
     const { email, password } = this.state;
     this.setState({ logging: true });
     const data = await auth(email, password);
-    this.setState({ logging: false });
     if (data.response === 'success') {
       setStorage({ uid: data.id });
-      var message = "I am Alert Dialog!";
-      var title = "ALERT";
-      var buttonName = "Alert Button";
-      navigator.notification.alert(message, ()=>{ this.$f7router.navigate('/') }, title, buttonName);
+      this.setState({ logging: false });
+      this.setState({loginSuccess:true,modalText:'Successfully logged-in'})
     } else {
-      alert('Invalid account')
+      this.setState({ logging: false });
+      this.setState({loginSuccess:false,modalText:'Invalid account'})
     }
   };
 
-  render() {
+  HandleDisplayModal = () =>{
+    this.setState({modalText:''})
+    if(this.state.loginSuccess){
+      this.$f7router.navigate('/');
+    }
+  }
+
+  render() { 
     return (
       <Page pageContent={false} loginScreen>
       <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
@@ -54,8 +61,8 @@ class Login extends Component {
        </div>
         <div>
           <div className="page-content login-screen-content login-page">
-            <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%' }}></Preloader>
-            <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em'  }}>
+          <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%',zIndex:'999999999999' }}></Preloader>
+              <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em'  }}>
               <ListInput
                 value={this.state.email}
                 onInput={e => {
@@ -78,6 +85,10 @@ class Login extends Component {
             </List>
           </div>
         </div>
+        {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
+          <span>{this.state.modalText}</span>
+          <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
+        </div></div>)}
       </Page>
     );
   }

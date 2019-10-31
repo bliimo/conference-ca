@@ -155,7 +155,7 @@ class HomePage extends React.Component {
             iconF7="chevron_left"
             color="white"
             className="back-button" 
-            onClick={()=>{this.setState({display:'main'})}}
+            tabLink='#dashboard' href='#dashboard'
             // onClick={() => {
             //   this.$f7router.navigate('/');
             // }}
