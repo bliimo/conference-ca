@@ -194,7 +194,8 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <Block className='block-content'>
+      <div>
+       {this.state.modalText === '' && <Block className='block-content'>
         <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
         <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
         <Link
@@ -262,11 +263,11 @@ class HomePage extends React.Component {
             </Row>
           )}
         </div>
-        {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
-          <span>{this.state.modalText}</span>
-          <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
-        </div></div>)}
-      </Block>
+       </Block> }
+      {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
+      <span>{this.state.modalText}</span>
+      <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
+    </div></div>)}</div>
     );
   }
 }

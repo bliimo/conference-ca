@@ -243,3 +243,11 @@ div#tabs {
 .wrapper-star span {
   font-size: 3.3em;
 }
+
+#modal-alert-activities{
+  top: 30% !important;
+}
+
+#modal-alert-wrapper-activities{
+  height: 100% !important;
+}

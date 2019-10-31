@@ -61,6 +61,7 @@ class Register extends Component {
   render() {
     return (
       <Page pageContent={false}>
+       {this.state.modalText === '' && <div>
       <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
       <div id='top-nav' className='top-nav' style-={{paddingTop:'2.5em !important'}}>
         <Link
@@ -136,6 +137,7 @@ class Register extends Component {
             </List>
           </div>
         </div>
+        </div>}
         {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
           <span>{this.state.modalText}</span>
           <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
