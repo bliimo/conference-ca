@@ -155,10 +155,9 @@ class HomePage extends React.Component {
             iconF7="chevron_left"
             color="white"
             className="back-button" 
-            tabLink='#dashboard' href='#dashboard'
-            // onClick={() => {
-            //   this.$f7router.navigate('/');
-            // }}
+            onClick={() => {
+              this.setState({display:this.state.display === 'booth' ? 'main':'booth'})
+            }}
             style={{padding:0}}
           ></Link>
          <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>Activities/Booths</span>

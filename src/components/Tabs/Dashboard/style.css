@@ -16,9 +16,9 @@
 }
 
 .activity .description {
-  padding: 2.2em;
-  font-family: var(--font-light);
-  font-size: var(--normal-text);
+  padding: .5em 2.2em;
+  font-family: var(--font-light); 
+  color:#fff;
 }
 
 .back-button {
@@ -43,10 +43,6 @@
   height: 100%;
 }
 
-.featured-activity {
-  height: 300px;
-}
-
 .featured-activity img.featured-activity-bg-image {
   position: absolute;
   top: -10%;
@@ -60,16 +56,6 @@
   margin: 50px 0px;
   color: #fff;
   /* transform: translateY(20%); */
-}
-
-.featured-activity .content::after{
-  content: '';
-  position: absolute;
-  top: 0%;
-  height: 100%;
-  display: block;
-  width: 100%;
-  background-image: linear-gradient(to bottom, #0d254100 , #0d2541);
 }
 
 .featured-activity .content .left {
@@ -99,9 +85,10 @@
 }
 
 .featured-activity .content .right .name {
-  font-family: var(--font-light);
-  font-size: 10px;
+  font-family: var(--font-bold);
+  font-size: 11px;
   text-align: center;
+  letter-spacing: .5px;
 }
 
 .featured-activity .content .right .profile-picture {
@@ -127,13 +114,13 @@
 }
 
 .activities a .talk .title {
+  font-family: var(--font-bold);
   font-size: 10px;
   overflow: hidden;
   background: var(--blue1);
   border-radius: 4px;
   padding: 2px 4px;
   color: #fff;
-  width: 80%;
   text-align: center;
   position: relative;
   bottom: .5em;
@@ -174,11 +161,13 @@
 }
 
 .activities {
-  padding: 1.5em;
+  padding: 2em 0;
 }
 .activity-title {
   font-size: 1.4em;
   font-weight: bold;
+  padding-top: .5em;
+  padding-bottom: .5em;
 }
 
 i.icon.material-icons {
@@ -194,8 +183,7 @@ a.btn-Question.button.button-fill.button-small{
 
 .date-activity {
   font-size: 1.7em;
-  position: relative;
-  top: .4em;
+  position: relative; 
 }
 .top-title{
   font-size: 1.2em;
@@ -207,10 +195,6 @@ a.btn-Question.button.button-fill.button-small{
 .wrapper-star{
   padding: 1em;
   padding-top: 2.2em;
-}
-
-.date-activity {
-  margin-top: 1.1em;
 }
 
 .title.activity-desc,.activity-time {
@@ -250,4 +234,12 @@ div#tabs {
 
 #modal-alert-wrapper-activities{
   height: 100% !important;
+}
+.date-activity {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.item-inner, .item-content.item-input, .list li{
+  border: none !important;
 }

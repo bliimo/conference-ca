@@ -30,12 +30,12 @@ export default class HomePage extends Component {
         <Toolbar tabbar bottom>
           <Link tabLink='#dashboard' href='#dashboard' onClick={this.OnHandleCheck.bind(this)} tabLinkActive>
             <div className='icon-wrapper'>
-              <img src={DashboardIcon} alt="Dashboard icon" />
+              <img src={BoothsIcon} alt="Dashboard icon" />
             </div>
           </Link>
           <Link tabLink="#booths" href='#booths'>
             <div className='icon-wrapper'>
-              <img src={BoothsIcon} alt="Booth icon" />
+              <img src={DashboardIcon} alt="Booth icon" />
             </div>
           </Link>
           <Link tabLink="#account" href='#account'>

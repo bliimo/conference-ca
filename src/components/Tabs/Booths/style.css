@@ -30,11 +30,13 @@
   padding: 0px 0px 0px 20px;
   box-sizing: border-box;
   float: right;
+  color: #fff !important;
 }
 
 .booth-description {
-  font-size: var(--normal-text);
-  font-family: var(--font-light);
+  font-size: .75em;
+    font-weight: lighter;
+    color: #ccc;
 }
 
 .paragraph {
@@ -59,12 +61,12 @@
 
 .booth-wrapper{
   text-align: center;
-  margin-top: 7em;
 }
 
 .booth-wrapper .company-name{
   font-size: 1.5em;
   text-transform: uppercase;
+  color: #fff;
 }
 
 .booth-wrapper .company-desc{
@@ -123,4 +125,20 @@
 .notif-wrapper {
   top: 0;
   left: 0;
+}
+.accordion-item {
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+.booth-wrapper span {
+  color: #fff;
+}
+
+.booth-wrapper .company-desc{
+  font-size: .8em;
+  padding-top: 0 !important;
+  position: relative;
+  bottom: 1.5em;
+  padding-bottom: 2em !important;
 }

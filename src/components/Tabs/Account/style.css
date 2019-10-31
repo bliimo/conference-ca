@@ -21,6 +21,7 @@
 
 .profile .account-name {
   text-align: center;
+  color: #fff;
 }
 
 .profile img{
@@ -40,15 +41,19 @@
 
 .notice {
   text-align: center;
+  color: #fff;
 }
 
 .social-buttons {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 25px;
+  height: 40px;
 }
 
 .social-buttons a {
   margin-bottom: 10px;
+  height: 3em;
+  padding-top: .5em;
   width: 100%;
 }
 .modal-sheet{
@@ -103,11 +108,12 @@ span.range-booths {
   position: relative;
   float: right;
   top: 1em;
+  color: #fff;
 }
 
 .block-content{
   position: initial !important;
-  margin-top: 3em !important;
+  margin-top: 2em !important;
   padding-left: .5em !important;
   padding-right: .5em !important;
 }
@@ -118,4 +124,7 @@ span.range-booths {
 
 .block-account{
   top: -2em !important;
+}
+span#top-title {
+  padding-left: .5em !important;
 }
