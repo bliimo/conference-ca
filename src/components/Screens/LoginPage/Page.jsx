@@ -27,8 +27,10 @@ class Login extends Component {
     this.setState({ logging: false });
     if (data.response === 'success') {
       setStorage({ uid: data.id });
-      alert('Successfully logged in');
-      this.$f7router.navigate('/');
+      var message = "I am Alert Dialog!";
+      var title = "ALERT";
+      var buttonName = "Alert Button";
+      navigator.notification.alert(message, ()=>{ this.$f7router.navigate('/') }, title, buttonName);
     } else {
       alert('Invalid account')
     }
