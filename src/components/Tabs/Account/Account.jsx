@@ -14,7 +14,7 @@ import {
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
-import msapIcon from '../../../img/icons/MSAP Logo 1500x1500.png'
+import msapIcon from '../../../img/icons/avatar.png'
 firebaseIni();
 
 const auth = firebase.auth;
