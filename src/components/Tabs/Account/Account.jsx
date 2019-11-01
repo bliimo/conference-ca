@@ -31,10 +31,10 @@ const HandleDisplayBooth = props => {
               <div className="booth-img-wrapper-account">
                 {booth.isActive === 'inactive' ? (
                   <Button sheetOpen=".sheet" onClick={() => props.HandleBoothChoose(booth)}>
-                    <img src={booth.logo} alt={booth.booth} />
+                    <img src={booth.logo} alt={booth.booth} style={{width:booth.company === 'Twitter' ? '70%' : '80%' }}/>
                   </Button>
                 ) : (
-                  <img src={booth.logo} alt={booth.booth} />
+                  <img src={booth.logo} alt={booth.booth} style={{width:booth.company === 'Twitter' ? '70%' : '80%' }}/>
                 )}
               </div>
             </div>

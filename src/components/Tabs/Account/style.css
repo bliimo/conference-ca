@@ -141,8 +141,7 @@ span#top-title {
   vertical-align: middle;
   position: relative;
 }
-.booth img {
-  width: 80%;
+.booth img { 
   height: auto;
   max-height: 50%;
   position: relative;
