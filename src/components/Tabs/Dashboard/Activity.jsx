@@ -158,7 +158,7 @@ class Activity extends React.Component {
           <Link color="blue" raised fill tabLink="#account">
             login
           </Link>
-          <span> to rate this booths.</span>
+          <span> to rate this segment.</span>
         </div>
       );
       this.setState({ stars: login });
