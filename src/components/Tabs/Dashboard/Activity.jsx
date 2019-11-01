@@ -106,7 +106,7 @@ class Activity extends React.Component {
           !isRated ? (
             <span
               style={{ color: 'yellow' }}
-              key={Math.floor(Math.random() * 100)}
+              key={i} 
               onClick={() => {
                 this.setStars(i);
               }}
@@ -114,7 +114,7 @@ class Activity extends React.Component {
               &#9733;
             </span>
           ) : (
-            <span style={{ color: 'yellow' }}>&#9733;</span>
+            <span key={i} style={{ color: 'yellow' }}>&#9733;</span>
           )
         );
       }
@@ -123,7 +123,7 @@ class Activity extends React.Component {
           !isRated ? (
             <span
               style={{ color: 'gray' }}
-              key={Math.floor(Math.random() * 100)}
+              key={i} 
               onClick={() => {
                 this.setStars(i);
               }}
@@ -131,7 +131,7 @@ class Activity extends React.Component {
               &#9733;
             </span>
           ) : (
-            <span style={{ color: 'gray' }}>&#9733;</span>
+            <span key={i} style={{ color: 'gray' }}>&#9733;</span>
           )
         );
       }
@@ -145,7 +145,7 @@ class Activity extends React.Component {
           that. Please let us know what we can do for you in the future.
         </p>
       ) : (
-        <p key={0}> Please rate me if you enjoy the talk.</p>
+        <p key={0}> Let the speaker know how much you liked the talk.</p>
       )
     );
     const uid = getStorage('uid');
