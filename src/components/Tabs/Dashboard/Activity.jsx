@@ -206,7 +206,7 @@ class Activity extends React.Component {
               className="picture circle-img"
               id="profilePicture-activity"
             />
-            {/* <p className="name">{name}</p> */}
+            <p className="name">{name}</p>
           </div>
 
           <div className="description" dangerouslySetInnerHTML={{ __html: longDescription }}></div>
