@@ -13,8 +13,9 @@ import {
 } from '../../../reducers/reducer';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import poweredBy from '../../../img/icons/bliimo-white-msap.png'
-import msapIcon from '../../../img/icons/avatar.png'
+import poweredBy from '../../../img/icons/bliimo-white-msap.png';
+import msapIcon from '../../../img/icons/avatar.png';
+import Dotdotdot from 'react-dotdotdot';
 firebaseIni();
 
 const auth = firebase.auth;
@@ -27,13 +28,15 @@ const HandleDisplayBooth = props => {
         return (
           <Col width="33" key={key}>
             <div className={`booth ${booth.isActive}`} key={key}>
-              {booth.isActive === 'inactive' ? (
-                <Button sheetOpen=".sheet" onClick={() => props.HandleBoothChoose(booth)}>
+              <div className="booth-img-wrapper-account">
+                {booth.isActive === 'inactive' ? (
+                  <Button sheetOpen=".sheet" onClick={() => props.HandleBoothChoose(booth)}>
+                    <img src={booth.logo} alt={booth.booth} />
+                  </Button>
+                ) : (
                   <img src={booth.logo} alt={booth.booth} />
-                </Button>
-              ) : (
-                <img src={booth.logo} alt={booth.booth} />
-              )}
+                )}
+              </div>
             </div>
           </Col>
         );
@@ -48,11 +51,7 @@ const HandleDisplayProfile = props => {
     <div className="profile">
       <img
         id="account-pic"
-        src={
-          profile.profilePicture
-            ? profile.profilePicture
-            : msapIcon
-        }
+        src={profile.profilePicture ? profile.profilePicture : msapIcon}
         alt={profile.firstname ? `${profile.firstname} ${profile.lastname}` : ''}
       />
       <div className="account-name">
@@ -96,7 +95,7 @@ class HomePage extends React.Component {
     isOpen: false,
     code: '',
     visitedBooths: [],
-    modalText:''
+    modalText: ''
   };
 
   login = async () => {
@@ -165,12 +164,18 @@ class HomePage extends React.Component {
         booth: this.state.boothChoose.boothKey,
         dateAvailable: firebase.database.ServerValue.TIMESTAMP
       });
-      await setData(`visitedBooths/${uid}`, visitedBooths); 
+      await setData(`visitedBooths/${uid}`, visitedBooths);
       this.HandleGetVisitedBooths();
-      this.setState({ HandleBoothChoose: this.HandleBoothChoose,modalText:'Successfully entered codes' });
+      this.setState({
+        HandleBoothChoose: this.HandleBoothChoose,
+        modalText: 'Successfully entered codes'
+      });
       this.setModal(false);
     } else {
-      this.setState({ HandleBoothChoose: this.HandleBoothChoose,modalText:'Code doesn\'t match!' });
+      this.setState({
+        HandleBoothChoose: this.HandleBoothChoose,
+        modalText: "Code doesn't match!"
+      });
     }
   };
 
@@ -188,87 +193,120 @@ class HomePage extends React.Component {
 
   componentDidMount = () => {};
 
-  HandleDisplayModal = () =>{
-    this.setState({modalText:''})
-  }
+  HandleDisplayModal = () => {
+    this.setState({ modalText: '' });
+  };
 
   render() {
     return (
       <div>
-       {this.state.modalText === '' && <Block className='block-content'>
-        <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
-        <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
-          <Link
-            iconF7="chevron_left"
-            color="white"
-            className="back-button" 
-            tabLink='#dashboard'
-            href='#dashboard'
-            style={{padding:0}}
-          ></Link>
-          <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>{this.state.profile ? 'Your Profile':'Login/Register'}</span>
-        </div>
-        <div className="account">
-          {this.state.profile && (<HandleDisplayAccount data={this.state} logout={this.logout} range={`(${this.state.visitedBooths.length}/${this.state.booths.length})`}/>)}
-          <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
-            <Block className='block-account' style={{ width: '100%' }}>
-              <BlockTitle style={{ textTransform: 'capitalize' }}>
-                <p style={{ fontSize: '18px', color: '#222' }}>{this.state.boothChoose.company}</p>
-                <input
-                  style={{ color: '#222' }}
-                  type="text"
-                  placeholder="Code"
-                  value={this.state.code}
-                  onChange={e => {
-                    this.setState({ code: e.target.value });
-                  }}
+        {this.state.modalText === '' && (
+          <Block className="block-content">
+            <img src={poweredBy} alt="" className="poweredBy" style={{ top: '.1em !important' }} />
+            <div id="top-nav" className="top-nav" style-={{ marginTop: '1em' }}>
+              <Link
+                iconF7="chevron_left"
+                color="white"
+                className="back-button"
+                tabLink="#dashboard"
+                href="#dashboard"
+                style={{ padding: 0 }}
+              ></Link>
+              <span
+                id="top-title"
+                className="top-title"
+                style={{
+                  display: 'inline-block',
+                  width: '100% !important',
+                  textAlign: 'center',
+                  fontSize: '1.5em !important'
+                }}
+              >
+                {this.state.profile ? 'Your Profile' : 'Login/Register'}
+              </span>
+            </div>
+            <div className="account">
+              {this.state.profile && (
+                <HandleDisplayAccount
+                  data={this.state}
+                  logout={this.logout}
+                  range={`(${this.state.visitedBooths.length}/${this.state.booths.length})`}
                 />
-                <div className="sheet-div">
-                  <Button
-                    className="sheet-btn"
-                    onClick={() => {
-                      this.handleSubmitCode();
-                    }}
-                  >
-                    Submit
-                  </Button>
-                  <Button
-                    className="sheet-btn"
-                    color="red"
-                    onClick={() => {
-                      this.setModal(false);
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </BlockTitle>
-            </Block>
-          </div>
-          {this.state.profile === null && (
-            <Row>
-              <div className="notice">
-                Oh! Looks like you haven't logged in yet! Log in or Sign up now.
+              )}
+              <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
+                <Block className="block-account" style={{ width: '100%' }}>
+                  <BlockTitle style={{ textTransform: 'capitalize' }}>
+                      <span style={{ fontSize: '18px', color: '#222',width:'100%',marginTop:'1em' }}>
+                        {this.state.boothChoose.company}
+                      </span>
+                    <input
+                      style={{ color: '#222' }}
+                      type="text"
+                      placeholder="Code"
+                      value={this.state.code}
+                      onChange={e => {
+                        this.setState({ code: e.target.value });
+                      }}
+                    />
+                    <div className="sheet-div">
+                      <Button
+                        className="sheet-btn"
+                        onClick={() => {
+                          this.handleSubmitCode();
+                        }}
+                      >
+                        Submit
+                      </Button>
+                      <Button
+                        className="sheet-btn"
+                        color="red"
+                        onClick={() => {
+                          this.setModal(false);
+                        }}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </BlockTitle>
+                </Block>
               </div>
-              <div className="social-buttons">
-                {/* <Button color="blue" raised fill onClick={this.login}>
+              {this.state.profile === null && (
+                <Row>
+                  <div className="notice">
+                    Oh! Looks like you haven't logged in yet! Log in or Sign up now.
+                  </div>
+                  <div className="social-buttons">
+                    {/* <Button color="blue" raised fill onClick={this.login}>
                 Sign up with facebook
               </Button> */}
-                <Button color="blue" raised fill href="/register">
-                  Sign up with email
-                </Button>
-                <Button color="blue" raised fill href="/login">
-                  Login
-                </Button>
-              </div>
-            </Row>
-          )}
-        </div>
-       </Block> }
-      {this.state.modalText !== '' && (<div className='modal-alert-wrapper'><div className='modal-alert'>
-      <span>{this.state.modalText}</span>
-      <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
-    </div></div>)}</div>
+                    <Button color="blue" raised fill href="/register">
+                      Sign up with email
+                    </Button>
+                    <Button color="blue" raised fill href="/login">
+                      Login
+                    </Button>
+                  </div>
+                </Row>
+              )}
+            </div>
+          </Block>
+        )}
+        {this.state.modalText !== '' && (
+          <div className="modal-alert-wrapper">
+            <div className="modal-alert">
+              <span>{this.state.modalText}</span>
+              <a
+                href="javascript:void(0)"
+                onClick={() => {
+                  this.HandleDisplayModal();
+                }}
+              >
+                Ok
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
     );
   }
 }
