@@ -198,11 +198,12 @@ class HomePage extends React.Component {
        {this.state.modalText === '' && <Block className='block-content'>
         <img src={poweredBy} alt='' className='poweredBy' style={{top:'.1em !important'}}/>
         <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
-        <Link
+          <Link
             iconF7="chevron_left"
             color="white"
             className="back-button" 
-            tabLink='#booths' href='#booths'
+            tabLink='#dashboard'
+            href='#dashboard'
             style={{padding:0}}
           ></Link>
           <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>{this.state.profile ? 'Your Profile':'Login/Register'}</span>

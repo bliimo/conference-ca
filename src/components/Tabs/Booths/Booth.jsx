@@ -152,14 +152,16 @@ class HomePage extends React.Component {
       <img src={poweredBy} alt='' className='poweredBy'/>
       <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
         <Link
-            iconF7="chevron_left"
-            color="white"
-            className="back-button" 
-            onClick={() => {
-              this.setState({display:this.state.display === 'booth' ? 'main':'booth'})
-            }}
-            style={{padding:0}}
-          ></Link>
+          iconF7="chevron_left"
+          color="white"
+          className="back-button" 
+          tabLink='#dashboard'
+          href='#dashboard'
+          onClick={() => {
+            this.setState({display:this.state.display === 'booth' ? 'main':'booth'})
+          }}
+          style={{padding:0}}
+        ></Link>
          <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>Activities/Booths</span>
         </div>
         <Block inner accordionList>
