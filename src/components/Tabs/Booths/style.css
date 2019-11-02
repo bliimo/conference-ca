@@ -1,6 +1,6 @@
 .booth-information {
   display: inline-block;
-  width:100%;
+  width: 100%;
 }
 
 .booth-information .left,
@@ -9,8 +9,9 @@
 }
 
 .booth-information .left {
-  text-align: center; margin: 1em 0;
-  width: 20%;
+  text-align: center;
+  margin: 1em 0;
+  width: 18%;
   height: 50px;
   background-color: #fff;
   border-radius: 100%;
@@ -21,12 +22,12 @@
   height: 70px;
 }
 
-.left img{
+.left img {
   width: 70%;
   height: auto;
   vertical-align: middle;
   position: relative;
-  top: .9em;
+  top: 0.9em;
 }
 
 .booth-information .right {
@@ -39,9 +40,9 @@
 }
 
 .booth-description {
-  font-size: .75em;
-    font-weight: lighter;
-    color: #ccc;
+  font-size: 0.75em;
+  font-weight: lighter;
+  color: #ccc;
 }
 
 .paragraph {
@@ -54,35 +55,34 @@
 }
 
 .collapse-info {
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
-.booth-img{
+.booth-img {
   width: 100%;
   margin: auto !important;
   height: auto;
   vertical-align: middle;
   position: relative;
 }
-f.booth-wrapper .company-desc
-.booth-wrapper{
+f.booth-wrapper .company-desc .booth-wrapper {
   text-align: center;
 }
 
-.booth-wrapper .company-name{
+.booth-wrapper .company-name {
   font-size: 1.5em;
   text-transform: uppercase;
   color: #fff;
   text-align: center;
   position: relative;
-    bottom: .5em;
+  bottom: 0.5em;
 }
 
-.booth-wrapper .company-desc{
-  font-weight: 300; 
+.booth-wrapper .company-desc {
+  font-weight: 300;
   letter-spacing: 1px;
   position: relative;
-    bottom: 2.5em !important;
+  bottom: 2.5em !important;
 }
 
 .pop-info {
@@ -97,7 +97,7 @@ f.booth-wrapper .company-desc
   padding: 1em;
 }
 
-.notif-wrapper{
+.notif-wrapper {
   position: absolute;
   width: 100%;
   min-height: 150%;
@@ -105,30 +105,30 @@ f.booth-wrapper .company-desc
   background-color: #000000e0 !important;
 }
 
-.pop-info h1{
+.pop-info h1 {
   font-size: 1.1em;
   font-weight: bolder;
   font-family: sans-serif;
   letter-spacing: 1px;
 }
 
-.pop-info p{
-  font-size: .8em;
+.pop-info p {
+  font-size: 0.8em;
   font-family: sans-serif;
   letter-spacing: 1px;
 }
 
-.pop-info label{
-  font-size: .8em;
-  margin-right: .3em;
+.pop-info label {
+  font-size: 0.8em;
+  margin-right: 0.3em;
   font-weight: lighter;
 }
 
-.nav-booths .sliding{
-  margin-top: .7em !important;
+.nav-booths .sliding {
+  margin-top: 0.7em !important;
 }
 
-.block.accordion-list{
+.block.accordion-list {
   top: -2em !important;
 }
 .notif-wrapper {
@@ -136,28 +136,27 @@ f.booth-wrapper .company-desc
   left: 0;
 }
 .accordion-item {
-  padding-top: .5em;
-  padding-bottom: .5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .booth-wrapper span {
   color: #fff;
 }
 
-.booth-wrapper .company-desc{
-  font-size: .7em;
+.booth-wrapper .company-desc {
+  font-size: 0.7em;
   padding-top: 0 !important;
   position: relative;
-  bottom: 1.5em; 
+  bottom: 1.5em;
 }
 
-
-.img-wrapper-booth{
+.img-wrapper-booth {
   width: 50%;
   background: #fff;
   height: 130px;
   border-radius: 100%;
-  padding: .5em;
+  padding: 0.5em;
   margin: auto;
 }
 .vertical-middle {
@@ -168,5 +167,5 @@ f.booth-wrapper .company-desc
   display: flex;
   justify-content: center;
   padding-left: 1em;
-    padding-right: 1em;
+  padding-right: 1em;
 }

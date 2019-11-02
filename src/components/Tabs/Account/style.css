@@ -4,8 +4,6 @@
   padding: 10px 0px;
 }
 
-
-
 .booth.active {
   opacity: 1;
 }
@@ -19,7 +17,7 @@
   color: #fff;
 }
 
-.profile img{
+.profile img {
   display: block;
   margin: 0 auto;
   bottom: 1em;
@@ -48,45 +46,45 @@
 .social-buttons a {
   margin-bottom: 10px;
   height: 3em;
-  padding-top: .5em;
+  padding-top: 0.5em;
   width: 100%;
 }
-.modal-sheet{
+.modal-sheet {
   position: absolute;
   background: #fff;
   width: 85%;
   top: 45%;
 }
 
-.modal-sheet.hide{
+.modal-sheet.hide {
   display: none;
 }
 
-.modal-sheet.show{
-  display:block;
+.modal-sheet.show {
+  display: block;
 }
 
 a.sheet-btn.button {
   display: inline-block;
 }
 
-.sheet-btn-wrapper{
+.sheet-btn-wrapper {
   text-align: right;
 }
 
-.sheet-div{
+.sheet-div {
   text-align: right;
 }
-#account-pic{
-  height:100px;
-  width:100px;
-  border-radius:100%;
+#account-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
 }
 
-.nav-booths{
-    position: relative !important;
-    top: 1.5em !important;
-    padding: .2em;
+.nav-booths {
+  position: relative !important;
+  top: 1.5em !important;
+  padding: 0.2em;
 }
 
 a.back-button.link.icon-only.tab-link.color-white {
@@ -106,33 +104,30 @@ span.range-booths {
   color: #fff;
 }
 
-.block-content{
+.block-content {
   position: initial !important;
   margin-top: 2em !important;
-  padding-left: .5em !important;
-  padding-right: .5em !important;
+  padding-left: 0.5em !important;
+  padding-right: 0.5em !important;
 }
 
-.nav-account .sliding{
-  padding: 0 !important; 
+.nav-account .sliding {
+  padding: 0 !important;
 }
 
-.block-account{
-  top: -2em !important;
-}
 span#top-title {
-  padding-left: .5em !important;
+  padding-left: 0.5em !important;
 }
 
 .booth-img-wrapper-account {
   height: 70px;
   width: 70px;
   background: #fff;
-  margin: .7em;
+  margin: 0.7em;
   border-radius: 100%;
   display: flex;
   justify-content: center;
-  padding: .2em;
+  padding: 0.2em;
 }
 
 .booth a {
@@ -141,10 +136,18 @@ span#top-title {
   vertical-align: middle;
   position: relative;
 }
-.booth img { 
+.booth img {
   height: auto;
   max-height: 50%;
   position: relative;
   top: 1.2em;
+}
 
+.toolbar-bottom ~ .page-content,
+.ios .toolbar-bottom-ios ~ .page-content,
+.md .toolbar-bottom-md ~ .page-content,
+.toolbar-bottom ~ * .page-content,
+.ios .toolbar-bottom-ios ~ * .page-content,
+.md .toolbar-bottom-md ~ * .page-content {
+  padding-bottom: 1em !important ;
 }
