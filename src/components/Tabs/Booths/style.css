@@ -12,6 +12,8 @@
   text-align: center; margin: 1em 0;
   width: 20%;
   height: 50px;
+  background-color: #fff;
+  border-radius: 100%;
 }
 
 .booth-information img {
@@ -20,21 +22,26 @@
 }
 
 .left img{
-  width: 100% !important;
+  width: 70%;
   height: auto;
   vertical-align: middle;
+  position: relative;
+  top: .9em;
 }
 
 .booth-information .right {
+  margin: 1em 0;
   width: 80%;
   padding: 0px 0px 0px 20px;
   box-sizing: border-box;
   float: right;
+  color: #fff !important;
 }
 
 .booth-description {
-  font-size: var(--normal-text);
-  font-family: var(--font-light);
+  font-size: .75em;
+    font-weight: lighter;
+    color: #ccc;
 }
 
 .paragraph {
@@ -51,27 +58,31 @@
 }
 
 .booth-img{
-  width: auto;
-  max-width: 100% !important;
+  width: 100%;
   margin: auto !important;
-  height: 100px;
+  height: auto;
+  vertical-align: middle;
+  position: relative;
 }
-
+f.booth-wrapper .company-desc
 .booth-wrapper{
   text-align: center;
-  margin-top: 7em;
 }
 
 .booth-wrapper .company-name{
   font-size: 1.5em;
   text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+    bottom: .5em;
 }
 
 .booth-wrapper .company-desc{
-  font-weight: 300;
-  color: gray;
-  font-family: sans-serif;
+  font-weight: 300; 
   letter-spacing: 1px;
+  position: relative;
+    bottom: 2.5em !important;
 }
 
 .pop-info {
@@ -123,4 +134,39 @@
 .notif-wrapper {
   top: 0;
   left: 0;
+}
+.accordion-item {
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+.booth-wrapper span {
+  color: #fff;
+}
+
+.booth-wrapper .company-desc{
+  font-size: .7em;
+  padding-top: 0 !important;
+  position: relative;
+  bottom: 1.5em; 
+}
+
+
+.img-wrapper-booth{
+  width: 50%;
+  background: #fff;
+  height: 130px;
+  border-radius: 100%;
+  padding: .5em;
+  margin: auto;
+}
+.vertical-middle {
+  height: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-left: 1em;
+    padding-right: 1em;
 }
