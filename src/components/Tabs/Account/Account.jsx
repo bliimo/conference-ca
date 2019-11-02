@@ -31,10 +31,18 @@ const HandleDisplayBooth = props => {
               <div className="booth-img-wrapper-account">
                 {booth.isActive === 'inactive' ? (
                   <Button sheetOpen=".sheet" onClick={() => props.HandleBoothChoose(booth)}>
-                    <img src={booth.logo} alt={booth.booth} style={{width:booth.company === 'Twitter' ? '70%' : '80%' }}/>
+                    <img
+                      src={booth.logo}
+                      alt={booth.booth}
+                      style={{ width: booth.company === 'Twitter' ? '70%' : '80%' }}
+                    />
                   </Button>
                 ) : (
-                  <img src={booth.logo} alt={booth.booth} style={{width:booth.company === 'Twitter' ? '70%' : '80%' }}/>
+                  <img
+                    src={booth.logo}
+                    alt={booth.booth}
+                    style={{ width: booth.company === 'Twitter' ? '70%' : '80%' }}
+                  />
                 )}
               </div>
             </div>
@@ -236,9 +244,11 @@ class HomePage extends React.Component {
               <div className={`modal-sheet ${this.state.isOpen ? 'show' : 'hide'}`}>
                 <Block className="block-account" style={{ width: '100%' }}>
                   <BlockTitle style={{ textTransform: 'capitalize' }}>
-                      <span style={{ fontSize: '18px', color: '#222',width:'100%',marginTop:'1em' }}>
-                        {this.state.boothChoose.company}
-                      </span>
+                    <span
+                      style={{ fontSize: '18px', color: '#222', width: '100%', marginTop: '1em' }}
+                    >
+                      {this.state.boothChoose.company}
+                    </span>
                     <input
                       style={{ color: '#222' }}
                       type="text"
@@ -251,6 +261,7 @@ class HomePage extends React.Component {
                     <div className="sheet-div">
                       <Button
                         className="sheet-btn"
+                        style={{ background: 'rgb(33, 84, 144)', marginRight: '.5em' }}
                         onClick={() => {
                           this.handleSubmitCode();
                         }}
@@ -259,7 +270,7 @@ class HomePage extends React.Component {
                       </Button>
                       <Button
                         className="sheet-btn"
-                        color="red"
+                        style={{ background: 'red' }}
                         onClick={() => {
                           this.setModal(false);
                         }}

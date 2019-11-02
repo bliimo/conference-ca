@@ -16,9 +16,9 @@
 }
 
 .activity .description {
-  padding: .5em 2.2em;
-  font-family: var(--font-light); 
-  color:#fff;
+  padding: 0.5em 2.2em;
+  font-family: var(--font-light);
+  color: #fff;
 }
 
 .back-button {
@@ -88,7 +88,7 @@
   font-family: var(--font-bold);
   font-size: 11px;
   text-align: center;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 .featured-activity .content .right .profile-picture {
@@ -106,7 +106,6 @@
   padding: 10px;
   z-index: 9999;
   position: relative;
-  bottom: 3em;
 }
 
 .activities .talk img {
@@ -123,7 +122,7 @@
   color: #fff;
   text-align: center;
   position: relative;
-  bottom: .5em;
+  bottom: 0.5em;
   margin: auto;
 }
 
@@ -131,33 +130,33 @@
   border-radius: 100%;
 }
 
-#profilePicture-activity{
+#profilePicture-activity {
   height: 130px;
   width: 130px;
 }
-.profile .name{
+.profile .name {
   margin: 0;
   font-size: 1.5em !important;
   position: relative;
-    bottom: .5em;
+  bottom: 0.5em;
 }
 
-.item-input-wrap.input-dropdown::before{
+.item-input-wrap.input-dropdown::before {
   display: none;
 }
 
-#tabs{
+#tabs {
   background: transparent !important;
 }
-#tabs a.link.tab-link{
+#tabs a.link.tab-link {
   color: #717171;
 }
 
-#tabs a.link.tab-link.tab-link-active{
+#tabs a.link.tab-link.tab-link-active {
   color: #fff !important;
 }
-.content{
-  padding: .8em;
+.content {
+  padding: 0.8em;
 }
 
 .activities {
@@ -166,57 +165,60 @@
 .activity-title {
   font-size: 1.4em;
   font-weight: bold;
-  padding-top: .5em;
-  padding-bottom: .5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 i.icon.material-icons {
-  font-weight: bold; 
+  font-weight: bold;
 }
-a.btn-Question.button.button-fill.button-small{
+a.btn-Question.button.button-fill.button-small {
   float: right;
   width: 50%;
   margin-top: 1em;
-  background:#0171a6;
-  border-radius:0;
+  background: #0171a6;
+  border-radius: 0;
 }
 
 .date-activity {
   font-size: 1.7em;
-  position: relative; 
+  position: relative;
 }
-.top-title{
+.top-title {
   font-size: 1.2em;
   font-weight: bolder !important;
   width: 70% !important;
   text-align: center !important;
   letter-spacing: 2px;
 }
-.wrapper-star{
+.wrapper-star {
   padding: 1em;
   padding-top: 2.2em;
 }
 
-.title.activity-desc,.activity-time {
+.title.activity-desc,
+.activity-time {
   font-weight: lighter;
   font-family: sans-serif;
-  font-size: .8em;
+  font-size: 0.8em;
 }
-.poweredBy{
+.poweredBy {
   height: 30px;
   position: absolute;
   z-index: 999999999;
   right: 1em;
-  top: .8em;
+  top: 0.8em;
 }
 
-div#tab-1, div#tab-2 {
+div#tab-1,
+div#tab-2 {
   padding: 0 !important;
   height: auto !important;
-  margin:0 !important;
+  margin: 0 !important;
 }
 
-div#tab-1 > div, div#tab-2 > div{
+div#tab-1 > div,
+div#tab-2 > div {
   padding: 2em;
 }
 
@@ -228,11 +230,11 @@ div#tabs {
   font-size: 3.3em;
 }
 
-#modal-alert-activities{
+#modal-alert-activities {
   top: 30% !important;
 }
 
-#modal-alert-wrapper-activities{
+#modal-alert-wrapper-activities {
   height: 100% !important;
 }
 .date-activity {
@@ -240,6 +242,16 @@ div#tabs {
   padding-right: 1em;
 }
 
-.item-inner, .item-content.item-input, .list li{
+.item-inner,
+.item-content.item-input,
+.list li {
   border: none !important;
+}
+
+.featured-activity {
+  height: 290px !important;
+}
+
+.featured-activity > .swiper-container.swiper-container-horizontal.swiper-container-ios {
+  height: 100% !important;
 }
