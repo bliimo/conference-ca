@@ -85,3 +85,7 @@ a.back-button.link.icon-only.tab-link.color-white.tab-link-active{
 .nav-account-reg .sliding{
     padding: .5em !important;
 }
+
+.simple-list li:after, .links-list a:after, .list .item-inner:after{
+    display: none !important;
+}

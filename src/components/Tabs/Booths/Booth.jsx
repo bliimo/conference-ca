@@ -21,9 +21,13 @@ import poweredBy from '../../../img/icons/bliimo-white-msap.png'
 const DisplayBooth = props => {
   return (
     <div className="booth-wrapper">
-      <img className="booth-img" src={props.data.logo} alt={props.data.booth} />
+      <div className="img-wrapper-booth">
+        <div className="vertical-middle">
+          <img className="booth-img" style={{width:props.data.company === 'Twitter' ? '70%':'100%'}} src={props.data.logo} alt={props.data.booth} />
+        </div>
+      </div>
       <p className="company-name">{props.data.company}</p>
-      <div className="company-desc" style={{color:'#fff',marginBottom:'1em'}}>{props.data.description}</div>
+      <div className="company-desc" style={{color:'#fff'}}>{props.data.description}</div>
       {props.data.website && ( 
         <div style={{textAlign:'left'}}>
           <span>Website: </span>
@@ -57,7 +61,7 @@ const HandleDisplayBooth = props => {
           }}
         >
           <div className="left">
-            <img src={props.data.logo} alt={props.data.booth} />
+            <img src={props.data.logo} alt={props.data.booth} style={{width:props.data.company === 'Twitter' ? '60%':'70%'}} />
           </div>
           <div className="right">
             <div className="booth-name" style={{ fontSize: '1.2em', marginTop: '.5em' }}>
@@ -152,15 +156,16 @@ class HomePage extends React.Component {
       <img src={poweredBy} alt='' className='poweredBy'/>
       <div id='top-nav' className='top-nav' style-={{marginTop:'1em'}}>
         <Link
-            iconF7="chevron_left"
-            color="white"
-            className="back-button" 
-            onClick={()=>{this.setState({display:'main'})}}
-            // onClick={() => {
-            //   this.$f7router.navigate('/');
-            // }}
-            style={{padding:0}}
-          ></Link>
+          iconF7="chevron_left"
+          color="white"
+          className="back-button" 
+          tabLink={this.state.display === 'main' ? `#dashboard`:'#'}
+          href={this.state.display === 'main' ? `#dashboard`:'#'}
+          onClick={() => {
+            this.setState({display:'main'})
+          }}
+          style={{padding:0}}
+        ></Link>
          <span id="top-title" className="top-title" style={{display:'inline-block',width:'100% !important',textAlign:'center',fontSize:'1.5em !important'}}>Activities/Booths</span>
         </div>
         <Block inner accordionList>

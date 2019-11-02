@@ -20,3 +20,6 @@ body{
     color: var(--white);
 }
 
+a{
+    color: #fff !important;
+}

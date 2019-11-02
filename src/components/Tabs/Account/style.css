@@ -4,12 +4,7 @@
   padding: 10px 0px;
 }
 
-.booth img ,.booth a {
-  width: 100%;
-  height: 100%;
-  min-height: auto;
-  margin-bottom: 1em;
-}
+
 
 .booth.active {
   opacity: 1;
@@ -21,6 +16,7 @@
 
 .profile .account-name {
   text-align: center;
+  color: #fff;
 }
 
 .profile img{
@@ -40,15 +36,19 @@
 
 .notice {
   text-align: center;
+  color: #fff;
 }
 
 .social-buttons {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 25px;
+  height: 40px;
 }
 
 .social-buttons a {
   margin-bottom: 10px;
+  height: 3em;
+  padding-top: .5em;
   width: 100%;
 }
 .modal-sheet{
@@ -103,11 +103,12 @@ span.range-booths {
   position: relative;
   float: right;
   top: 1em;
+  color: #fff;
 }
 
 .block-content{
   position: initial !important;
-  margin-top: 3em !important;
+  margin-top: 2em !important;
   padding-left: .5em !important;
   padding-right: .5em !important;
 }
@@ -118,4 +119,32 @@ span.range-booths {
 
 .block-account{
   top: -2em !important;
+}
+span#top-title {
+  padding-left: .5em !important;
+}
+
+.booth-img-wrapper-account {
+  height: 70px;
+  width: 70px;
+  background: #fff;
+  margin: .7em;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  padding: .2em;
+}
+
+.booth a {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  position: relative;
+}
+.booth img { 
+  height: auto;
+  max-height: 50%;
+  position: relative;
+  top: 1.2em;
+
 }

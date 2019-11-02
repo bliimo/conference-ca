@@ -13,16 +13,6 @@ const client = axios.create({
   responseType: 'json'
 });
 
-const Test = () =>{
-  return (
-    <div style={{marginTop:'30%'}}>
-      <p style={{color:'red'}}>
-      test
-      </p>
-    </div>
-  )
-}
-
 const store = createStore(reducer, applyMiddleware(multiClientMiddleware(client)));
 const f7params = {
   id: 'io.framework7.testapp',
