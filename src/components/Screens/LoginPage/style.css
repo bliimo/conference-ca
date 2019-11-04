@@ -104,3 +104,16 @@ border-radius: 4px;
 .loading{
     z-index: 9999999 !important;
 }
+
+.gdpr-text{
+    float: right;
+    width: 90%;
+}
+
+.gdpr-text a{
+    text-decoration: underline;
+}
+
+.registration-form ul{
+    margin-bottom: 100px !important;
+}
