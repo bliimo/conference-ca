@@ -11,10 +11,11 @@
 .booth-information .left {
   text-align: center;
   margin: 1em 0;
-  width: 18%;
+  width: 50px;
   height: 50px;
   background-color: #fff;
   border-radius: 100%;
+  overflow: hidden;
 }
 
 .booth-information img {
@@ -23,11 +24,13 @@
 }
 
 .left img {
-  width: 70%;
+  width: 80%;
   height: auto;
-  vertical-align: middle;
   position: relative;
-  top: 0.9em;
+  display: block;
+  margin: 0 auto;
+  top: 50%;
+  transform: translatey(-50%);
 }
 
 .booth-information .right {
@@ -152,12 +155,13 @@ f.booth-wrapper .company-desc .booth-wrapper {
 }
 
 .img-wrapper-booth {
-  width: 50%;
+  width: 130px;
   background: #fff;
   height: 130px;
   border-radius: 100%;
   padding: 0.5em;
   margin: auto;
+  overflow: hidden;
 }
 .vertical-middle {
   height: 100%;

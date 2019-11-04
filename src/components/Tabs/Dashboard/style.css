@@ -1,5 +1,6 @@
 .container {
   /* padding: 10px */
+  margin-bottom: 50px;
 }
 
 .activity img.bg-image {
@@ -174,10 +175,8 @@ i.icon.material-icons {
 }
 a.btn-Question.button.button-fill.button-small {
   float: right;
-  width: 50%;
   margin-top: 1em;
   background: #0171a6;
-  border-radius: 0;
 }
 
 .date-activity {
