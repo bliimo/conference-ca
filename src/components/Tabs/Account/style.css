@@ -128,6 +128,7 @@ span#top-title {
   display: flex;
   justify-content: center;
   padding: 0.2em;
+  overflow: hidden;
 }
 
 .booth a {
@@ -137,10 +138,10 @@ span#top-title {
   position: relative;
 }
 .booth img {
-  height: auto;
-  max-height: 50%;
+  width: 70% !important;
   position: relative;
-  top: 1.2em;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .toolbar-bottom ~ .page-content,
@@ -150,4 +151,16 @@ span#top-title {
 .ios .toolbar-bottom-ios ~ * .page-content,
 .md .toolbar-bottom-md ~ * .page-content {
   padding-bottom: 1em !important ;
+}
+
+.button.sheet-open{
+  padding: 0px !important;
+}
+
+.boothCodeInput{
+  color: rgb(34, 34, 34) !important;
+  border-bottom: solid #ccc 1px !important;
+  width: 100%;
+  margin: 10px 0px !important;
+  padding: 10px 0px !important;
 }

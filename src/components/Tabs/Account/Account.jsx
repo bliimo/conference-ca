@@ -34,14 +34,14 @@ const HandleDisplayBooth = props => {
                     <img
                       src={booth.logo}
                       alt={booth.booth}
-                      style={{ width: booth.company === 'Twitter' ? '70%' : '80%' }}
+                      style={{ width: '100%' }}
                     />
                   </Button>
                 ) : (
                   <img
                     src={booth.logo}
                     alt={booth.booth}
-                    style={{ width: booth.company === 'Twitter' ? '70%' : '80%' }}
+                    style={{ width: '100%' }}
                   />
                 )}
               </div>
@@ -250,6 +250,7 @@ class HomePage extends React.Component {
                       {this.state.boothChoose.company}
                     </span>
                     <input
+                      className="boothCodeInput"
                       style={{ color: '#222' }}
                       type="text"
                       placeholder="Code"

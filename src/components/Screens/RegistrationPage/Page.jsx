@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Page, Link, Preloader, List, ListButton, ListInput,Navbar,NavTitle } from 'framework7-react';
+import { Page, Link, Preloader, List, ListButton, ListInput, Checkbox, ListItem } from 'framework7-react';
 import { connect } from 'react-redux';
 import { addAuth, setData, setStorage, getStorage } from '../../../reducers/reducer';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
@@ -17,7 +17,8 @@ class Register extends Component {
       repassword: '',
       logging: false,
       isRegister:false,
-      modalText:''
+      modalText:'', 
+      gdpr: false
     };
   }
 
@@ -78,7 +79,7 @@ class Register extends Component {
         <div className="page no-navbar no-toolbar no-swipeback" style={{marginTop:'6em'}}>
           <div className="page-content login-screen-content signup-page">
             <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%',zIndex:'999999999999' }}></Preloader>
-            <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em' }}>
+            <List className='registration-form' form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em' }} mediaList>
               <ListInput
                 value={this.state.firstname}
                 onInput={e => {
@@ -133,7 +134,17 @@ class Register extends Component {
                 type="password"
                 placeholder="Re-type Password"
               />
-              <ListButton className='btn-reg' style={{color:'#fff !important'}} onClick={() => this.onHandleRegister()}>Register</ListButton>
+              <ListItem>
+                <Checkbox
+                  name="gdpr-checkbox"
+                  checked={this.state.gdpr}
+                  onChange={(e) => { this.setState({gdpr: !this.state.gdpr}); }}
+                  className='gdpr-checkbox'
+                >
+                </Checkbox>
+                <div className='gdpr-text'>Agree with <Link href="https://www.bliimo.com/privacy.html" external>Privacy Policy</Link> and <Link href="https://www.bliimo.com/terms.html" external>Terms and Conditions</Link></div>
+              </ListItem>
+              <ListButton className={`btn-reg ${!this.state.gdpr ? 'disabled': ''}`}  style={{color:'#fff !important'}} onClick={() => this.onHandleRegister()}>Register</ListButton>
             </List>
           </div>
         </div>

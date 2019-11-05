@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Page, Link, ListInput, List, ListButton, Preloader, Navbar, NavTitle } from 'framework7-react';
+import { Page, Link, ListInput, List, ListButton, Preloader, Navbar, Popup, NavRight, Block, ListItem } from 'framework7-react';
 import { connect } from 'react-redux';
 import { auth, setStorage, getStorage } from '../../../reducers/reducer';
 import poweredBy from '../../../img/icons/bliimo-white-msap.png'
@@ -13,7 +13,9 @@ class Login extends Component {
       password: '',
       logging: false,
       modalText:'',
-      loginSuccess:false
+      loginSuccess:false, 
+      popupOpened: false,
+      gdpr: false
     };
   }
 
@@ -29,10 +31,10 @@ class Login extends Component {
     if (data.response === 'success') {
       setStorage({ uid: data.id });
       this.setState({ logging: false });
-      this.setState({loginSuccess:true,modalText:'Successfully logged-in'})
+      this.setState({loginSuccess:true, modalText:'Successfully logged-in'})
     } else {
       this.setState({ logging: false });
-      this.setState({loginSuccess:false,modalText:'Invalid account'})
+      this.setState({loginSuccess:false, modalText:'Invalid account'})
     }
   };
 
@@ -41,6 +43,10 @@ class Login extends Component {
     if(this.state.loginSuccess){
       this.$f7router.navigate('/');
     }
+  }
+
+  HandleGDRP = () => {
+
   }
 
   render() { 
@@ -63,7 +69,7 @@ class Login extends Component {
         <div>
           <div className="page-content login-screen-content login-page">
           <Preloader color="white" className="loading" style={{ display: this.state.logging ? 'block' : 'none', position: 'absolute', top: '50%', left: '50%',zIndex:'999999999999' }}></Preloader>
-              <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em'  }}>
+            <List form style={{ display: this.state.logging ? 'none' : 'block',padding:'.5em'  }}>
               <ListInput
                 value={this.state.email}
                 onInput={e => {
@@ -82,7 +88,7 @@ class Login extends Component {
                 type="password"
                 placeholder="Password"
               />
-              <ListButton className='btn-reg' onClick={() => this.HandleLogin()}>Login</ListButton>
+              <ListButton className='btn-reg' disabled={true} onClick={() => this.HandleLogin()}>Login</ListButton>
             </List>
           </div>
         </div>
@@ -91,6 +97,21 @@ class Login extends Component {
           <span>{this.state.modalText}</span>
           <a href='javascript:void(0)' onClick={()=>{this.HandleDisplayModal()}}>Ok</a>
         </div></div>)}
+
+        <Popup className="gdpr-popup" opened={this.state.popupOpened} onPopupClosed={() => this.setState({popupOpened : false})}>
+          <Page>
+            <Navbar title="Popup Title">
+              <NavRight>
+                <Link popupClose>Close</Link>
+              </NavRight>
+            </Navbar>
+            <Block>
+              <p>Here comes popup. You can put here anything, even independent view with its own navigation. Also not, that by default popup looks a bit different on iPhone/iPod and iPad, on iPhone it is fullscreen.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+              <p>Duis ut mauris sollicitudin, venenatis nisi sed, luctus ligula...</p>
+            </Block>
+          </Page>
+        </Popup>
       </Page>
     );
   }

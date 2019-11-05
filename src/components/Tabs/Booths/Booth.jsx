@@ -23,7 +23,7 @@ const DisplayBooth = props => {
     <div className="booth-wrapper">
       <div className="img-wrapper-booth">
         <div className="vertical-middle">
-          <img className="booth-img" style={{width:props.data.company === 'Twitter' ? '70%':'100%'}} src={props.data.logo} alt={props.data.booth} />
+          <img className="booth-img" src={props.data.logo} alt={props.data.booth} />
         </div>
       </div>
       <p className="company-name">{props.data.company}</p>
@@ -48,8 +48,8 @@ const DisplayBooth = props => {
   );
 };
 const HandleDisplayBooth = props => {
-  const htmlRender = () => {
-    return { __html: props.data.description };
+  const htmlRender = (text) => {
+    return { __html: text };
   };
   return (
     <AccordionItem>
@@ -61,14 +61,16 @@ const HandleDisplayBooth = props => {
           }}
         >
           <div className="left">
-            <img src={props.data.logo} alt={props.data.booth} style={{width:props.data.company === 'Twitter' ? '60%':'70%'}} />
+            <img src={props.data.logo} alt={props.data.booth} />
           </div>
           <div className="right">
-            <div className="booth-name" style={{ fontSize: '1.2em', marginTop: '.5em' }}>
-              {props.data.company}
-            </div>
+            <Dotdotdot clamp={2}>
+              <div className="booth-name" style={{ fontSize: '1.2em', marginTop: '.5em' }}>
+                {props.data.company}
+              </div>
+            </Dotdotdot>
             <Dotdotdot clamp={1}>
-              <div className="booth-description" dangerouslySetInnerHTML={htmlRender()} />
+              <div className="booth-description" dangerouslySetInnerHTML={htmlRender(props.data.description)} />
             </Dotdotdot>
           </div>
         </div>
@@ -141,6 +143,7 @@ class HomePage extends React.Component {
 
   componentDidMount = () => {
   };
+
   componentWillReceiveProps = () =>{
     // this.props.closeNotication(true)
   }

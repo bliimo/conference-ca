@@ -228,7 +228,7 @@ class Activity extends React.Component {
                       onChange={e => {
                         this.setState({ question: e.target.value, rated: 0 });
                       }}
-                      placeholder="Your question"
+                      placeholder="Leave Feedback"
                       style={{
                         width: '100%',
                         height: '30vh',
@@ -243,7 +243,7 @@ class Activity extends React.Component {
                       className="btn-Question"
                       onClick={() => this.HandleSendQuestion()}
                     >
-                      Send question
+                      Send Feedback
                     </Button>
                   </div>
                 )}
